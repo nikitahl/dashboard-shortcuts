@@ -138,14 +138,14 @@ class WDS_Shortcuts {
 
 		wp_enqueue_style(
 			'wds-shortcuts-style',
-			WDS_PLUGIN_URL . 'assets/css/shortcuts.css',
+			WDS_PLUGIN_URL . 'assets/dist/css/shortcuts.min.css',
 			[],
 			WDS_VERSION
 		);
 
 		wp_enqueue_script(
 			'wds-shortcuts-script',
-			WDS_PLUGIN_URL . 'assets/js/shortcuts.js',
+			WDS_PLUGIN_URL . 'assets/dist/js/shortcuts.min.js',
 			[ 'jquery' ],
 			WDS_VERSION,
 			true

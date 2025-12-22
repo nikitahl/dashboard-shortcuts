@@ -237,14 +237,14 @@ class WDS_Settings {
 
 		wp_enqueue_style(
 			'wds-admin-style',
-			WDS_PLUGIN_URL . 'assets/css/admin.css',
+			WDS_PLUGIN_URL . 'assets/dist/css/admin.min.css',
 			[],
 			WDS_VERSION
 		);
 
 		wp_enqueue_script(
 			'wds-admin-script',
-			WDS_PLUGIN_URL . 'assets/js/admin.js',
+			WDS_PLUGIN_URL . 'assets/dist/js/admin.min.js',
 			[ 'jquery', 'jquery-ui-sortable' ],
 			WDS_VERSION,
 			true
