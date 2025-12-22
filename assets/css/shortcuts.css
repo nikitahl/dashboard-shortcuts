@@ -10,7 +10,7 @@
   top: 32px;
   left: 0;
   right: 0;
-  background: #1d2327;
+  background: #292e31;
   border-bottom: 1px solid #3c434a;
   z-index: 99999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -19,7 +19,7 @@
 .wds-shortcuts-container {
   display: flex;
   align-items: center;
-  padding: 0;
+  padding: 0 6px;
   max-width: 100%;
   margin: 0 auto;
   gap: 0px;
@@ -72,7 +72,7 @@
 
 .wds-shortcut-link:hover,
 .wds-shortcut-link:focus {
-  background: #2c3338;
+  background: #3b444a;
   color: #72aee6;
   outline: none;
 }
@@ -142,5 +142,90 @@ body:not(.wp-admin).admin-bar {
 @media screen and (max-width: 600px) {
   body:not(.wp-admin).admin-bar {
     margin-top: 92px !important;
+  }
+}
+
+/* Add Current Page Button */
+.wds-add-current-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #2271b1;
+  border: 1px solid #2271b1;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 3px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+.wds-add-current-btn:hover,
+.wds-add-current-btn:focus {
+  background: #135e96;
+  border-color: #135e96;
+  color: #fff;
+  outline: none;
+}
+
+.wds-add-current-btn .dashicons {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+/* Add Page Modal Adjustments */
+.wds-add-page-modal {
+  max-width: 500px;
+}
+
+/* Notification Messages */
+.wds-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: #fff;
+  border-left: 4px solid #2271b1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  padding: 15px 20px;
+  border-radius: 4px;
+  z-index: 100001;
+  opacity: 0;
+  transform: translateX(400px);
+  transition: all 0.3s ease;
+  max-width: 350px;
+}
+
+.wds-notification.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.wds-notification-success {
+  border-left-color: #00a32a;
+  color: #00a32a;
+}
+
+.wds-notification-error {
+  border-left-color: #d63638;
+  color: #d63638;
+}
+
+@media screen and (max-width: 782px) {
+  .wds-add-current-btn {
+    padding: 5px 10px;
+    font-size: 12px;
+  }
+
+  .wds-add-current-btn span:not(.dashicons) {
+    display: none;
+  }
+
+  .wds-notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
   }
 }

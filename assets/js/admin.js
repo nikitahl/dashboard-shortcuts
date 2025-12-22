@@ -14,10 +14,7 @@
     var $container = $('#wds-shortcuts-container');
     var $addButton = $('#wds-add-shortcut');
 
-    // Initialize sortable functionality.
     initSortable();
-
-    // Initialize WordPress link picker.
     initLinkPicker();
 
     // Add new shortcut row.
@@ -111,7 +108,6 @@
     var $searchInput = $('#wds-modal-search');
     var $results = $('#wds-modal-results');
 
-    // Set current URL
     $urlInput.val($input.val());
 
     // Clear previous search
@@ -122,7 +118,6 @@
     $modal.show();
     $('body').addClass('modal-open');
 
-    // Focus on URL input
     $urlInput.focus();
 
     // Handle search
@@ -377,7 +372,6 @@
     });
   }
 
-  // Initialize on document ready.
   $(document).ready(function() {
     init();
   });

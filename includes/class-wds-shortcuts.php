@@ -28,6 +28,7 @@ class WDS_Shortcuts {
 		add_action( 'wp_footer', [ $this, 'render_shortcuts_bar' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
+		add_action( 'wp_ajax_wds_add_current_page', [ $this, 'ajax_add_current_page' ] );
 	}
 
 	/**
@@ -46,10 +47,6 @@ class WDS_Shortcuts {
 
 		$shortcuts = $this->get_shortcuts();
 
-		if ( empty( $shortcuts ) ) {
-			return;
-		}
-
 		?>
 		<div id="wds-shortcuts-bar" class="wds-shortcuts-bar">
 			<div class="wds-shortcuts-container">
@@ -58,21 +55,29 @@ class WDS_Shortcuts {
 					<?php esc_html_e( 'Shortcuts:', 'wp-dashboard-shortcuts' ); ?>
 				</span>
 				<ul class="wds-shortcuts-list">
-					<?php foreach ( $shortcuts as $index => $shortcut ) : ?>
-						<?php
-						if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
-							continue;
-						}
-						?>
-						<li class="wds-shortcut-item">
-							<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
-								<?php echo ! empty( $shortcut['new_tab'] ) ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
-								class="wds-shortcut-link">
-								<?php echo esc_html( $shortcut['title'] ); ?>
-							</a>
-						</li>
-					<?php endforeach; ?>
+					<?php
+					if ( ! empty( $shortcuts ) ) :
+						foreach ( $shortcuts as $index => $shortcut ) :
+							if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
+								continue;
+							}
+							?>
+							<li class="wds-shortcut-item">
+								<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
+									<?php echo ! empty( $shortcut['new_tab'] ) ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
+									class="wds-shortcut-link">
+									<?php echo esc_html( $shortcut['title'] ); ?>
+								</a>
+							</li>
+							<?php
+						endforeach;
+					endif;
+					?>
 				</ul>
+				<button type="button" id="wds-add-current-page" class="wds-add-current-btn" title="<?php esc_attr_e( 'Add current page to shortcuts', 'wp-dashboard-shortcuts' ); ?>">
+					<span class="dashicons dashicons-plus-alt"></span>
+					<?php esc_html_e( 'Add Current Page', 'wp-dashboard-shortcuts' ); ?>
+				</button>
 			</div>
 		</div>
 		<?php
@@ -111,5 +116,115 @@ class WDS_Shortcuts {
 			[],
 			WDS_VERSION
 		);
+
+		wp_enqueue_script(
+			'wds-shortcuts-script',
+			WDS_PLUGIN_URL . 'assets/js/shortcuts.js',
+			[ 'jquery' ],
+			WDS_VERSION,
+			true
+		);
+
+		wp_localize_script(
+			'wds-shortcuts-script',
+			'wdsShortcuts',
+			[
+				'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
+				'nonce'         => wp_create_nonce( 'wds_add_current_page' ),
+				'currentUrl'    => esc_url_raw( $this->get_current_url() ),
+				'currentTitle'  => $this->get_current_title(),
+				'addLabel'      => __( 'Add to Shortcuts', 'wp-dashboard-shortcuts' ),
+				'cancelLabel'   => __( 'Cancel', 'wp-dashboard-shortcuts' ),
+				'titleLabel'    => __( 'Shortcut Title:', 'wp-dashboard-shortcuts' ),
+				'successMsg'    => __( 'Shortcut added successfully!', 'wp-dashboard-shortcuts' ),
+				'errorMsg'      => __( 'Error adding shortcut. Please try again.', 'wp-dashboard-shortcuts' ),
+				'emptyTitleMsg' => __( 'Please enter a title for the shortcut.', 'wp-dashboard-shortcuts' ),
+			]
+		);
+	}
+
+	/**
+	 * Get current page URL.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string Current URL.
+	 */
+	private function get_current_url() {
+		global $pagenow;
+
+		if ( is_admin() ) {
+			$url = admin_url( $pagenow );
+			if ( ! empty( $_SERVER['QUERY_STRING'] ) ) {
+				$url .= '?' . sanitize_text_field( wp_unslash( $_SERVER['QUERY_STRING'] ) );
+			}
+			return $url;
+		}
+
+		return home_url( add_query_arg( null, null ) );
+	}
+
+	/**
+	 * Get current page title.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return string Current page title.
+	 */
+	private function get_current_title() {
+		global $pagenow, $title;
+
+		if ( is_admin() ) {
+			if ( ! empty( $title ) ) {
+				return $title;
+			}
+
+			// Try to get admin page title.
+			$admin_title = get_admin_page_title();
+			if ( $admin_title ) {
+				return $admin_title;
+			}
+
+			// Fallback to page file name.
+			return ucfirst( str_replace( [ '.php', '-' ], [ '', ' ' ], $pagenow ) );
+		}
+
+		return wp_get_document_title();
+	}
+
+	/**
+	 * AJAX handler to add current page to shortcuts.
+	 *
+	 * @since 1.0.0
+	 */
+	public function ajax_add_current_page() {
+		check_ajax_referer( 'wds_add_current_page', 'nonce' );
+
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_send_json_error( [ 'message' => __( 'Permission denied.', 'wp-dashboard-shortcuts' ) ] );
+		}
+
+		$title = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
+		$url   = isset( $_POST['url'] ) ? esc_url_raw( wp_unslash( $_POST['url'] ) ) : '';
+
+		if ( empty( $title ) || empty( $url ) ) {
+			wp_send_json_error( [ 'message' => __( 'Title and URL are required.', 'wp-dashboard-shortcuts' ) ] );
+		}
+
+		$shortcuts = get_option( 'wds_shortcuts', [] );
+		if ( ! is_array( $shortcuts ) ) {
+			$shortcuts = [];
+		}
+
+		// Add new shortcut to the end.
+		$shortcuts[] = [
+			'title'   => $title,
+			'url'     => $url,
+			'new_tab' => false,
+		];
+
+		update_option( 'wds_shortcuts', $shortcuts );
+
+		wp_send_json_success( [ 'message' => __( 'Shortcut added successfully!', 'wp-dashboard-shortcuts' ) ] );
 	}
 }
