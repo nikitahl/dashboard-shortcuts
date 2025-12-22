@@ -12,16 +12,17 @@ Add custom shortcut links to your WordPress admin bar for quick access to freque
 
 == Description ==
 
-WP Dashboard Shortcuts provides a convenient way to access your frequently used links directly from the WordPress admin bar. Perfect for developers, site administrators, and content managers who need quick access to external tools, documentation, or other websites.
+WP Dashboard Shortcuts provides a convenient way to access your frequently used links directly from the WordPress admin bar.
+
+Perfect for developers, site administrators, and content managers who need quick access to external tools, documentation, or other websites.
 
 = Features =
 
 * **Custom Shortcut Links**: Add unlimited custom links with titles and URLs
-* **Admin Bar Integration**: Shortcuts appear in a dropdown menu in the WordPress admin bar
+* **Admin Bar Integration**: Shortcuts appear under the WordPress admin bar
 * **New Tab Option**: Choose whether links open in the same tab or a new tab
 * **Easy Management**: Simple settings interface to add, edit, and remove shortcuts
-* **Clean UI**: Modern, responsive design that matches WordPress admin styling
-* **WordPress Standards**: Follows WordPress coding standards and best practices
+* **Add current page**: Quickly add the current admin page as a shortcut with one click
 
 == Installation ==
 
@@ -53,11 +54,3 @@ There's no hard limit, but we recommend keeping it reasonable (10-15 shortcuts) 
 
 = 1.0.0 =
 * Initial release
-* Add custom shortcuts to admin bar
-* Settings page for managing shortcuts
-* Open links in new tab option
-
-== Upgrade Notice ==
-
-= 1.0.0 =
-Initial release of WP Dashboard Shortcuts.
