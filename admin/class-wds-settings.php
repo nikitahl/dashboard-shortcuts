@@ -163,16 +163,21 @@ class WDS_Settings {
 										/>
 									</label>
 								</div>
-								<div class="wds-field">
+								<div class="wds-field wds-field-url">
 									<label>
 										<?php esc_html_e( 'URL', 'wp-dashboard-shortcuts' ); ?>
-										<input
-											type="url"
-											name="wds_shortcuts[<?php echo esc_attr( $index ); ?>][url]"
-											value="<?php echo esc_attr( $shortcut['url'] ); ?>"
-											placeholder="<?php esc_attr_e( 'https://example.com', 'wp-dashboard-shortcuts' ); ?>"
-											class="regular-text"
-										/>
+										<div class="wds-url-input-wrapper">
+											<input
+												type="text"
+												name="wds_shortcuts[<?php echo esc_attr( $index ); ?>][url]"
+												value="<?php echo esc_attr( $shortcut['url'] ); ?>"
+												placeholder="<?php esc_attr_e( 'https://example.com', 'wp-dashboard-shortcuts' ); ?>"
+												class="regular-text wds-url-input"
+											/>
+											<button type="button" class="button wds-select-url" title="<?php esc_attr_e( 'Select from WordPress', 'wp-dashboard-shortcuts' ); ?>">
+												<span class="dashicons dashicons-admin-links"></span>
+											</button>
+										</div>
 									</label>
 								</div>
 								<div class="wds-field wds-field-checkbox">
@@ -233,6 +238,16 @@ class WDS_Settings {
 			[ 'jquery', 'jquery-ui-sortable' ],
 			WDS_VERSION,
 			true
+		);
+
+		// Add REST API settings for JavaScript.
+		wp_localize_script(
+			'wds-admin-script',
+			'wpApiSettings',
+			[
+				'root'  => esc_url_raw( rest_url() ),
+				'nonce' => wp_create_nonce( 'wp_rest' ),
+			]
 		);
 
 		wp_localize_script(
