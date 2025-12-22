@@ -5,196 +5,197 @@
  */
 
 .wds-settings-wrap {
-	max-width: 1000px;
+  max-width: 1000px;
 }
 
 .wds-settings-form {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 #wds-shortcuts-container {
-	background: #fff;
-	border: 1px solid #c3c4c7;
-	border-radius: 4px;
-	padding: 20px;
-	margin-bottom: 20px;
+  background: #fff;
+  border: 1px solid #c3c4c7;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 
 .wds-shortcut-row {
-	background: #f6f7f7;
-	border: 1px solid #dcdcde;
-	border-radius: 4px;
-	padding: 15px;
-	margin-bottom: 15px;
-	transition: all 0.2s ease;
-	display: flex;
-	align-items: flex-start;
-	gap: 10px;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 15px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .wds-shortcut-row:hover {
-	border-color: #8c8f94;
+  border-color: #8c8f94;
 }
 
 .wds-shortcut-row:last-child {
-	margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .wds-shortcut-row.wds-sorting {
-	opacity: 0.7;
-	background: #e3e4e6;
-	cursor: move;
+  opacity: 0.7;
+  background: #e3e4e6;
+  cursor: move;
 }
 
 .wds-drag-handle {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: move;
-	color: #8c8f94;
-	padding: 5px;
-	margin-top: 28px;
-	transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: move;
+  color: #8c8f94;
+  padding: 5px;
+  margin-top: 12px;
+  transition: color 0.2s ease;
 }
 
 .wds-drag-handle:hover {
-	color: #2271b1;
+  color: #2271b1;
 }
 
 .wds-drag-handle .dashicons {
-	width: 20px;
-	height: 20px;
-	font-size: 20px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
 }
 
 .wds-shortcut-placeholder {
-	background: #e3e4e6;
-	border: 2px dashed #8c8f94;
-	border-radius: 4px;
-	margin-bottom: 15px;
-	visibility: visible !important;
+  background: #e3e4e6;
+  border: 2px dashed #8c8f94;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  visibility: visible !important;
 }
 
 .wds-shortcut-fields {
-	display: grid;
-	grid-template-columns: 1fr 1fr auto auto;
-	gap: 15px;
-	align-items: end;
-	flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto auto;
+  gap: 15px;
+  align-items: end;
+  flex: 1;
 }
 
 .wds-field label {
-	display: block;
-	font-weight: 600;
-	margin-bottom: 5px;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
 }
 
 .wds-field input[type="text"],
 .wds-field input[type="url"] {
-	width: 100%;
+  width: 100%;
 }
 
 .wds-field-checkbox {
-	display: flex;
-	align-items: center;
-	padding-bottom: 5px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 5px;
+  margin-bottom: 6px;
 }
 
 .wds-field-checkbox label {
-	display: flex;
-	align-items: center;
-	margin: 0;
-	font-weight: normal;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-weight: normal;
 }
 
 .wds-field-checkbox input[type="checkbox"] {
-	margin: 0 5px 0 0;
+  margin: 0 5px 0 0;
 }
 
 .wds-field-actions {
-	padding-bottom: 5px;
+  padding-bottom: 5px;
 }
 
-.wds-remove-shortcut {
-	background: #dc3232;
-	border-color: #ba2525;
-	color: #fff;
-	padding: 5px 10px;
-	height: auto;
-	min-height: 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
+.wds-field-actions .wds-remove-shortcut {
+  background: #dc3232;
+  border-color: #ba2525;
+  color: #fff;
+  padding: 5px 10px;
+  height: auto;
+  min-height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
 .wds-remove-shortcut:hover,
 .wds-remove-shortcut:focus {
-	background: #ba2525;
-	border-color: #a02222;
-	color: #fff;
+  background: #ba2525;
+  border-color: #a02222;
+  color: #fff;
 }
 
 .wds-remove-shortcut .dashicons {
-	width: 18px;
-	height: 18px;
-	font-size: 18px;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
 }
 
 .wds-actions {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 #wds-add-shortcut {
-	display: inline-flex;
-	align-items: center;
-	gap: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 #wds-add-shortcut .dashicons {
-	width: 18px;
-	height: 18px;
-	font-size: 18px;
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
 }
 
 /* Empty state */
 .wds-empty-state {
-	text-align: center;
-	padding: 40px 20px;
-	color: #646970;
+  text-align: center;
+  padding: 40px 20px;
+  color: #646970;
 }
 
 .wds-empty-state .dashicons {
-	font-size: 48px;
-	width: 48px;
-	height: 48px;
-	opacity: 0.5;
-	margin-bottom: 10px;
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.5;
+  margin-bottom: 10px;
 }
 
 /* Responsive */
 @media screen and (max-width: 782px) {
-	.wds-shortcut-row {
-		flex-direction: column;
-		gap: 0;
-	}
+  .wds-shortcut-row {
+    flex-direction: column;
+    gap: 0;
+  }
 
-	.wds-drag-handle {
-		margin-top: 0;
-		margin-bottom: 10px;
-		align-self: flex-start;
-	}
+  .wds-drag-handle {
+    margin-top: 0;
+    margin-bottom: 10px;
+    align-self: flex-start;
+  }
 
-	.wds-shortcut-fields {
-		grid-template-columns: 1fr;
-		width: 100%;
-	}
+  .wds-shortcut-fields {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
 
-	.wds-field-actions {
-		padding-bottom: 0;
-	}
+  .wds-field-actions {
+    padding-bottom: 0;
+  }
 
-	.wds-remove-shortcut {
-		width: 100%;
-	}
+  .wds-remove-shortcut {
+    width: 100%;
+  }
 }
