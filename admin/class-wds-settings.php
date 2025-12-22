@@ -77,23 +77,41 @@ class WDS_Settings {
 		$sanitized = [];
 
 		foreach ( $input as $shortcut ) {
-			if ( ! is_array( $shortcut ) ) {
-				continue;
-			}
+			$sanitized_item = $this->sanitize_single_shortcut( $shortcut );
 
-			$sanitized_item = [
-				'title'   => isset( $shortcut['title'] ) ? sanitize_text_field( $shortcut['title'] ) : '',
-				'url'     => isset( $shortcut['url'] ) ? esc_url_raw( $shortcut['url'] ) : '',
-				'new_tab' => isset( $shortcut['new_tab'] ) && 'on' === $shortcut['new_tab'],
-			];
-
-			// Only add shortcuts that have both title and URL.
-			if ( ! empty( $sanitized_item['title'] ) && ! empty( $sanitized_item['url'] ) ) {
+			if ( null !== $sanitized_item ) {
 				$sanitized[] = $sanitized_item;
 			}
 		}
 
 		return $sanitized;
+	}
+
+	/**
+	 * Sanitize a single shortcut item.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param mixed $shortcut Raw shortcut data.
+	 * @return array|null Sanitized shortcut or null if invalid.
+	 */
+	private function sanitize_single_shortcut( $shortcut ) {
+		if ( ! is_array( $shortcut ) ) {
+			return null;
+		}
+
+		$sanitized_item = [
+			'title'   => isset( $shortcut['title'] ) ? sanitize_text_field( $shortcut['title'] ) : '',
+			'url'     => isset( $shortcut['url'] ) ? esc_url_raw( $shortcut['url'] ) : '',
+			'new_tab' => isset( $shortcut['new_tab'] ) && 'on' === $shortcut['new_tab'],
+		];
+
+		// Only return shortcuts that have both title and URL.
+		if ( empty( $sanitized_item['title'] ) || empty( $sanitized_item['url'] ) ) {
+			return null;
+		}
+
+		return $sanitized_item;
 	}
 
 	/**
@@ -232,4 +250,3 @@ class WDS_Settings {
 		);
 	}
 }
-
