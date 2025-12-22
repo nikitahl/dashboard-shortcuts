@@ -4,7 +4,7 @@
 set -e
 
 # Define plugin slug and languages directory
-PLUGIN_SLUG="wp-site-overview"
+PLUGIN_SLUG="wp-dashboard-shortcuts"
 LANG_DIR="languages"
 
 # Ensure WP CLI is installed

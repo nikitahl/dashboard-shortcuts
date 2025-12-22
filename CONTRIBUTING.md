@@ -57,11 +57,19 @@ To set up a local dev environment following steps are required:
 1. Fork this repository
 2. Clone:
 ```sh
-git clone git@github.com:[YOUR_USERNAME]/wp-site-overview.git
+git clone git@github.com:[YOUR_USERNAME]/wp-dashboard-shortcuts.git
 ```
 3. Go into cloned repository folder:
 ```sh
-cd wp-site-overview
+cd wp-dashboard-shortcuts
+```
+4. Install dependencies:
+```sh
+yarn install
+```
+5. Build assets:
+```sh
+yarn build
 ```
 
 ## Coding Rules
