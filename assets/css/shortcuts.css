@@ -1,0 +1,42 @@
+/**
+ * WP Dashboard Shortcuts - Front-end styles
+ *
+ * @package WP_Dashboard_Shortcuts
+ */
+
+/* Admin bar shortcuts menu styling */
+#wpadminbar .wds-shortcuts-menu > .ab-item {
+	display: flex;
+	align-items: center;
+}
+
+#wpadminbar .wds-shortcuts-menu .ab-icon {
+	font-size: 16px;
+	margin-right: 5px;
+}
+
+#wpadminbar .wds-shortcuts-menu .ab-label {
+	display: inline-block;
+}
+
+/* Shortcut items */
+#wpadminbar .wds-shortcut-item .ab-item {
+	padding: 0 12px;
+	line-height: 32px;
+}
+
+#wpadminbar .wds-shortcut-item .ab-item:hover {
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile responsive */
+@media screen and (max-width: 782px) {
+	#wpadminbar .wds-shortcuts-menu .ab-icon {
+		font-size: 20px;
+	}
+
+	#wpadminbar .wds-shortcut-item .ab-item {
+		line-height: 46px;
+	}
+}
+

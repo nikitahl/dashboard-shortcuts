@@ -1,0 +1,150 @@
+/**
+ * WP Dashboard Shortcuts - Admin settings page styles
+ *
+ * @package WP_Dashboard_Shortcuts
+ */
+
+.wds-settings-wrap {
+	max-width: 1000px;
+}
+
+.wds-settings-form {
+	margin-top: 20px;
+}
+
+#wds-shortcuts-container {
+	background: #fff;
+	border: 1px solid #c3c4c7;
+	border-radius: 4px;
+	padding: 20px;
+	margin-bottom: 20px;
+}
+
+.wds-shortcut-row {
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+	padding: 15px;
+	margin-bottom: 15px;
+	transition: all 0.2s ease;
+}
+
+.wds-shortcut-row:hover {
+	border-color: #8c8f94;
+}
+
+.wds-shortcut-row:last-child {
+	margin-bottom: 0;
+}
+
+.wds-shortcut-fields {
+	display: grid;
+	grid-template-columns: 1fr 1fr auto auto;
+	gap: 15px;
+	align-items: end;
+}
+
+.wds-field label {
+	display: block;
+	font-weight: 600;
+	margin-bottom: 5px;
+}
+
+.wds-field input[type="text"],
+.wds-field input[type="url"] {
+	width: 100%;
+}
+
+.wds-field-checkbox {
+	display: flex;
+	align-items: center;
+	padding-bottom: 5px;
+}
+
+.wds-field-checkbox label {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	font-weight: normal;
+}
+
+.wds-field-checkbox input[type="checkbox"] {
+	margin: 0 5px 0 0;
+}
+
+.wds-field-actions {
+	padding-bottom: 5px;
+}
+
+.wds-remove-shortcut {
+	background: #dc3232;
+	border-color: #ba2525;
+	color: #fff;
+	padding: 5px 10px;
+	height: auto;
+	min-height: 30px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.wds-remove-shortcut:hover,
+.wds-remove-shortcut:focus {
+	background: #ba2525;
+	border-color: #a02222;
+	color: #fff;
+}
+
+.wds-remove-shortcut .dashicons {
+	width: 18px;
+	height: 18px;
+	font-size: 18px;
+}
+
+.wds-actions {
+	margin-bottom: 20px;
+}
+
+#wds-add-shortcut {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+}
+
+#wds-add-shortcut .dashicons {
+	width: 18px;
+	height: 18px;
+	font-size: 18px;
+}
+
+/* Empty state */
+.wds-empty-state {
+	text-align: center;
+	padding: 40px 20px;
+	color: #646970;
+}
+
+.wds-empty-state .dashicons {
+	font-size: 48px;
+	width: 48px;
+	height: 48px;
+	opacity: 0.5;
+	margin-bottom: 10px;
+}
+
+/* Responsive */
+@media screen and (max-width: 782px) {
+	.wds-shortcut-fields {
+		grid-template-columns: 1fr;
+	}
+
+	.wds-field-actions {
+		padding-bottom: 0;
+	}
+
+	.wds-remove-shortcut {
+		width: 100%;
+	}
+}
+
