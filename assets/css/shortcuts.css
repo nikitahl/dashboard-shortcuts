@@ -1,42 +1,151 @@
 /**
- * WP Dashboard Shortcuts - Front-end styles
+ * WP Dashboard Shortcuts - Shortcuts bar styles
  *
  * @package WP_Dashboard_Shortcuts
  */
 
-/* Admin bar shortcuts menu styling */
-#wpadminbar .wds-shortcuts-menu > .ab-item {
+/* Shortcuts Bar */
+.wds-shortcuts-bar {
+	position: fixed;
+	top: 32px;
+	left: 0;
+	right: 0;
+	background: #1d2327;
+	border-bottom: 1px solid #3c434a;
+	z-index: 99999;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.wds-shortcuts-container {
 	display: flex;
 	align-items: center;
+	padding: 0 10px;
+	max-width: 100%;
+	margin: 0 auto;
+	gap: 15px;
 }
 
-#wpadminbar .wds-shortcuts-menu .ab-icon {
+.wds-shortcuts-label {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	color: #f0f0f1;
+	font-size: 13px;
+	font-weight: 600;
+	padding: 8px 10px;
+	white-space: nowrap;
+}
+
+.wds-shortcuts-label .dashicons {
+	color: #d63638;
 	font-size: 16px;
-	margin-right: 5px;
+	width: 16px;
+	height: 16px;
 }
 
-#wpadminbar .wds-shortcuts-menu .ab-label {
-	display: inline-block;
+.wds-shortcuts-list {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	gap: 5px;
+	flex-wrap: wrap;
+	flex: 1;
 }
 
-/* Shortcut items */
-#wpadminbar .wds-shortcut-item .ab-item {
-	padding: 0 12px;
-	line-height: 32px;
+.wds-shortcut-item {
+	margin: 0;
+	padding: 0;
 }
 
-#wpadminbar .wds-shortcut-item .ab-item:hover {
-	background-color: rgba(0, 0, 0, 0.1);
+.wds-shortcut-link {
+	display: block;
+	padding: 8px 12px;
+	color: #f0f0f1;
+	text-decoration: none;
+	font-size: 13px;
+	border-radius: 3px;
+	transition: all 0.2s ease;
+	white-space: nowrap;
 }
 
-/* Mobile responsive */
+.wds-shortcut-link:hover,
+.wds-shortcut-link:focus {
+	background: #2c3338;
+	color: #72aee6;
+	outline: none;
+}
+
+.wds-shortcut-link:active {
+	background: #1d2327;
+}
+
+/* Adjust body padding to account for shortcuts bar */
+body.admin-bar {
+	padding-top: 32px;
+}
+
+#wpcontent,
+#adminmenuwrap {
+	padding-top: 46px;
+}
+
+/* Mobile admin bar adjustments */
 @media screen and (max-width: 782px) {
-	#wpadminbar .wds-shortcuts-menu .ab-icon {
-		font-size: 20px;
+	.wds-shortcuts-bar {
+		top: 46px;
 	}
 
-	#wpadminbar .wds-shortcut-item .ab-item {
-		line-height: 46px;
+	body.admin-bar {
+		padding-top: 46px;
+	}
+
+	#wpcontent,
+	#adminmenuwrap {
+		padding-top: 46px;
+	}
+
+	.wds-shortcuts-label {
+		font-size: 12px;
+		padding: 6px 8px;
+	}
+
+	.wds-shortcut-link {
+		padding: 6px 10px;
+		font-size: 12px;
+	}
+
+	.wds-shortcuts-container {
+		padding: 0 5px;
+		gap: 10px;
 	}
 }
 
+/* Extra small screens */
+@media screen and (max-width: 600px) {
+	.wds-shortcuts-bar {
+		top: 46px;
+	}
+}
+
+/* Frontend adjustments */
+body:not(.wp-admin) .wds-shortcuts-bar {
+	top: 32px;
+}
+
+body:not(.wp-admin).admin-bar {
+	margin-top: 46px !important;
+}
+
+@media screen and (max-width: 782px) {
+	body:not(.wp-admin) .wds-shortcuts-bar {
+		top: 46px;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	body:not(.wp-admin).admin-bar {
+		margin-top: 92px !important;
+	}
+}

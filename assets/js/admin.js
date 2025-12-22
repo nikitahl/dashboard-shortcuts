@@ -37,6 +37,11 @@
 				return;
 			}
 
+			// Confirm deletion.
+			if (!confirm(wdsSettings.confirmDelete || 'Are you sure you want to remove this shortcut?')) {
+				return;
+			}
+
 			$row.fadeOut(300, function() {
 				$(this).remove();
 				reindexRows();

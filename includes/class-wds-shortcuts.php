@@ -24,19 +24,22 @@ class WDS_Shortcuts {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'admin_bar_menu', array( $this, 'add_shortcuts_to_admin_bar' ), 100 );
+		add_action( 'admin_footer', array( $this, 'render_shortcuts_bar' ) );
+		add_action( 'wp_footer', array( $this, 'render_shortcuts_bar' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
 	}
 
 	/**
-	 * Add shortcuts to admin bar.
+	 * Render shortcuts bar below admin bar.
 	 *
 	 * @since 1.0.0
-	 *
-	 * @param WP_Admin_Bar $wp_admin_bar Admin bar instance.
 	 */
-	public function add_shortcuts_to_admin_bar( $wp_admin_bar ) {
+	public function render_shortcuts_bar() {
+		if ( ! is_admin_bar_showing() ) {
+			return;
+		}
+
 		if ( ! current_user_can( 'manage_options' ) ) {
 			return;
 		}
@@ -47,37 +50,28 @@ class WDS_Shortcuts {
 			return;
 		}
 
-		// Add parent menu item.
-		$wp_admin_bar->add_node(
-			array(
-				'id'    => 'wds-shortcuts',
-				'title' => '<span class="ab-icon dashicons dashicons-star-filled"></span><span class="ab-label">' . esc_html__( 'Shortcuts', 'wp-dashboard-shortcuts' ) . '</span>',
-				'href'  => false,
-				'meta'  => array(
-					'class' => 'wds-shortcuts-menu',
-				),
-			)
-		);
-
-		// Add each shortcut as a menu item.
-		foreach ( $shortcuts as $index => $shortcut ) {
-			if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
-				continue;
-			}
-
-			$wp_admin_bar->add_node(
-				array(
-					'id'     => 'wds-shortcut-' . $index,
-					'parent' => 'wds-shortcuts',
-					'title'  => esc_html( $shortcut['title'] ),
-					'href'   => esc_url( $shortcut['url'] ),
-					'meta'   => array(
-						'target' => ! empty( $shortcut['new_tab'] ) ? '_blank' : '_self',
-						'class'  => 'wds-shortcut-item',
-					),
-				)
-			);
-		}
+		?>
+		<div id="wds-shortcuts-bar" class="wds-shortcuts-bar">
+			<div class="wds-shortcuts-container">
+				<span class="wds-shortcuts-label">
+					<span class="dashicons dashicons-star-filled"></span>
+					<?php esc_html_e( 'Shortcuts:', 'wp-dashboard-shortcuts' ); ?>
+				</span>
+				<ul class="wds-shortcuts-list">
+					<?php foreach ( $shortcuts as $index => $shortcut ) : ?>
+						<?php if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) continue; ?>
+						<li class="wds-shortcut-item">
+							<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
+							   <?php echo ! empty( $shortcut['new_tab'] ) ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
+							   class="wds-shortcut-link">
+								<?php echo esc_html( $shortcut['title'] ); ?>
+							</a>
+						</li>
+					<?php endforeach; ?>
+				</ul>
+			</div>
+		</div>
+		<?php
 	}
 
 	/**
@@ -98,7 +92,7 @@ class WDS_Shortcuts {
 	}
 
 	/**
-	 * Enqueue styles for the HUD menu.
+	 * Enqueue styles for the shortcuts bar.
 	 *
 	 * @since 1.0.0
 	 */
