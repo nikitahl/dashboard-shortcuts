@@ -59,11 +59,15 @@ class WDS_Shortcuts {
 				</span>
 				<ul class="wds-shortcuts-list">
 					<?php foreach ( $shortcuts as $index => $shortcut ) : ?>
-						<?php if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) continue; ?>
+						<?php
+						if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
+							continue;
+						}
+						?>
 						<li class="wds-shortcut-item">
 							<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
-							   <?php echo ! empty( $shortcut['new_tab'] ) ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
-							   class="wds-shortcut-link">
+								<?php echo ! empty( $shortcut['new_tab'] ) ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
+								class="wds-shortcut-link">
 								<?php echo esc_html( $shortcut['title'] ); ?>
 							</a>
 						</li>
@@ -109,4 +113,3 @@ class WDS_Shortcuts {
 		);
 	}
 }
-

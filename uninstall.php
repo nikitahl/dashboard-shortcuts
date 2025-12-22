@@ -1,7 +1,9 @@
 <?php
 /**
  * Uninstall WP Dashboard Shortcuts plugin.
+ *
  * @package WP_Dashboard_Shortcuts
+ *
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
