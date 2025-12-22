@@ -101,7 +101,7 @@ class WDS_Shortcuts {
 		?>
 		<li class="wds-shortcut-item">
 			<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
-				<?php echo $target_attr; ?>
+				<?php echo esc_attr( $target_attr ); ?>
 				class="wds-shortcut-link">
 				<?php echo esc_html( $shortcut['title'] ); ?>
 			</a>
