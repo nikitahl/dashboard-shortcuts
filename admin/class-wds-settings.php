@@ -129,6 +129,9 @@ class WDS_Settings {
 				<div id="wds-shortcuts-container">
 					<?php foreach ( $shortcuts as $index => $shortcut ) : ?>
 						<div class="wds-shortcut-row" data-index="<?php echo esc_attr( $index ); ?>">
+							<div class="wds-drag-handle" title="<?php esc_attr_e( 'Drag to reorder', 'wp-dashboard-shortcuts' ); ?>">
+								<span class="dashicons dashicons-menu"></span>
+							</div>
 							<div class="wds-shortcut-fields">
 								<div class="wds-field">
 									<label>
@@ -209,7 +212,7 @@ class WDS_Settings {
 		wp_enqueue_script(
 			'wds-admin-script',
 			WDS_PLUGIN_URL . 'assets/js/admin.js',
-			array( 'jquery' ),
+			array( 'jquery', 'jquery-ui-sortable' ),
 			WDS_VERSION,
 			true
 		);

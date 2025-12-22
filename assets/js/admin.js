@@ -14,6 +14,9 @@
 		var $container = $('#wds-shortcuts-container');
 		var $addButton = $('#wds-add-shortcut');
 
+		// Initialize sortable functionality.
+		initSortable();
+
 		// Add new shortcut row.
 		$addButton.on('click', function() {
 			var index = $container.find('.wds-shortcut-row').length;
@@ -42,6 +45,30 @@
 	}
 
 	/**
+	 * Initialize jQuery UI Sortable.
+	 */
+	function initSortable() {
+		var $container = $('#wds-shortcuts-container');
+
+		$container.sortable({
+			handle: '.wds-drag-handle',
+			placeholder: 'wds-shortcut-placeholder',
+			axis: 'y',
+			cursor: 'move',
+			opacity: 0.7,
+			tolerance: 'pointer',
+			start: function(event, ui) {
+				ui.placeholder.height(ui.item.height());
+				ui.item.addClass('wds-sorting');
+			},
+			stop: function(event, ui) {
+				ui.item.removeClass('wds-sorting');
+				reindexRows();
+			}
+		});
+	}
+
+	/**
 	 * Create a new shortcut row.
 	 *
 	 * @param {number} index Row index.
@@ -53,6 +80,14 @@
 			'data-index': index,
 			style: 'display: none;'
 		});
+
+		// Drag handle.
+		var $dragHandle = $('<div>', {
+			class: 'wds-drag-handle',
+			title: 'Drag to reorder'
+		});
+		var $dragIcon = $('<span>', { class: 'dashicons dashicons-menu' });
+		$dragHandle.append($dragIcon);
 
 		var $fields = $('<div>', { class: 'wds-shortcut-fields' });
 
@@ -107,6 +142,7 @@
 		$fields.append($urlField);
 		$fields.append($checkboxField);
 		$fields.append($actionsField);
+		$row.append($dragHandle);
 		$row.append($fields);
 
 		$row.fadeIn(300);
@@ -115,7 +151,7 @@
 	}
 
 	/**
-	 * Reindex all rows after deletion.
+	 * Reindex all rows after deletion or sorting.
 	 */
 	function reindexRows() {
 		var $rows = $('#wds-shortcuts-container .wds-shortcut-row');
@@ -143,4 +179,3 @@
 	});
 
 })(jQuery);
-

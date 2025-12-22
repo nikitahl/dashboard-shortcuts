@@ -27,6 +27,9 @@
 	padding: 15px;
 	margin-bottom: 15px;
 	transition: all 0.2s ease;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
 }
 
 .wds-shortcut-row:hover {
@@ -37,11 +40,47 @@
 	margin-bottom: 0;
 }
 
+.wds-shortcut-row.wds-sorting {
+	opacity: 0.7;
+	background: #e3e4e6;
+	cursor: move;
+}
+
+.wds-drag-handle {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: move;
+	color: #8c8f94;
+	padding: 5px;
+	margin-top: 28px;
+	transition: color 0.2s ease;
+}
+
+.wds-drag-handle:hover {
+	color: #2271b1;
+}
+
+.wds-drag-handle .dashicons {
+	width: 20px;
+	height: 20px;
+	font-size: 20px;
+}
+
+.wds-shortcut-placeholder {
+	background: #e3e4e6;
+	border: 2px dashed #8c8f94;
+	border-radius: 4px;
+	margin-bottom: 15px;
+	visibility: visible !important;
+}
+
 .wds-shortcut-fields {
 	display: grid;
 	grid-template-columns: 1fr 1fr auto auto;
 	gap: 15px;
 	align-items: end;
+	flex: 1;
 }
 
 .wds-field label {
@@ -135,8 +174,20 @@
 
 /* Responsive */
 @media screen and (max-width: 782px) {
+	.wds-shortcut-row {
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.wds-drag-handle {
+		margin-top: 0;
+		margin-bottom: 10px;
+		align-self: flex-start;
+	}
+
 	.wds-shortcut-fields {
 		grid-template-columns: 1fr;
+		width: 100%;
 	}
 
 	.wds-field-actions {
@@ -147,4 +198,3 @@
 		width: 100%;
 	}
 }
-
