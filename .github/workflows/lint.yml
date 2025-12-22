@@ -3,6 +3,22 @@ name: Lint Code Base
 on: [push, pull_request]
 
 jobs:
+  codestyle-js:
+    name: JS codestyle checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Run ESLint
+        run: |
+          yarn lint
+
   codestyle-php:
     name: PHP codestyle checks
     runs-on: ubuntu-latest

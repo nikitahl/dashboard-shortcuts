@@ -6,6 +6,22 @@ on:
       - 'v*.*.*'  # Triggers the workflow on tag push like v1.0.0
 
 jobs:
+  codestyle-js:
+    name: JS codestyle checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Run ESLint
+        run: |
+          yarn lint
+
   codestyle-php:
     name: PHP codestyle checks
     runs-on: ubuntu-latest
@@ -48,6 +64,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'  # Specify the Node.js version required by your project, compatible with eslint
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build the project
+        run: yarn build-prod
 
       - name: Run build script
         run: bash _tools/build_release.sh

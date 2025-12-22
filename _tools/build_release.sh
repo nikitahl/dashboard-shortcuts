@@ -13,6 +13,7 @@ zip -r "$ZIP_FILE" \
   *.php \
   readme.txt \
   admin \
+  assets \
   includes \
   languages \
   -x "*.DS_Store"  # Exclude unnecessary files like macOS metadata
