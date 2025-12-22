@@ -33,6 +33,23 @@ define( 'WDS_TEXTDOMAIN', 'wp-dashboard-shortcuts' );
 require_once WDS_PLUGIN_DIR . 'includes/class-wds-shortcuts.php';
 require_once WDS_PLUGIN_DIR . 'admin/class-wds-settings.php';
 
+// Add "Settings" link on the Plugins page.
+add_filter( 'plugin_action_links_' . plugin_basename( WDS_PLUGIN_FILE ), 'wds_settings_link' );
+
+/**
+ * Add settings link to the Plugins page.
+ *
+ * @since 1.0.0
+ *
+ * @param array $links Existing plugin action links.
+ * @return array Modified plugin action links.
+ */
+function wds_settings_link( $links ) {
+	$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=wds-settings' ) ) . '">' . esc_html__( 'Settings', 'wp-dashboard-shortcuts' ) . '</a>';
+	array_unshift( $links, $settings_link );
+	return $links;
+}
+
 /**
  * Initialize plugin.
  *
