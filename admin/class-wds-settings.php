@@ -174,7 +174,12 @@ class WDS_Settings {
 												placeholder="<?php esc_attr_e( 'https://example.com', 'wp-dashboard-shortcuts' ); ?>"
 												class="regular-text wds-url-input"
 											/>
-											<button type="button" class="button wds-select-url" title="<?php esc_attr_e( 'Select from WordPress', 'wp-dashboard-shortcuts' ); ?>">
+											<button
+													type="button"
+													class="button wds-select-url"
+													title="<?php esc_attr_e( 'Select from WordPress', 'wp-dashboard-shortcuts' ); ?>"
+													aria-label="<?php esc_attr_e( 'Select from WordPress', 'wp-dashboard-shortcuts' ); ?>"
+											>
 												<span class="dashicons dashicons-admin-links"></span>
 											</button>
 										</div>
@@ -191,7 +196,12 @@ class WDS_Settings {
 									</label>
 								</div>
 								<div class="wds-field wds-field-actions">
-									<button type="button" class="button wds-remove-shortcut" aria-label="<?php esc_attr_e( 'Remove shortcut', 'wp-dashboard-shortcuts' ); ?>">
+									<button
+											type="button"
+											class="button wds-remove-shortcut"
+											title="<?php esc_attr_e( 'Remove shortcut', 'wp-dashboard-shortcuts' ); ?>"
+											aria-label="<?php esc_attr_e( 'Remove shortcut', 'wp-dashboard-shortcuts' ); ?>"
+									>
 										<span class="dashicons dashicons-trash"></span>
 									</button>
 								</div>
