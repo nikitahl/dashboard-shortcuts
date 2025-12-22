@@ -24,10 +24,10 @@ class WDS_Shortcuts {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'admin_footer', array( $this, 'render_shortcuts_bar' ) );
-		add_action( 'wp_footer', array( $this, 'render_shortcuts_bar' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		add_action( 'admin_footer', [ $this, 'render_shortcuts_bar' ] );
+		add_action( 'wp_footer', [ $this, 'render_shortcuts_bar' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles' ] );
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 	}
 
 	/**
@@ -82,10 +82,10 @@ class WDS_Shortcuts {
 	 * @return array Array of shortcuts.
 	 */
 	public function get_shortcuts() {
-		$shortcuts = get_option( 'wds_shortcuts', array() );
+		$shortcuts = get_option( 'wds_shortcuts', [] );
 
 		if ( ! is_array( $shortcuts ) ) {
-			return array();
+			return [];
 		}
 
 		return $shortcuts;
@@ -104,7 +104,7 @@ class WDS_Shortcuts {
 		wp_enqueue_style(
 			'wds-shortcuts-style',
 			WDS_PLUGIN_URL . 'assets/css/shortcuts.css',
-			array(),
+			[],
 			WDS_VERSION
 		);
 	}

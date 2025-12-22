@@ -24,9 +24,9 @@ class WDS_Settings {
 	 * @since 1.0.0
 	 */
 	public function __construct() {
-		add_action( 'admin_menu', array( $this, 'add_settings_page' ) );
-		add_action( 'admin_init', array( $this, 'register_settings' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
+		add_action( 'admin_menu', [ $this, 'add_settings_page' ] );
+		add_action( 'admin_init', [ $this, 'register_settings' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_admin_assets' ] );
 	}
 
 	/**
@@ -40,7 +40,7 @@ class WDS_Settings {
 			__( 'Dashboard Shortcuts', 'wp-dashboard-shortcuts' ),
 			'manage_options',
 			'wds-settings',
-			array( $this, 'render_settings_page' )
+			[ $this, 'render_settings_page' ]
 		);
 	}
 
@@ -53,11 +53,11 @@ class WDS_Settings {
 		register_setting(
 			'wds_settings_group',
 			'wds_shortcuts',
-			array(
+			[
 				'type'              => 'array',
-				'sanitize_callback' => array( $this, 'sanitize_shortcuts' ),
-				'default'           => array(),
-			)
+				'sanitize_callback' => [ $this, 'sanitize_shortcuts' ],
+				'default'           => [],
+			]
 		);
 	}
 
@@ -71,21 +71,21 @@ class WDS_Settings {
 	 */
 	public function sanitize_shortcuts( $input ) {
 		if ( ! is_array( $input ) ) {
-			return array();
+			return [];
 		}
 
-		$sanitized = array();
+		$sanitized = [];
 
 		foreach ( $input as $shortcut ) {
 			if ( ! is_array( $shortcut ) ) {
 				continue;
 			}
 
-			$sanitized_item = array(
+			$sanitized_item = [
 				'title'   => isset( $shortcut['title'] ) ? sanitize_text_field( $shortcut['title'] ) : '',
 				'url'     => isset( $shortcut['url'] ) ? esc_url_raw( $shortcut['url'] ) : '',
-				'new_tab' => isset( $shortcut['new_tab'] ) && $shortcut['new_tab'] === 'on',
-			);
+				'new_tab' => isset( $shortcut['new_tab'] ) && 'on' === $shortcut['new_tab'],
+			];
 
 			// Only add shortcuts that have both title and URL.
 			if ( ! empty( $sanitized_item['title'] ) && ! empty( $sanitized_item['url'] ) ) {
@@ -106,17 +106,17 @@ class WDS_Settings {
 			return;
 		}
 
-		$shortcuts = get_option( 'wds_shortcuts', array() );
+		$shortcuts = get_option( 'wds_shortcuts', [] );
 
 		// Ensure we have at least one empty row for new entries.
 		if ( empty( $shortcuts ) ) {
-			$shortcuts = array(
-				array(
+			$shortcuts = [
+				[
 					'title'   => '',
 					'url'     => '',
 					'new_tab' => false,
-				),
-			);
+				],
+			];
 		}
 		?>
 		<div class="wrap wds-settings-wrap">
@@ -205,14 +205,14 @@ class WDS_Settings {
 		wp_enqueue_style(
 			'wds-admin-style',
 			WDS_PLUGIN_URL . 'assets/css/admin.css',
-			array(),
+			[],
 			WDS_VERSION
 		);
 
 		wp_enqueue_script(
 			'wds-admin-script',
 			WDS_PLUGIN_URL . 'assets/js/admin.js',
-			array( 'jquery', 'jquery-ui-sortable' ),
+			[ 'jquery', 'jquery-ui-sortable' ],
 			WDS_VERSION,
 			true
 		);
@@ -220,15 +220,15 @@ class WDS_Settings {
 		wp_localize_script(
 			'wds-admin-script',
 			'wdsSettings',
-			array(
-				'confirmDelete'     => __( 'Are you sure you want to remove this shortcut?', 'wp-dashboard-shortcuts' ),
-				'titleLabel'        => __( 'Title', 'wp-dashboard-shortcuts' ),
-				'titlePlaceholder'  => __( 'e.g., My Site', 'wp-dashboard-shortcuts' ),
-				'urlLabel'          => __( 'URL', 'wp-dashboard-shortcuts' ),
-				'urlPlaceholder'    => __( 'https://example.com', 'wp-dashboard-shortcuts' ),
-				'newTabLabel'       => __( 'Open in new tab', 'wp-dashboard-shortcuts' ),
-				'removeLabel'       => __( 'Remove shortcut', 'wp-dashboard-shortcuts' ),
-			)
+			[
+				'confirmDelete'    => __( 'Are you sure you want to remove this shortcut?', 'wp-dashboard-shortcuts' ),
+				'titleLabel'       => __( 'Title', 'wp-dashboard-shortcuts' ),
+				'titlePlaceholder' => __( 'e.g., My Site', 'wp-dashboard-shortcuts' ),
+				'urlLabel'         => __( 'URL', 'wp-dashboard-shortcuts' ),
+				'urlPlaceholder'   => __( 'https://example.com', 'wp-dashboard-shortcuts' ),
+				'newTabLabel'      => __( 'Open in new tab', 'wp-dashboard-shortcuts' ),
+				'removeLabel'      => __( 'Remove shortcut', 'wp-dashboard-shortcuts' ),
+			]
 		);
 	}
 }
