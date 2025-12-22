@@ -54,32 +54,45 @@ class WDS_Shortcuts {
 					<span class="dashicons dashicons-star-filled"></span>
 					<?php esc_html_e( 'Shortcuts:', 'wp-dashboard-shortcuts' ); ?>
 				</span>
-				<ul class="wds-shortcuts-list">
-					<?php
-					if ( ! empty( $shortcuts ) ) :
-						foreach ( $shortcuts as $index => $shortcut ) :
-							if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
-								continue;
-							}
-							?>
-							<li class="wds-shortcut-item">
-								<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
-									<?php echo ! empty( $shortcut['new_tab'] ) && $shortcut['new_tab'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
-									class="wds-shortcut-link">
-									<?php echo esc_html( $shortcut['title'] ); ?>
-								</a>
-							</li>
-							<?php
-						endforeach;
-					endif;
-					?>
-				</ul>
+				<?php $this->render_shortcuts_list( $shortcuts ); ?>
 				<button type="button" id="wds-add-current-page" class="wds-add-current-btn" title="<?php esc_attr_e( 'Add current page to shortcuts', 'wp-dashboard-shortcuts' ); ?>">
 					<span class="dashicons dashicons-plus-alt"></span>
 					<?php esc_html_e( 'Add Current Page', 'wp-dashboard-shortcuts' ); ?>
 				</button>
 			</div>
 		</div>
+		<?php
+	}
+
+	/**
+	 * Render the shortcuts list.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $shortcuts Array of shortcuts.
+	 */
+	private function render_shortcuts_list( $shortcuts ) {
+		?>
+		<ul class="wds-shortcuts-list">
+			<?php
+			if ( ! empty( $shortcuts ) ) :
+				foreach ( $shortcuts as $index => $shortcut ) :
+					if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
+						continue;
+					}
+					?>
+					<li class="wds-shortcut-item">
+						<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
+							<?php echo ! empty( $shortcut['new_tab'] ) && $shortcut['new_tab'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
+							class="wds-shortcut-link">
+							<?php echo esc_html( $shortcut['title'] ); ?>
+						</a>
+					</li>
+					<?php
+				endforeach;
+			endif;
+			?>
+		</ul>
 		<?php
 	}
 
