@@ -75,24 +75,37 @@ class WDS_Shortcuts {
 		?>
 		<ul class="wds-shortcuts-list">
 			<?php
-			if ( ! empty( $shortcuts ) ) :
-				foreach ( $shortcuts as $index => $shortcut ) :
-					if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
-						continue;
-					}
-					?>
-					<li class="wds-shortcut-item">
-						<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
-							<?php echo ! empty( $shortcut['new_tab'] ) && $shortcut['new_tab'] ? 'target="_blank" rel="noopener noreferrer"' : ''; ?>
-							class="wds-shortcut-link">
-							<?php echo esc_html( $shortcut['title'] ); ?>
-						</a>
-					</li>
-					<?php
-				endforeach;
-			endif;
+			if ( ! empty( $shortcuts ) ) {
+				foreach ( $shortcuts as $shortcut ) {
+					$this->render_shortcut_item( $shortcut );
+				}
+			}
 			?>
 		</ul>
+		<?php
+	}
+
+	/**
+	 * Render a single shortcut item.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param array $shortcut Shortcut data.
+	 */
+	private function render_shortcut_item( $shortcut ) {
+		if ( empty( $shortcut['title'] ) || empty( $shortcut['url'] ) ) {
+			return;
+		}
+
+		$target_attr = ! empty( $shortcut['new_tab'] ) && $shortcut['new_tab'] ? 'target="_blank" rel="noopener noreferrer"' : '';
+		?>
+		<li class="wds-shortcut-item">
+			<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
+				<?php echo $target_attr; ?>
+				class="wds-shortcut-link">
+				<?php echo esc_html( $shortcut['title'] ); ?>
+			</a>
+		</li>
 		<?php
 	}
 
