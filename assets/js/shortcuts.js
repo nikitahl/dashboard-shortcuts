@@ -9,6 +9,8 @@ import '../css/shortcuts.css'
 (($) => {
   'use strict'
   const { wdsShortcuts } = window
+  const $shortcutsBar = $('#wds-shortcuts-bar')
+  let $modal = $('#wds-add-page-modal')
 
   /**
    * Initialize shortcuts bar functionality
@@ -17,6 +19,15 @@ import '../css/shortcuts.css'
    */
   const init = () => {
     $('#wds-add-current-page').on('click', showAddCurrentPageModal)
+
+
+    $(window).on( 'scroll', () => {
+      if ( window.innerWidth < 600 && $( window ).scrollTop() > 46 ) {
+        $shortcutsBar.addClass( 'wds-shortcuts-bar-fixed' )
+      } else {
+        $shortcutsBar.removeClass( 'wds-shortcuts-bar-fixed' )
+      }
+    })
   }
 
   /**
@@ -25,9 +36,9 @@ import '../css/shortcuts.css'
    * @since 1.0.0
    */
   const showAddCurrentPageModal = () => {
-    const $modal = $('#wds-add-page-modal')
     if (!$modal.length) {
       createAddPageModal()
+      $modal = $('#wds-add-page-modal')
     }
 
     const $titleInput = $('#wds-add-page-title')
