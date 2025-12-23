@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       WP Dashboard Shortcuts
  * Plugin URI:        https://github.com/nikitahl/wp-dashboard-shortcuts
- * Description:       A HUD menu bar under the admin bar that displays custom shortcut links configured in the settings page.
+ * Description:       Add custom shortcut links to your WordPress admin bar for quick access to frequently used pages and tools.
  * Version:           1.0.0
  * Author:            Nikita Hlopov
  * Author URI:        https://nikitahl.com
