@@ -25,11 +25,11 @@ import '../css/shortcuts.css'
    * @since 1.0.0
    */
   const showAddCurrentPageModal = () => {
-    if (!$('#wds-add-page-modal').length) {
+    const $modal = $('#wds-add-page-modal')
+    if (!$modal.length) {
       createAddPageModal()
     }
 
-    const $modal = $('#wds-add-page-modal')
     const $titleInput = $('#wds-add-page-title')
 
     $titleInput.val(wdsShortcuts.currentTitle)

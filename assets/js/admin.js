@@ -99,12 +99,13 @@ import '../css/admin.css'
    * @param {jQuery} $input The input field to populate.
    */
   const showLinkSelectorModal = ($input) => {
+    const $modal = $('#wds-link-modal')
+
     // Create modal if it doesn't exist
-    if ($('#wds-link-modal').length === 0) {
+    if ($modal.length === 0) {
       createLinkModal()
     }
 
-    const $modal = $('#wds-link-modal')
     const $urlInput = $('#wds-modal-url')
     const $searchInput = $('#wds-modal-search')
     const $results = $('#wds-modal-results')
@@ -377,4 +378,4 @@ import '../css/admin.css'
 
   // Initialize on document ready.
   init()
-})
+})(jQuery)
