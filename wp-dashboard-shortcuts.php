@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name:       WP Dashboard Shortcuts
- * Plugin URI:        https://github.com/nikitahl/wp-dashboard-shortcuts
  * Description:       Add custom shortcut links to your WordPress admin bar for quick access to frequently used pages and tools.
  * Version:           1.0.0
  * Author:            Nikita Hlopov
@@ -10,7 +9,6 @@
  * Requires at least: 6.4
  * License:           GPLv3
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
- * Text Domain:       wp-dashboard-shortcuts
  *
  * @package WP_Dashboard_Shortcuts
  */
