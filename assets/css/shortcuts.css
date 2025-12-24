@@ -48,13 +48,13 @@
 }
 
 .wds-shortcuts-list {
+  max-width: 100%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
-  gap: 5px;
-  flex-wrap: wrap;
   flex: 1;
 }
 
@@ -93,38 +93,6 @@ body.admin-bar {
   padding-top: 32px;
 }
 
-/* Mobile admin bar adjustments */
-@media screen and (max-width: 782px) {
-  .wds-shortcuts-bar {
-    top: 46px;
-  }
-
-  .wds-shortcuts-label {
-    font-size: 12px;
-    padding: 6px 8px;
-  }
-
-  .wds-shortcut-link {
-    padding: 6px 10px;
-    font-size: 12px;
-  }
-
-  .wds-shortcuts-container {
-    padding: 0 5px;
-    gap: 10px;
-  }
-}
-
-/* Extra small screens */
-@media screen and (max-width: 600px) {
-  .wds-shortcuts-bar {
-    z-index: 99999;
-  }
-  body.admin-bar {
-    padding-top: 0;
-  }
-}
-
 /* Frontend adjustments */
 body:not(.wp-admin) .wds-shortcuts-bar {
   top: 32px;
@@ -132,18 +100,6 @@ body:not(.wp-admin) .wds-shortcuts-bar {
 
 body:not(.wp-admin).admin-bar {
   margin-top: 46px !important;
-}
-
-@media screen and (max-width: 782px) {
-  body:not(.wp-admin) .wds-shortcuts-bar {
-    top: 46px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  body:not(.wp-admin).admin-bar {
-    margin-top: 92px !important;
-  }
 }
 
 /* Add Current Page Button */
@@ -175,6 +131,92 @@ body:not(.wp-admin).admin-bar {
   width: 16px;
   height: 16px;
   font-size: 16px;
+}
+
+/* More Button and Dropdown */
+.wds-more-button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: #f0f0f1;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-radius: 3px;
+}
+
+.wds-more-button:hover,
+.wds-more-button:focus,
+.wds-more-button-active {
+  background: #3b444a;
+  color: #72aee6;
+  outline: none;
+}
+
+.wds-more-button .dashicons {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+.wds-more-dropdown {
+  position: absolute;
+  background: #292e31;
+  border: 1px solid #3c434a;
+  border-radius: 4px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  max-height: 400px;
+  overflow-y: auto;
+  min-width: 180px;
+  list-style: none;
+  margin: 0;
+  padding: 4px 0;
+}
+
+.wds-more-dropdown .wds-shortcut-item {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wds-more-dropdown .wds-shortcut-link {
+  display: block;
+  padding: 8px 16px;
+  color: #f0f0f1;
+  text-decoration: none;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-radius: 0;
+}
+
+.wds-more-dropdown .wds-shortcut-link:hover,
+.wds-more-dropdown .wds-shortcut-link:focus {
+  background: #3b444a;
+  color: #72aee6;
+}
+
+/* Scrollbar for dropdown */
+.wds-more-dropdown::-webkit-scrollbar {
+  width: 8px;
+}
+
+.wds-more-dropdown::-webkit-scrollbar-track {
+  background: #1d2327;
+  border-radius: 4px;
+}
+
+.wds-more-dropdown::-webkit-scrollbar-thumb {
+  background: #3c434a;
+  border-radius: 4px;
+}
+
+.wds-more-dropdown::-webkit-scrollbar-thumb:hover {
+  background: #50575e;
 }
 
 /* Add Page Modal Adjustments */
@@ -212,23 +254,6 @@ body:not(.wp-admin).admin-bar {
 .wds-notification-error {
   border-left-color: #d63638;
   color: #d63638;
-}
-
-@media screen and (max-width: 782px) {
-  .wds-add-current-btn {
-    padding: 5px 10px;
-    font-size: 12px;
-  }
-
-  .wds-add-current-btn span:not(.dashicons) {
-    display: none;
-  }
-
-  .wds-notification {
-    right: 10px;
-    left: 10px;
-    max-width: none;
-  }
 }
 
 /* Link Selector Modal */
@@ -382,4 +407,68 @@ body:not(.wp-admin).admin-bar {
 
 body.modal-open {
   overflow: hidden;
+}
+
+
+/* Mobile admin bar adjustments */
+@media screen and (max-width: 782px) {
+  body:not(.wp-admin) .wds-shortcuts-bar {
+    top: 46px;
+  }
+
+  .wds-shortcuts-bar {
+    top: 46px;
+  }
+
+  .wds-shortcuts-label {
+    font-size: 0;
+    padding: 6px 8px;
+    gap: 0;
+  }
+
+  .wds-shortcut-link {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .wds-shortcuts-container {
+    padding: 0 5px;
+    gap: 5px;
+  }
+
+  .wds-add-current-btn {
+    padding: 5px 10px;
+    font-size: 0;
+    gap: 0;
+  }
+
+  .wds-add-current-btn span:not(.dashicons) {
+    display: none;
+  }
+
+  .wds-notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+
+  .wds-select-url {
+    margin: 0 !important;
+  }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 600px) {
+  #wpcontent {
+    padding-top: 30px;
+  }
+  .wds-shortcuts-bar {
+    z-index: 99999;
+  }
+  body.admin-bar {
+    padding-top: 0;
+  }
+  body:not(.wp-admin).admin-bar {
+    margin-top: 92px !important;
+  }
 }

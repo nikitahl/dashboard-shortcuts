@@ -139,7 +139,7 @@ class WDS_Settings {
 		?>
 		<div class="wrap wds-settings-wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<p><?php esc_html_e( 'Add custom shortcut links that will appear in the admin bar menu.', 'wp-dashboard-shortcuts' ); ?></p>
+			<p><?php esc_html_e( 'Add custom shortcut links that will appear under the admin bar menu.', 'wp-dashboard-shortcuts' ); ?></p>
 
 			<form method="post" action="options.php" class="wds-settings-form">
 				<?php settings_fields( 'wds_settings_group' ); ?>

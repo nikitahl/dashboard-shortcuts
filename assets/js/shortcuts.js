@@ -10,6 +10,7 @@ import '../css/shortcuts.css'
   'use strict'
   const { wdsShortcuts } = window
   const $shortcutsBar = $('#wds-shortcuts-bar')
+  const $list = $shortcutsBar.find('.wds-shortcuts-list')
   let $modal = $('#wds-add-page-modal')
 
   /**
@@ -20,14 +21,100 @@ import '../css/shortcuts.css'
   const init = () => {
     $('#wds-add-current-page').on('click', showAddCurrentPageModal)
 
+    $(window).on( 'scroll', handleWindowScroll )
+    handleWindowScroll()
 
-    $(window).on( 'scroll', () => {
-      if ( window.innerWidth < 600 && $( window ).scrollTop() > 46 ) {
-        $shortcutsBar.addClass( 'wds-shortcuts-bar-fixed' )
-      } else {
-        $shortcutsBar.removeClass( 'wds-shortcuts-bar-fixed' )
+    createMoreButton()
+    resizeObserver.observe($shortcutsBar[0])
+
+    // Close dropdown when clicking outside
+    $(document).on('click', (e) => {
+      if (!$(e.target).closest('.wds-more-button, .wds-more-dropdown').length) {
+        closeMoreDropdown()
       }
     })
+  }
+
+  /**
+   * Handle window scroll for mobile fixed bar
+   *
+   * @since 1.0.0
+   */
+  const handleWindowScroll = () => {
+    if (window.innerWidth < 600 && $(window).scrollTop() > 46) {
+      $shortcutsBar.addClass('wds-shortcuts-bar-fixed')
+    } else {
+      $shortcutsBar.removeClass('wds-shortcuts-bar-fixed')
+    }
+  }
+
+  /**
+   * Observe shortcuts bar width to toggle narrow class
+   *
+   * @since 1.0.0
+   */
+  const resizeObserver = new ResizeObserver(() => {
+    const availableWidth = $list[0].getBoundingClientRect().width
+    manageItemsVisibility(availableWidth)
+  })
+
+  /**
+   * Manage visibility of shortcut items based on available width
+   * Shows items that fit and hides items that overflow
+   *
+   * @param {number} availableWidth - The available width of the list container
+   * @since 1.0.0
+   */
+  const manageItemsVisibility = (availableWidth) => {
+    const $moreButton = $('.wds-more-button')
+    const $dropdown = $('.wds-more-dropdown')
+    const moreButtonWidth = $moreButton.outerWidth() || 0
+
+    // Calculate available width accounting for the more button
+    const effectiveWidth = availableWidth - moreButtonWidth - 10 // 10px buffer
+
+    let accumulatedWidth = 0
+    let hasOverflow = false
+    const $items = $list.children()
+    const hiddenItems = []
+
+    // First pass: show all items temporarily to get their actual widths
+    $items.show()
+
+    // Second pass: determine which items fit and which don't
+    $items.each(function() {
+      const itemWidth = $(this)[0].getBoundingClientRect().width
+      accumulatedWidth += itemWidth
+
+      if (accumulatedWidth > effectiveWidth) {
+        $(this).hide()
+        hasOverflow = true
+        hiddenItems.push($(this).clone())
+      }
+    })
+
+    // Show/hide more button and populate dropdown
+    if (hasOverflow) {
+      $shortcutsBar.addClass('wds-shortcuts-bar-narrow')
+      $moreButton.show()
+
+      // Clear and populate dropdown with hidden items
+      $dropdown.empty()
+      hiddenItems.forEach($item => {
+        // Ensure the cloned item is visible in the dropdown
+        $item.css('display', 'block')
+        const $link = $item.find('.wds-shortcut-link')
+        $link.on('click', () => {
+          closeMoreDropdown()
+        })
+        $dropdown.append($item)
+      })
+    } else {
+      $shortcutsBar.removeClass('wds-shortcuts-bar-narrow')
+      $moreButton.hide()
+      $dropdown.empty()
+      closeMoreDropdown()
+    }
   }
 
   /**
@@ -175,9 +262,10 @@ import '../css/shortcuts.css'
 
         setTimeout(() => location.reload(), 500)
       } else {
-        throw new Error(response.data?.message || wdsShortcuts.errorMsg)
+        console.error(response.data?.message || wdsShortcuts.errorMsg)
       }
     } catch (error) {
+      console.error('Unable to add current page to shortcuts: ', error.message)
       showNotification(error.message, 'error')
       $submitBtn.prop('disabled', false).text(originalText)
     }
@@ -206,7 +294,65 @@ import '../css/shortcuts.css'
     }, 3000)
   }
 
-  $(init)
+  /**
+   * Create and manage "More" button with dropdown for overflow items
+   *
+   * @since 1.0.0
+   */
+  const createMoreButton = () => {
+    const $moreButton = $('<button>', {
+      class: 'wds-more-button',
+      type: 'button',
+      html: '<span class="dashicons dashicons-arrow-right-alt2"></span>',
+      'aria-label': 'More shortcuts',
+      'title': 'More shortcuts',
+      css: { display: 'none' }
+    })
+
+    const $dropdown = $('<ul>', {
+      class: 'wds-more-dropdown',
+      css: { display: 'none' }
+    })
+
+    $moreButton.on('click', (e) => {
+      e.stopPropagation()
+      toggleMoreDropdown()
+    })
+
+    $list.after($moreButton)
+    $shortcutsBar.append($dropdown)
+  }
+
+  /**
+   * Toggle visibility of the "More" dropdown
+   *
+   * @since 1.0.0
+   */
+  const toggleMoreDropdown = () => {
+    const $dropdown = $('.wds-more-dropdown')
+    const $moreButton = $('.wds-more-button')
+
+    if ($dropdown.is(':visible')) {
+      closeMoreDropdown()
+    } else {
+      $dropdown.css({
+        top: $moreButton.outerHeight() + 'px',
+        right: '10px'
+      }).show()
+
+      $moreButton.addClass('wds-more-button-active')
+    }
+  }
+
+  /**
+   * Close the "More" dropdown
+   *
+   * @since 1.0.0
+   */
+  const closeMoreDropdown = () => {
+    $('.wds-more-dropdown').hide()
+    $('.wds-more-button').removeClass('wds-more-button-active')
+  }
+
+  init()
 })(jQuery)
-
-
