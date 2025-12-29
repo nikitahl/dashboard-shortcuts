@@ -22,17 +22,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-define( 'WDS_VERSION', '1.0.0' );
-define( 'WDS_PLUGIN_FILE', __FILE__ );
-define( 'WDS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'WDS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'WDS_TEXTDOMAIN', 'dashboard-shortcuts' );
+define( 'DS_VERSION', '1.0.0' );
+define( 'DS_PLUGIN_FILE', __FILE__ );
+define( 'DS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'DS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'DS_TEXTDOMAIN', 'dashboard-shortcuts' );
 
-require_once WDS_PLUGIN_DIR . 'includes/class-wds-shortcuts.php';
-require_once WDS_PLUGIN_DIR . 'admin/class-wds-settings.php';
+require_once DS_PLUGIN_DIR . 'includes/class-ds-shortcuts.php';
+require_once DS_PLUGIN_DIR . 'admin/class-ds-settings.php';
 
 // Add "Settings" link on the Plugins page.
-add_filter( 'plugin_action_links_' . plugin_basename( WDS_PLUGIN_FILE ), 'wds_settings_link' );
+add_filter( 'plugin_action_links_' . plugin_basename( DS_PLUGIN_FILE ), 'ds_settings_link' );
 
 /**
  * Add settings link to the Plugins page.
@@ -42,8 +42,8 @@ add_filter( 'plugin_action_links_' . plugin_basename( WDS_PLUGIN_FILE ), 'wds_se
  * @param array $links Existing plugin action links.
  * @return array Modified plugin action links.
  */
-function wds_settings_link( $links ) {
-	$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=wds-settings' ) ) . '">' . esc_html__( 'Settings', 'dashboard-shortcuts' ) . '</a>';
+function ds_settings_link( $links ) {
+	$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=ds-settings' ) ) . '">' . esc_html__( 'Settings', 'dashboard-shortcuts' ) . '</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }
@@ -51,5 +51,5 @@ function wds_settings_link( $links ) {
 /**
  * Initialize plugin components.
  */
-new WDS_Shortcuts();
-new WDS_Settings();
+new DS_Shortcuts();
+new DS_Settings();

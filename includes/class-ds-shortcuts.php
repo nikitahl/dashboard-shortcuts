@@ -1,6 +1,6 @@
 <?php
 /**
- * WDS Shortcuts handler.
+ * DS Shortcuts handler.
  *
  * @package Dashboard_Shortcuts
  */
@@ -10,13 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class WDS_Shortcuts
+ * Class DS_Shortcuts
  *
  * Handles the HUD menu bar display and functionality.
  *
  * @since 1.0.0
  */
-class WDS_Shortcuts {
+class DS_Shortcuts {
 
 	/**
 	 * Constructor.
@@ -28,7 +28,7 @@ class WDS_Shortcuts {
 		add_action( 'wp_footer', [ $this, 'render_shortcuts_bar' ] );
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
-		add_action( 'wp_ajax_wds_add_current_page', [ $this, 'ajax_add_current_page' ] );
+		add_action( 'wp_ajax_ds_add_current_page', [ $this, 'ajax_add_current_page' ] );
 		add_action( 'admin_bar_menu', [ $this, 'add_admin_bar_toggle' ], 999 );
 	}
 
@@ -49,14 +49,14 @@ class WDS_Shortcuts {
 		$shortcuts = $this->get_shortcuts();
 
 		?>
-		<div id="wds-shortcuts-bar" class="wds-shortcuts-bar">
-			<div class="wds-shortcuts-container">
-				<span class="wds-shortcuts-label">
-					<span class="dashicons dashicons-star-filled"></span>
+		<div id="ds-shortcuts-bar" class="ds-shortcuts-bar">
+			<div class="ds-shortcuts-container">
+				<span class="ds-shortcuts-label">
+					<span class="dashicons dashicons-star-filled" aria-hidden="true"></span>
 					<?php esc_html_e( 'Shortcuts:', 'dashboard-shortcuts' ); ?>
 				</span>
 				<?php $this->render_shortcuts_list( $shortcuts ); ?>
-				<button type="button" id="wds-add-current-page" class="wds-add-current-btn" title="<?php esc_attr_e( 'Add current page to shortcuts', 'dashboard-shortcuts' ); ?>">
+				<button type="button" id="ds-add-current-page" class="ds-add-current-btn" title="<?php esc_attr_e( 'Add current page to shortcuts', 'dashboard-shortcuts' ); ?>">
 					<span class="dashicons dashicons-plus-alt" aria-hidden="true"></span>
 					<?php esc_html_e( 'Add Current Page', 'dashboard-shortcuts' ); ?>
 				</button>
@@ -74,7 +74,7 @@ class WDS_Shortcuts {
 	 */
 	private function render_shortcuts_list( $shortcuts ) {
 		?>
-		<ul class="wds-shortcuts-list">
+		<ul class="ds-shortcuts-list">
 			<?php
 			if ( ! empty( $shortcuts ) ) {
 				foreach ( $shortcuts as $shortcut ) {
@@ -100,10 +100,10 @@ class WDS_Shortcuts {
 
 		$target_attr = ! empty( $shortcut['new_tab'] ) && $shortcut['new_tab'] ? 'target="_blank" rel="noopener noreferrer"' : '';
 		?>
-		<li class="wds-shortcut-item">
+		<li class="ds-shortcut-item">
 			<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
 				<?php echo esc_attr( $target_attr ); ?>
-				class="wds-shortcut-link"
+				class="ds-shortcut-link"
 				title="<?php echo esc_attr( $shortcut['title'] ); ?>"
 			>
 				<?php echo esc_html( $shortcut['title'] ); ?>
@@ -120,7 +120,7 @@ class WDS_Shortcuts {
 	 * @return array Array of shortcuts.
 	 */
 	public function get_shortcuts() {
-		$shortcuts = get_option( 'wds_shortcuts', [] );
+		$shortcuts = get_option( 'ds_shortcuts', [] );
 
 		if ( ! is_array( $shortcuts ) ) {
 			return [];
@@ -140,26 +140,26 @@ class WDS_Shortcuts {
 		}
 
 		wp_enqueue_style(
-			'wds-shortcuts-style',
-			WDS_PLUGIN_URL . 'assets/dist/css/shortcuts.min.css',
+			'ds-shortcuts-style',
+			DS_PLUGIN_URL . 'assets/dist/css/shortcuts.min.css',
 			[],
-			WDS_VERSION
+			DS_VERSION
 		);
 
 		wp_enqueue_script(
-			'wds-shortcuts-script',
-			WDS_PLUGIN_URL . 'assets/dist/js/shortcuts.min.js',
+			'ds-shortcuts-script',
+			DS_PLUGIN_URL . 'assets/dist/js/shortcuts.min.js',
 			[ 'jquery' ],
-			WDS_VERSION,
+			DS_VERSION,
 			true
 		);
 
 		wp_localize_script(
-			'wds-shortcuts-script',
-			'wdsShortcuts',
+			'ds-shortcuts-script',
+			'dsShortcuts',
 			[
 				'ajaxUrl'       => admin_url( 'admin-ajax.php' ),
-				'nonce'         => wp_create_nonce( 'wds_add_current_page' ),
+				'nonce'         => wp_create_nonce( 'ds_add_current_page' ),
 				'currentUrl'    => esc_url_raw( $this->get_current_url() ),
 				'currentTitle'  => $this->get_current_title(),
 				'addLabel'      => __( 'Add to Shortcuts', 'dashboard-shortcuts' ),
@@ -227,7 +227,7 @@ class WDS_Shortcuts {
 	 * @since 1.0.0
 	 */
 	public function ajax_add_current_page() {
-		check_ajax_referer( 'wds_add_current_page', 'nonce' );
+		check_ajax_referer( 'ds_add_current_page', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
 			wp_send_json_error( [ 'message' => __( 'Permission denied.', 'dashboard-shortcuts' ) ] );
@@ -240,7 +240,7 @@ class WDS_Shortcuts {
 			wp_send_json_error( [ 'message' => __( 'Title and URL are required.', 'dashboard-shortcuts' ) ] );
 		}
 
-		$shortcuts = get_option( 'wds_shortcuts', [] );
+		$shortcuts = get_option( 'ds_shortcuts', [] );
 		if ( ! is_array( $shortcuts ) ) {
 			$shortcuts = [];
 		}
@@ -252,7 +252,7 @@ class WDS_Shortcuts {
 			'new_tab' => false,
 		];
 
-		update_option( 'wds_shortcuts', $shortcuts );
+		update_option( 'ds_shortcuts', $shortcuts );
 
 		wp_send_json_success( [ 'message' => __( 'Shortcut added successfully!', 'dashboard-shortcuts' ) ] );
 	}
@@ -271,12 +271,12 @@ class WDS_Shortcuts {
 
 		$wp_admin_bar->add_node(
 			[
-				'id'    => 'wds-shortcuts-toggle',
+				'id'    => 'ds-shortcuts-toggle',
 				'title' => '<span class="ab-icon dashicons dashicons-visibility" aria-hidden="true"></span><span class="ab-label">' . __( 'Shortcuts', 'dashboard-shortcuts' ) . '</span>',
 				'href'  => '#',
 				'meta'  => [
 					'title' => __( 'Toggle shortcuts bar visibility', 'dashboard-shortcuts' ),
-					'class' => 'wds-admin-bar-toggle',
+					'class' => 'ds-admin-bar-toggle',
 				],
 			]
 		);

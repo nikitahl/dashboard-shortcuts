@@ -7,32 +7,32 @@
 import '../css/admin.css'
 (($) => {
   'use strict'
-  const { wdsSettings, wpApiSettings } = window
+  const { dsSettings, wpApiSettings } = window
 
   /**
    * Initialize the settings page functionality.
    */
   const init = () => {
-    const $container = $('#wds-shortcuts-container')
-    const $addButton = $('#wds-add-shortcut')
+    const $container = $('#ds-shortcuts-container')
+    const $addButton = $('#ds-add-shortcut')
 
     initSortable()
     initLinkPicker()
 
     // Add new shortcut row.
     $addButton.on('click', () => {
-      const index = $container.find('.wds-shortcut-row').length
+      const index = $container.find('.ds-shortcut-row').length
       const $newRow = createShortcutRow(index)
       $container.append($newRow)
     })
 
     // Remove shortcut row.
-    $container.on('click', '.wds-remove-shortcut', function () {
-      const $row = $(this).closest('.wds-shortcut-row')
-      const $allRows = $container.find('.wds-shortcut-row')
+    $container.on('click', '.ds-remove-shortcut', function () {
+      const $row = $(this).closest('.ds-shortcut-row')
+      const $allRows = $container.find('.ds-shortcut-row')
 
       // Confirm deletion.
-      if (!confirm(wdsSettings.confirmDelete || 'Are you sure you want to remove this shortcut?')) {
+      if (!confirm(dsSettings.confirmDelete || 'Are you sure you want to remove this shortcut?')) {
         return
       }
 
@@ -55,21 +55,21 @@ import '../css/admin.css'
    * Initialize jQuery UI Sortable.
    */
   const initSortable = () => {
-    const $container = $('#wds-shortcuts-container')
+    const $container = $('#ds-shortcuts-container')
 
     $container.sortable({
-      handle: '.wds-drag-handle',
-      placeholder: 'wds-shortcut-placeholder',
+      handle: '.ds-drag-handle',
+      placeholder: 'ds-shortcut-placeholder',
       axis: 'y',
       cursor: 'move',
       opacity: 0.7,
       tolerance: 'pointer',
       start: (event, ui) => {
         ui.placeholder.height(ui.item.height())
-        ui.item.addClass('wds-sorting')
+        ui.item.addClass('ds-sorting')
       },
       stop: (event, ui) => {
-        ui.item.removeClass('wds-sorting')
+        ui.item.removeClass('ds-sorting')
         reindexRows()
       }
     })
@@ -79,12 +79,12 @@ import '../css/admin.css'
    * Initialize WordPress link picker functionality.
    */
   const initLinkPicker = () => {
-    const $container = $('#wds-shortcuts-container')
+    const $container = $('#ds-shortcuts-container')
 
     // Handle click on URL selector button.
-    $container.on('click', '.wds-select-url', function (e) {
+    $container.on('click', '.ds-select-url', function (e) {
       e.preventDefault()
-      const $currentInput = $(this).siblings('.wds-url-input')
+      const $currentInput = $(this).siblings('.ds-url-input')
 
       // Create and show custom link selector modal
       showLinkSelectorModal($currentInput)
@@ -99,16 +99,16 @@ import '../css/admin.css'
    * @param {jQuery} $input The input field to populate.
    */
   const showLinkSelectorModal = ($input) => {
-    const $modal = $('#wds-link-modal')
+    const $modal = $('#ds-link-modal')
 
     // Create modal if it doesn't exist
     if ($modal.length === 0) {
       createLinkModal()
     }
 
-    const $urlInput = $('#wds-modal-url')
-    const $searchInput = $('#wds-modal-search')
-    const $results = $('#wds-modal-results')
+    const $urlInput = $('#ds-modal-url')
+    const $searchInput = $('#ds-modal-search')
+    const $results = $('#ds-modal-results')
 
     // Set current URL
     $urlInput.val($input.val())
@@ -141,7 +141,7 @@ import '../css/admin.css'
     })
 
     // Handle insert button
-    $('#wds-modal-insert').off('click').on('click', () => {
+    $('#ds-modal-insert').off('click').on('click', () => {
       const url = $urlInput.val()
       if (url) {
         $input.val(url)
@@ -150,18 +150,18 @@ import '../css/admin.css'
     })
 
     // Handle cancel button
-    $('#wds-modal-cancel').off('click').on('click', () => {
+    $('#ds-modal-cancel').off('click').on('click', () => {
       closeLinkModal()
     })
 
     // Handle close button (X icon)
-    $('#wds-modal-close-btn').off('click').on('click', () => {
+    $('#ds-modal-close-btn').off('click').on('click', () => {
       closeLinkModal()
     })
 
     // Handle backdrop click
     $modal.off('click').on('click', (e) => {
-      if ($(e.target).hasClass('wds-modal-backdrop')) {
+      if ($(e.target).hasClass('ds-modal-backdrop')) {
         closeLinkModal()
       }
     })
@@ -172,28 +172,28 @@ import '../css/admin.css'
    */
   const createLinkModal = () => {
     const modalHtml =
-      '<div id="wds-link-modal" class="wds-modal-backdrop" style="display:none">' +
-      '<div class="wds-modal">' +
-      '<div class="wds-modal-header">' +
+      '<div id="ds-link-modal" class="ds-modal-backdrop" style="display:none">' +
+      '<div class="ds-modal">' +
+      '<div class="ds-modal-header">' +
       '<h2>Insert/Edit Link</h2>' +
-      '<button type="button" class="wds-modal-close" id="wds-modal-close-btn">' +
-      '<span class="dashicons dashicons-no"></span>' +
+      '<button type="button" class="ds-modal-close" id="ds-modal-close-btn" aria-label="' + dsSettings.close +'">' +
+      '<span class="dashicons dashicons-no" aria-hidden="true"></span>' +
       '</button>' +
       '</div>' +
-      '<div class="wds-modal-body">' +
-      '<div class="wds-modal-field">' +
-      '<label for="wds-modal-url">URL</label>' +
-      '<input type="text" id="wds-modal-url" class="regular-text" placeholder="https://example.com" />' +
+      '<div class="ds-modal-body">' +
+      '<div class="ds-modal-field">' +
+      '<label for="ds-modal-url">URL</label>' +
+      '<input type="text" id="ds-modal-url" class="regular-text" placeholder="https://example.com" />' +
       '</div>' +
-      '<div class="wds-modal-field">' +
-      '<label for="wds-modal-search">Or search for existing content</label>' +
-      '<input type="text" id="wds-modal-search" class="regular-text" placeholder="Search pages, posts..." />' +
+      '<div class="ds-modal-field">' +
+      '<label for="ds-modal-search">Or search for existing content</label>' +
+      '<input type="text" id="ds-modal-search" class="regular-text" placeholder="Search pages, posts..." />' +
       '</div>' +
-      '<div id="wds-modal-results" class="wds-modal-results"></div>' +
+      '<div id="ds-modal-results" class="ds-modal-results"></div>' +
       '</div>' +
-      '<div class="wds-modal-footer">' +
-      '<button type="button" class="button button-secondary" id="wds-modal-cancel">Cancel</button>' +
-      '<button type="button" class="button button-primary" id="wds-modal-insert">Insert Link</button>' +
+      '<div class="ds-modal-footer">' +
+      '<button type="button" class="button button-secondary" id="ds-modal-cancel">Cancel</button>' +
+      '<button type="button" class="button button-primary" id="ds-modal-insert">Insert Link</button>' +
       '</div>' +
       '</div>' +
       '</div>'
@@ -205,7 +205,7 @@ import '../css/admin.css'
    * Close link selector modal.
    */
   const closeLinkModal = () => {
-    $('#wds-link-modal').hide()
+    $('#ds-link-modal').hide()
     $('body').removeClass('modal-open')
   }
 
@@ -217,7 +217,7 @@ import '../css/admin.css'
    * @param {jQuery} $urlInput URL input field.
    */
   const searchContent = (query, $results, $urlInput) => {
-    $results.html('<div class="wds-modal-loading">Searching...</div>')
+    $results.html('<div class="ds-modal-loading">Searching...</div>')
 
     // Use wpApiSettings if available, otherwise construct URL
     const restUrl = wpApiSettings ? wpApiSettings.root : '/wp-json/'
@@ -232,15 +232,15 @@ import '../css/admin.css'
       },
       success: (items) => {
         if (!items || items.length === 0) {
-          $results.html('<div class="wds-modal-no-results">No results found</div>')
+          $results.html('<div class="ds-modal-no-results">No results found</div>')
           return
         }
 
-        let html = '<ul class="wds-modal-results-list">'
+        let html = '<ul class="ds-modal-results-list">'
         $.each(items, (i, item) => {
-          html += `<li class="wds-modal-result-item" data-url="${item.url}">` +
+          html += `<li class="ds-modal-result-item" data-url="${item.url}">` +
             `<strong>${item.title}</strong>` +
-            `<span class="wds-modal-result-type">${item.subtype}</span>` +
+            `<span class="ds-modal-result-type">${item.subtype}</span>` +
             '</li>'
         })
         html += '</ul>'
@@ -248,16 +248,16 @@ import '../css/admin.css'
         $results.html(html)
 
         // Handle result click
-        $('.wds-modal-result-item').on('click', function () {
+        $('.ds-modal-result-item').on('click', function () {
           const url = $(this).data('url')
           $urlInput.val(url)
-          $('.wds-modal-result-item').removeClass('selected')
+          $('.ds-modal-result-item').removeClass('selected')
           $(this).addClass('selected')
         })
       },
       error: (xhr, status, error) => {
         console.error('Search error:', xhr.status, error)
-        $results.html('<div class="wds-modal-error">Error searching content. Please check your WordPress REST API is enabled.</div>')
+        $results.html('<div class="ds-modal-error">Error searching content. Please check your WordPress REST API is enabled.</div>')
       }
     })
   }
@@ -270,72 +270,75 @@ import '../css/admin.css'
    */
   const createShortcutRow = (index) => {
     const $row = $('<div>', {
-      class: 'wds-shortcut-row',
+      class: 'ds-shortcut-row',
       'data-index': index,
       style: 'display: none'
     })
 
     // Drag handle.
     const $dragHandle = $('<div>', {
-      class: 'wds-drag-handle',
-      title: 'Drag to reorder'
+      class: 'ds-drag-handle',
+      title: dsSettings.dragToReoder || 'Drag to reorder',
+      'aria-label': dsSettings.dragToReoder || 'Drag to reorder'
     })
-    const $dragIcon = $('<span>', { class: 'dashicons dashicons-menu' })
+    const $dragIcon = $('<span>', { class: 'dashicons dashicons-menu', 'aria-hidden': true })
     $dragHandle.append($dragIcon)
 
-    const $fields = $('<div>', { class: 'wds-shortcut-fields' })
+    const $fields = $('<div>', { class: 'ds-shortcut-fields' })
 
     // Title field.
-    const $titleField = $('<div>', { class: 'wds-field' })
-    const $titleLabel = $('<label>').text(wdsSettings.titleLabel || 'Title')
+    const $titleField = $('<div>', { class: 'ds-field' })
+    const $titleLabel = $('<label>').text(dsSettings.titleLabel || 'Title')
     const $titleInput = $('<input>', {
       type: 'text',
-      name: `wds_shortcuts[${index}][title]`,
-      placeholder: wdsSettings.titlePlaceholder || 'e.g., My Site',
+      name: `ds_shortcuts[${index}][title]`,
+      placeholder: dsSettings.titlePlaceholder || 'e.g., My Site',
       class: 'regular-text'
     })
     $titleLabel.append($titleInput)
     $titleField.append($titleLabel)
 
     // URL field.
-    const $urlField = $('<div>', { class: 'wds-field wds-field-url' })
-    const $urlLabel = $('<label>').text(wdsSettings.urlLabel || 'URL')
-    const $urlWrapper = $('<div>', { class: 'wds-url-input-wrapper' })
+    const $urlField = $('<div>', { class: 'ds-field ds-field-url' })
+    const $urlLabel = $('<label>').text(dsSettings.urlLabel || 'URL')
+    const $urlWrapper = $('<div>', { class: 'ds-url-input-wrapper' })
     const $urlInput = $('<input>', {
       type: 'text',
-      name: `wds_shortcuts[${index}][url]`,
-      placeholder: wdsSettings.urlPlaceholder || 'https://example.com',
-      class: 'regular-text wds-url-input'
+      name: `ds_shortcuts[${index}][url]`,
+      placeholder: dsSettings.urlPlaceholder || 'https://example.com',
+      class: 'regular-text ds-url-input'
     })
     const $urlButton = $('<button>', {
       type: 'button',
-      class: 'button wds-select-url',
-      title: 'Select from WordPress'
-    }).append($('<span>', { class: 'dashicons dashicons-admin-links' }))
+      class: 'button ds-select-url',
+      title: dsSettings.selectFromWp || 'Select from WordPress',
+      'aria-label': dsSettings.selectFromWp || 'Select from WordPress'
+    }).append($('<span>', { class: 'dashicons dashicons-admin-links', 'aria-hidden': true }))
     $urlWrapper.append($urlInput)
     $urlWrapper.append($urlButton)
     $urlLabel.append($urlWrapper)
     $urlField.append($urlLabel)
 
     // New tab checkbox.
-    const $checkboxField = $('<div>', { class: 'wds-field wds-field-checkbox' })
+    const $checkboxField = $('<div>', { class: 'ds-field ds-field-checkbox' })
     const $checkboxLabel = $('<label>')
     const $checkbox = $('<input>', {
       type: 'checkbox',
-      name: `wds_shortcuts[${index}][new_tab]`
+      name: `ds_shortcuts[${index}][new_tab]`
     })
     $checkboxLabel.append($checkbox)
-    $checkboxLabel.append(wdsSettings.newTabLabel || 'Open in new tab')
+    $checkboxLabel.append(dsSettings.newTabLabel || 'Open in new tab')
     $checkboxField.append($checkboxLabel)
 
     // Remove button.
-    const $actionsField = $('<div>', { class: 'wds-field wds-field-actions' })
+    const $actionsField = $('<div>', { class: 'ds-field ds-field-actions' })
     const $removeButton = $('<button>', {
       type: 'button',
-      class: 'button wds-remove-shortcut',
-      'aria-label': wdsSettings.removeLabel || 'Remove shortcut'
+      class: 'button ds-remove-shortcut',
+      title: dsSettings.removeLabel || 'Remove shortcut',
+      'aria-label': dsSettings.removeLabel || 'Remove shortcut'
     })
-    const $removeIcon = $('<span>', { class: 'dashicons dashicons-trash' })
+    const $removeIcon = $('<span>', { class: 'dashicons dashicons-trash', 'aria-hidden': true })
     $removeButton.append($removeIcon)
     $actionsField.append($removeButton)
 
@@ -356,7 +359,7 @@ import '../css/admin.css'
    * Reindex all rows after deletion or sorting.
    */
   const reindexRows = () => {
-    const $rows = $('#wds-shortcuts-container .wds-shortcut-row')
+    const $rows = $('#ds-shortcuts-container .ds-shortcut-row')
 
     $rows.each(function (index) {
       const $row = $(this)
@@ -367,9 +370,9 @@ import '../css/admin.css'
         const $input = $(this)
         const name = $input.attr('name')
 
-        if (name && name.indexOf('wds_shortcuts[') === 0) {
+        if (name && name.indexOf('ds_shortcuts[') === 0) {
           // Replace the index in the name attribute.
-          const newName = name.replace(/wds_shortcuts\[\d+\]/, `wds_shortcuts[${index}]`)
+          const newName = name.replace(/ds_shortcuts\[\d+\]/, `ds_shortcuts[${index}]`)
           $input.attr('name', newName)
         }
       })
