@@ -2,7 +2,7 @@
 /**
  * WDS Shortcuts handler.
  *
- * @package WP_Dashboard_Shortcuts
+ * @package Dashboard_Shortcuts
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,12 +53,12 @@ class WDS_Shortcuts {
 			<div class="wds-shortcuts-container">
 				<span class="wds-shortcuts-label">
 					<span class="dashicons dashicons-star-filled"></span>
-					<?php esc_html_e( 'Shortcuts:', 'wp-dashboard-shortcuts' ); ?>
+					<?php esc_html_e( 'Shortcuts:', 'dashboard-shortcuts' ); ?>
 				</span>
 				<?php $this->render_shortcuts_list( $shortcuts ); ?>
-				<button type="button" id="wds-add-current-page" class="wds-add-current-btn" title="<?php esc_attr_e( 'Add current page to shortcuts', 'wp-dashboard-shortcuts' ); ?>">
+				<button type="button" id="wds-add-current-page" class="wds-add-current-btn" title="<?php esc_attr_e( 'Add current page to shortcuts', 'dashboard-shortcuts' ); ?>">
 					<span class="dashicons dashicons-plus-alt" aria-hidden="true"></span>
-					<?php esc_html_e( 'Add Current Page', 'wp-dashboard-shortcuts' ); ?>
+					<?php esc_html_e( 'Add Current Page', 'dashboard-shortcuts' ); ?>
 				</button>
 			</div>
 		</div>
@@ -162,12 +162,12 @@ class WDS_Shortcuts {
 				'nonce'         => wp_create_nonce( 'wds_add_current_page' ),
 				'currentUrl'    => esc_url_raw( $this->get_current_url() ),
 				'currentTitle'  => $this->get_current_title(),
-				'addLabel'      => __( 'Add to Shortcuts', 'wp-dashboard-shortcuts' ),
-				'cancelLabel'   => __( 'Cancel', 'wp-dashboard-shortcuts' ),
-				'titleLabel'    => __( 'Shortcut Title:', 'wp-dashboard-shortcuts' ),
-				'successMsg'    => __( 'Shortcut added successfully!', 'wp-dashboard-shortcuts' ),
-				'errorMsg'      => __( 'Error adding shortcut. Please try again.', 'wp-dashboard-shortcuts' ),
-				'emptyTitleMsg' => __( 'Please enter a title for the shortcut.', 'wp-dashboard-shortcuts' ),
+				'addLabel'      => __( 'Add to Shortcuts', 'dashboard-shortcuts' ),
+				'cancelLabel'   => __( 'Cancel', 'dashboard-shortcuts' ),
+				'titleLabel'    => __( 'Shortcut Title:', 'dashboard-shortcuts' ),
+				'successMsg'    => __( 'Shortcut added successfully!', 'dashboard-shortcuts' ),
+				'errorMsg'      => __( 'Error adding shortcut. Please try again.', 'dashboard-shortcuts' ),
+				'emptyTitleMsg' => __( 'Please enter a title for the shortcut.', 'dashboard-shortcuts' ),
 			]
 		);
 	}
@@ -230,14 +230,14 @@ class WDS_Shortcuts {
 		check_ajax_referer( 'wds_add_current_page', 'nonce' );
 
 		if ( ! current_user_can( 'manage_options' ) ) {
-			wp_send_json_error( [ 'message' => __( 'Permission denied.', 'wp-dashboard-shortcuts' ) ] );
+			wp_send_json_error( [ 'message' => __( 'Permission denied.', 'dashboard-shortcuts' ) ] );
 		}
 
 		$title = isset( $_POST['title'] ) ? sanitize_text_field( wp_unslash( $_POST['title'] ) ) : '';
 		$url   = isset( $_POST['url'] ) ? esc_url_raw( wp_unslash( $_POST['url'] ) ) : '';
 
 		if ( empty( $title ) || empty( $url ) ) {
-			wp_send_json_error( [ 'message' => __( 'Title and URL are required.', 'wp-dashboard-shortcuts' ) ] );
+			wp_send_json_error( [ 'message' => __( 'Title and URL are required.', 'dashboard-shortcuts' ) ] );
 		}
 
 		$shortcuts = get_option( 'wds_shortcuts', [] );
@@ -254,7 +254,7 @@ class WDS_Shortcuts {
 
 		update_option( 'wds_shortcuts', $shortcuts );
 
-		wp_send_json_success( [ 'message' => __( 'Shortcut added successfully!', 'wp-dashboard-shortcuts' ) ] );
+		wp_send_json_success( [ 'message' => __( 'Shortcut added successfully!', 'dashboard-shortcuts' ) ] );
 	}
 
 	/**
@@ -272,10 +272,10 @@ class WDS_Shortcuts {
 		$wp_admin_bar->add_node(
 			[
 				'id'    => 'wds-shortcuts-toggle',
-				'title' => '<span class="ab-icon dashicons dashicons-visibility" aria-hidden="true"></span><span class="ab-label">' . __( 'Shortcuts', 'wp-dashboard-shortcuts' ) . '</span>',
+				'title' => '<span class="ab-icon dashicons dashicons-visibility" aria-hidden="true"></span><span class="ab-label">' . __( 'Shortcuts', 'dashboard-shortcuts' ) . '</span>',
 				'href'  => '#',
 				'meta'  => [
-					'title' => __( 'Toggle shortcuts bar visibility', 'wp-dashboard-shortcuts' ),
+					'title' => __( 'Toggle shortcuts bar visibility', 'dashboard-shortcuts' ),
 					'class' => 'wds-admin-bar-toggle',
 				],
 			]

@@ -1,6 +1,6 @@
-# Contributing
+# Contributing to Dashboard Shortcuts
 
-Thanks for contributing to WP Dashboard Shortcuts! We're quite open to new feature requests, or any work you want to do.
+Thanks for contributing to Dashboard Shortcuts! We're quite open to new feature requests, or any work you want to do.
 
 Please read the following guidelines before making a contribution.
 
@@ -40,7 +40,7 @@ When creating issues please follow the according template structure:
 #### Tips for writing good issues
 
 1. Search the issue tracker before opening an issue.
-2. Ensure you're using the latest version of WP Dashboard Shortcuts.
+2. Ensure you're using the latest version of Dashboard Shortcuts.
 3. Use a clear and descriptive title for the issue to identify the problem.
 4. Describe the exact steps which reproduce the problem in as many details as possible.
 5. Provide specific examples to demonstrate the steps.

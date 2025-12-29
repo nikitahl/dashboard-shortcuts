@@ -1,7 +1,7 @@
 /**
- * WP Dashboard Shortcuts - Frontend shortcuts bar scripts
+ * Dashboard Shortcuts - Frontend shortcuts bar scripts
  *
- * @package WP_Dashboard_Shortcuts
+ * @package Dashboard_Shortcuts
  */
 
 import '../css/shortcuts.css'

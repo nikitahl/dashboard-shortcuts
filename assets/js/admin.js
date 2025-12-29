@@ -1,7 +1,7 @@
 /**
- * WP Dashboard Shortcuts - Admin settings page scripts
+ * Dashboard Shortcuts - Admin settings page scripts
  *
- * @package WP_Dashboard_Shortcuts
+ * @package Dashboard_Shortcuts
  */
 
 import '../css/admin.css'

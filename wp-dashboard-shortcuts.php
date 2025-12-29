@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name:       WP Dashboard Shortcuts
+ * Plugin Name:       Dashboard Shortcuts
  * Description:       Add custom shortcut links to your WordPress admin bar for quick access to frequently used pages and tools.
  * Version:           1.0.0
  * Author:            Nikita Hlopov
@@ -10,7 +10,7 @@
  * License:           GPLv3
  * License URI:       http://www.gnu.org/licenses/gpl-3.0.html
  *
- * @package WP_Dashboard_Shortcuts
+ * @package Dashboard_Shortcuts
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,7 +26,7 @@ define( 'WDS_VERSION', '1.0.0' );
 define( 'WDS_PLUGIN_FILE', __FILE__ );
 define( 'WDS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'WDS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'WDS_TEXTDOMAIN', 'wp-dashboard-shortcuts' );
+define( 'WDS_TEXTDOMAIN', 'dashboard-shortcuts' );
 
 require_once WDS_PLUGIN_DIR . 'includes/class-wds-shortcuts.php';
 require_once WDS_PLUGIN_DIR . 'admin/class-wds-settings.php';
@@ -43,7 +43,7 @@ add_filter( 'plugin_action_links_' . plugin_basename( WDS_PLUGIN_FILE ), 'wds_se
  * @return array Modified plugin action links.
  */
 function wds_settings_link( $links ) {
-	$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=wds-settings' ) ) . '">' . esc_html__( 'Settings', 'wp-dashboard-shortcuts' ) . '</a>';
+	$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=wds-settings' ) ) . '">' . esc_html__( 'Settings', 'dashboard-shortcuts' ) . '</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }

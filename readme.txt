@@ -1,6 +1,6 @@
-=== WP Dashboard Shortcuts ===
+=== Dashboard Shortcuts ===
 Contributors: nikitahl
-Tags: admin bar, shortcuts, dashboard, quick links, toolbar
+Tags: shortcuts, admin bar, quick access, dashboard, links
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.0
@@ -12,7 +12,7 @@ Add custom shortcut links to your WordPress admin bar for quick access to freque
 
 == Description ==
 
-WP Dashboard Shortcuts provides a convenient way to access your frequently used links directly from the WordPress admin bar.
+Dashboard Shortcuts provides a convenient way to access your frequently used links directly from the WordPress admin bar.
 
 Perfect for developers, site administrators, and content managers who need quick access to external tools, documentation, or other websites.
 

@@ -2,7 +2,7 @@
 /**
  * WDS Settings page.
  *
- * @package WP_Dashboard_Shortcuts
+ * @package Dashboard_Shortcuts
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -36,8 +36,8 @@ class WDS_Settings {
 	 */
 	public function add_settings_page() {
 		add_options_page(
-			__( 'Dashboard Shortcuts', 'wp-dashboard-shortcuts' ),
-			__( 'Dashboard Shortcuts', 'wp-dashboard-shortcuts' ),
+			__( 'Dashboard Shortcuts', 'dashboard-shortcuts' ),
+			__( 'Dashboard Shortcuts', 'dashboard-shortcuts' ),
 			'manage_options',
 			'wds-settings',
 			[ $this, 'render_settings_page' ]
@@ -139,7 +139,7 @@ class WDS_Settings {
 		?>
 		<div class="wrap wds-settings-wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
-			<p><?php esc_html_e( 'Add custom shortcut links that will appear under the admin bar menu.', 'wp-dashboard-shortcuts' ); ?></p>
+			<p><?php esc_html_e( 'Add custom shortcut links that will appear under the admin bar menu.', 'dashboard-shortcuts' ); ?></p>
 
 			<form method="post" action="options.php" class="wds-settings-form">
 				<?php settings_fields( 'wds_settings_group' ); ?>
@@ -147,38 +147,38 @@ class WDS_Settings {
 				<div id="wds-shortcuts-container">
 					<?php foreach ( $shortcuts as $index => $shortcut ) : ?>
 						<div class="wds-shortcut-row" data-index="<?php echo esc_attr( $index ); ?>">
-							<div class="wds-drag-handle" title="<?php esc_attr_e( 'Drag to reorder', 'wp-dashboard-shortcuts' ); ?>">
+							<div class="wds-drag-handle" title="<?php esc_attr_e( 'Drag to reorder', 'dashboard-shortcuts' ); ?>">
 								<span class="dashicons dashicons-menu"></span>
 							</div>
 							<div class="wds-shortcut-fields">
 								<div class="wds-field">
 									<label>
-										<?php esc_html_e( 'Title', 'wp-dashboard-shortcuts' ); ?>
+										<?php esc_html_e( 'Title', 'dashboard-shortcuts' ); ?>
 										<input
 											type="text"
 											name="wds_shortcuts[<?php echo esc_attr( $index ); ?>][title]"
 											value="<?php echo esc_attr( $shortcut['title'] ); ?>"
-											placeholder="<?php esc_attr_e( 'e.g., My Site', 'wp-dashboard-shortcuts' ); ?>"
+											placeholder="<?php esc_attr_e( 'e.g., My Site', 'dashboard-shortcuts' ); ?>"
 											class="regular-text"
 										/>
 									</label>
 								</div>
 								<div class="wds-field wds-field-url">
 									<label>
-										<?php esc_html_e( 'URL', 'wp-dashboard-shortcuts' ); ?>
+										<?php esc_html_e( 'URL', 'dashboard-shortcuts' ); ?>
 										<div class="wds-url-input-wrapper">
 											<input
 												type="text"
 												name="wds_shortcuts[<?php echo esc_attr( $index ); ?>][url]"
 												value="<?php echo esc_attr( $shortcut['url'] ); ?>"
-												placeholder="<?php esc_attr_e( 'https://example.com', 'wp-dashboard-shortcuts' ); ?>"
+												placeholder="<?php esc_attr_e( 'https://example.com', 'dashboard-shortcuts' ); ?>"
 												class="regular-text wds-url-input"
 											/>
 											<button
 													type="button"
 													class="button wds-select-url"
-													title="<?php esc_attr_e( 'Select from WordPress', 'wp-dashboard-shortcuts' ); ?>"
-													aria-label="<?php esc_attr_e( 'Select from WordPress', 'wp-dashboard-shortcuts' ); ?>"
+													title="<?php esc_attr_e( 'Select from WordPress', 'dashboard-shortcuts' ); ?>"
+													aria-label="<?php esc_attr_e( 'Select from WordPress', 'dashboard-shortcuts' ); ?>"
 											>
 												<span class="dashicons dashicons-admin-links"></span>
 											</button>
@@ -192,15 +192,15 @@ class WDS_Settings {
 											name="wds_shortcuts[<?php echo esc_attr( $index ); ?>][new_tab]"
 											<?php checked( ! empty( $shortcut['new_tab'] ), true ); ?>
 										/>
-										<?php esc_html_e( 'Open in new tab', 'wp-dashboard-shortcuts' ); ?>
+										<?php esc_html_e( 'Open in new tab', 'dashboard-shortcuts' ); ?>
 									</label>
 								</div>
 								<div class="wds-field wds-field-actions">
 									<button
 											type="button"
 											class="button wds-remove-shortcut"
-											title="<?php esc_attr_e( 'Remove shortcut', 'wp-dashboard-shortcuts' ); ?>"
-											aria-label="<?php esc_attr_e( 'Remove shortcut', 'wp-dashboard-shortcuts' ); ?>"
+											title="<?php esc_attr_e( 'Remove shortcut', 'dashboard-shortcuts' ); ?>"
+											aria-label="<?php esc_attr_e( 'Remove shortcut', 'dashboard-shortcuts' ); ?>"
 									>
 										<span class="dashicons dashicons-trash"></span>
 									</button>
@@ -213,11 +213,11 @@ class WDS_Settings {
 				<div class="wds-actions">
 					<button type="button" id="wds-add-shortcut" class="button button-secondary">
 						<span class="dashicons dashicons-plus-alt2"></span>
-						<?php esc_html_e( 'Add Shortcut', 'wp-dashboard-shortcuts' ); ?>
+						<?php esc_html_e( 'Add Shortcut', 'dashboard-shortcuts' ); ?>
 					</button>
 				</div>
 
-				<?php submit_button( __( 'Save Shortcuts', 'wp-dashboard-shortcuts' ) ); ?>
+				<?php submit_button( __( 'Save Shortcuts', 'dashboard-shortcuts' ) ); ?>
 			</form>
 		</div>
 		<?php
@@ -264,13 +264,13 @@ class WDS_Settings {
 			'wds-admin-script',
 			'wdsSettings',
 			[
-				'confirmDelete'    => __( 'Are you sure you want to remove this shortcut?', 'wp-dashboard-shortcuts' ),
-				'titleLabel'       => __( 'Title', 'wp-dashboard-shortcuts' ),
-				'titlePlaceholder' => __( 'e.g., My Site', 'wp-dashboard-shortcuts' ),
-				'urlLabel'         => __( 'URL', 'wp-dashboard-shortcuts' ),
-				'urlPlaceholder'   => __( 'https://example.com', 'wp-dashboard-shortcuts' ),
-				'newTabLabel'      => __( 'Open in new tab', 'wp-dashboard-shortcuts' ),
-				'removeLabel'      => __( 'Remove shortcut', 'wp-dashboard-shortcuts' ),
+				'confirmDelete'    => __( 'Are you sure you want to remove this shortcut?', 'dashboard-shortcuts' ),
+				'titleLabel'       => __( 'Title', 'dashboard-shortcuts' ),
+				'titlePlaceholder' => __( 'e.g., My Site', 'dashboard-shortcuts' ),
+				'urlLabel'         => __( 'URL', 'dashboard-shortcuts' ),
+				'urlPlaceholder'   => __( 'https://example.com', 'dashboard-shortcuts' ),
+				'newTabLabel'      => __( 'Open in new tab', 'dashboard-shortcuts' ),
+				'removeLabel'      => __( 'Remove shortcut', 'dashboard-shortcuts' ),
 			]
 		);
 	}

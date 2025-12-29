@@ -1,6 +1,6 @@
-# WP Dashboard Shortcuts
+# Dashboard Shortcuts
 
-WP Dashboard Shortcuts provides a convenient way to access your frequently used links directly from the WordPress admin bar. Perfect for developers, site administrators, and content managers who need quick access to external tools, documentation, or other websites.
+Dashboard Shortcuts provides a convenient way to access your frequently used links directly from the WordPress admin bar. Perfect for developers, site administrators, and content managers who need quick access to external tools, documentation, or other websites.
 
 ## Features
 

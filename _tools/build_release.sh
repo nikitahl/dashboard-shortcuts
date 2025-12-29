@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the zip file name
-ZIP_FILE="wp-dashboard-shortcuts.zip"
+ZIP_FILE="dashboard-shortcuts.zip"
 
 # Remove any existing zip file to avoid conflicts
 if [ -f "$ZIP_FILE" ]; then
