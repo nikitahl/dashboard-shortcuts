@@ -29,6 +29,7 @@ class WDS_Shortcuts {
 		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_styles' ] );
 		add_action( 'wp_ajax_wds_add_current_page', [ $this, 'ajax_add_current_page' ] );
+		add_action( 'admin_bar_menu', [ $this, 'add_admin_bar_toggle' ], 999 );
 	}
 
 	/**
@@ -56,7 +57,7 @@ class WDS_Shortcuts {
 				</span>
 				<?php $this->render_shortcuts_list( $shortcuts ); ?>
 				<button type="button" id="wds-add-current-page" class="wds-add-current-btn" title="<?php esc_attr_e( 'Add current page to shortcuts', 'wp-dashboard-shortcuts' ); ?>">
-					<span class="dashicons dashicons-plus-alt"></span>
+					<span class="dashicons dashicons-plus-alt" aria-hidden="true"></span>
 					<?php esc_html_e( 'Add Current Page', 'wp-dashboard-shortcuts' ); ?>
 				</button>
 			</div>
@@ -254,5 +255,28 @@ class WDS_Shortcuts {
 		update_option( 'wds_shortcuts', $shortcuts );
 
 		wp_send_json_success( [ 'message' => __( 'Shortcut added successfully!', 'wp-dashboard-shortcuts' ) ] );
+	}
+
+	/**
+	 * Add toggle button to the WordPress admin bar.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param WP_Admin_Bar $wp_admin_bar WordPress admin bar object.
+	 */
+	public function add_admin_bar_toggle( $wp_admin_bar ) {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$wp_admin_bar->add_node([
+			'id'    => 'wds-shortcuts-toggle',
+			'title' => '<span class="ab-icon dashicons dashicons-visibility" aria-hidden="true"></span><span class="ab-label">' . __( 'Shortcuts', 'wp-dashboard-shortcuts' ) . '</span>',
+			'href'  => '#',
+			'meta'  => [
+				'title' => __( 'Toggle shortcuts bar visibility', 'wp-dashboard-shortcuts' ),
+				'class' => 'wds-admin-bar-toggle',
+			],
+		]);
 	}
 }

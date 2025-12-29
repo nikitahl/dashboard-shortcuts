@@ -8,6 +8,8 @@ WP Dashboard Shortcuts provides a convenient way to access your frequently used 
 - **Admin Bar Integration**: Shortcuts appear under the WordPress admin bar
 - **New Tab Option**: Choose whether links open in the same tab or a new tab
 - **Easy Management**: Simple settings interface to add, edit, and remove shortcuts
+- **Add current page**: Quickly add the current admin page as a shortcut with one click
+- **Toggle Visibility**: Enable or disable the shortcuts menu as needed
 
 ## Installation
 

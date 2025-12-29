@@ -14,10 +14,15 @@
   border-bottom: 1px solid #3c434a;
   z-index: 9999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .wds-shortcuts-bar-fixed {
   top: 0 !important;
+}
+
+.themes-php .wds-shortcuts-bar {
+  z-index: 10002;
 }
 
 .wds-shortcuts-container {
@@ -27,6 +32,43 @@
   max-width: 100%;
   margin: 0 auto;
   gap: 0px;
+}
+
+/* Admin Bar Toggle Button Styling */
+#wp-admin-bar-wds-shortcuts-toggle .ab-icon:before {
+  content: '\f177';
+  top: 2px;
+}
+
+#wp-admin-bar-wds-shortcuts-toggle .ab-icon.dashicons-hidden:before {
+  content: '\f530';
+}
+
+#wp-admin-bar-wds-shortcuts-toggle .ab-item {
+  cursor: pointer;
+}
+
+#wp-admin-bar-wds-shortcuts-toggle .ab-label {
+  display: inline;
+}
+
+@media screen and (max-width: 782px) {
+  #wp-admin-bar-wds-shortcuts-toggle .ab-label {
+    display: none;
+  }
+}
+
+/* Collapsed state - show only toggle button */
+.wds-shortcuts-bar-collapsed {
+  background: transparent;
+  border-bottom: none;
+  box-shadow: none;
+}
+
+.wds-shortcuts-bar-collapsed .wds-shortcuts-bar-toggle {
+  background: #292e31;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .wds-shortcuts-label {
@@ -64,7 +106,7 @@
   padding: 0;
 }
 
-.wds-shortcut-link {
+.wds-shortcut-item .wds-shortcut-link {
   display: block;
   padding: 8px 12px;
   color: #f0f0f1;
@@ -86,20 +128,6 @@
 
 .wds-shortcut-link:active {
   background: #1d2327;
-}
-
-/* Adjust body padding to account for shortcuts bar */
-body.admin-bar {
-  padding-top: 32px;
-}
-
-/* Frontend adjustments */
-body:not(.wp-admin) .wds-shortcuts-bar {
-  top: 32px;
-}
-
-body:not(.wp-admin).admin-bar {
-  margin-top: 46px !important;
 }
 
 /* Add Current Page Button */
@@ -142,6 +170,7 @@ body:not(.wp-admin).admin-bar {
   border: none;
   color: #f0f0f1;
   padding: 4px 12px;
+  margin-right: 5px;
   cursor: pointer;
   transition: all 0.2s ease;
   border-radius: 3px;
@@ -409,11 +438,49 @@ body.modal-open {
   overflow: hidden;
 }
 
+/* Adjust body padding to account for shortcuts bar */
+body.admin-bar {
+  padding-top: 32px;
+}
+
+/* Frontend adjustments */
+body:not(.wp-admin) .wds-shortcuts-bar {
+  top: 32px;
+}
+
+body:not(.wp-admin).admin-bar {
+  margin-top: 46px !important;
+}
+
+/* Gutenberg Editor Adjustments */
+.editor-editor-interface {
+  top: 60px;
+}
+
+body.js.is-fullscreen-mode .wds-shortcuts-bar {
+  top: 0;
+}
+
+.edit-site {
+  top: 32px;
+}
+
+.wds-shortcuts-bar-closed {
+  padding-top: 0 !important;
+}
 
 /* Mobile admin bar adjustments */
 @media screen and (max-width: 782px) {
   body:not(.wp-admin) .wds-shortcuts-bar {
     top: 46px;
+  }
+
+  .wds-admin-bar-toggle {
+    display: initial !important;
+  }
+
+  .editor-editor-interface {
+    top: 70px;
   }
 
   .wds-shortcuts-bar {
@@ -470,5 +537,8 @@ body.modal-open {
   }
   body:not(.wp-admin).admin-bar {
     margin-top: 92px !important;
+  }
+  .wds-shortcuts-bar-closed #wpcontent {
+    padding-top: 0;
   }
 }

@@ -25,6 +25,7 @@ import '../css/shortcuts.css'
     handleWindowScroll()
 
     createMoreButton()
+    initToggleButton()
     resizeObserver.observe($shortcutsBar[0])
 
     // Close dropdown when clicking outside
@@ -352,6 +353,52 @@ import '../css/shortcuts.css'
   const closeMoreDropdown = () => {
     $('.wds-more-dropdown').hide()
     $('.wds-more-button').removeClass('wds-more-button-active')
+  }
+
+  /**
+   * Initialize toggle button functionality
+   * Allows users to show/hide the shortcuts bar
+   *
+   * @since 1.0.0
+   */
+  const initToggleButton = () => {
+    const $toggleBtn = $('#wp-admin-bar-wds-shortcuts-toggle')
+    const $shortcutsBarContent = $('.wds-shortcuts-bar')
+    const $body = $('body')
+
+    if (!$toggleBtn.length) {
+      return
+    }
+
+    // Check saved state from localStorage
+    const isHidden = localStorage.getItem('wds_shortcuts_bar_hidden') === 'true'
+
+    if (isHidden) {
+      $body.addClass('wds-shortcuts-bar-closed')
+      $shortcutsBarContent.slideUp(0)
+      $toggleBtn.find('.dashicons').removeClass('dashicons-visibility').addClass('dashicons-hidden')
+    }
+
+    // Toggle button click handler
+    $toggleBtn.on('click', (e) => {
+      e.preventDefault()
+      e.stopPropagation()
+
+      if ($shortcutsBarContent.is(':visible')) {
+        // Hide the bar
+        $body.addClass('wds-shortcuts-bar-closed')
+        $shortcutsBarContent.slideUp(300)
+        $toggleBtn.find('.dashicons').removeClass('dashicons-visibility').addClass('dashicons-hidden')
+        localStorage.setItem('wds_shortcuts_bar_hidden', 'true')
+        closeMoreDropdown()
+      } else {
+        // Show the bar
+        $body.removeClass('wds-shortcuts-bar-closed')
+        $shortcutsBarContent.slideDown(300)
+        $toggleBtn.find('.dashicons').removeClass('dashicons-hidden').addClass('dashicons-visibility')
+        localStorage.setItem('wds_shortcuts_bar_hidden', 'false')
+      }
+    })
   }
 
   init()
