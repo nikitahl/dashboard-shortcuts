@@ -21,7 +21,7 @@ import '../css/shortcuts.css'
   const init = () => {
     $('#wds-add-current-page').on('click', showAddCurrentPageModal)
 
-    $(window).on( 'scroll', handleWindowScroll )
+    $(window).on('scroll', handleWindowScroll)
     handleWindowScroll()
 
     createMoreButton()
@@ -83,7 +83,7 @@ import '../css/shortcuts.css'
     $items.show()
 
     // Second pass: determine which items fit and which don't
-    $items.each(function() {
+    $items.each(function () {
       const itemWidth = $(this)[0].getBoundingClientRect().width
       accumulatedWidth += itemWidth
 

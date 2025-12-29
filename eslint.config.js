@@ -17,6 +17,7 @@ module.exports = [
         exports: 'readonly',
         MutationObserver: 'readonly',
         IntersectionObserver: 'readonly',
+        ResizeObserver: 'readonly',
         jQuery: 'readonly',
         module: 'readonly',
         __dirname: 'readonly',
@@ -26,7 +27,8 @@ module.exports = [
         location: 'readonly',
         alert: 'readonly',
         confirm: 'readonly',
-        $: 'readonly'
+        $: 'readonly',
+        localStorage: 'readonly'
       }
     },
     rules: {
