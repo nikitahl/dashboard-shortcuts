@@ -49,16 +49,6 @@ function wds_settings_link( $links ) {
 }
 
 /**
- * Initialize plugin.
- *
- * @since 1.0.0
- */
-function wds_init_plugin() {
-	load_plugin_textdomain( 'wp-dashboard-shortcuts', false, dirname( plugin_basename( WDS_PLUGIN_FILE ) ) . '/languages' );
-}
-add_action( 'plugins_loaded', 'wds_init_plugin' );
-
-/**
  * Initialize plugin components.
  */
 new WDS_Shortcuts();
