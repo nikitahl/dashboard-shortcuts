@@ -269,14 +269,16 @@ class WDS_Shortcuts {
 			return;
 		}
 
-		$wp_admin_bar->add_node([
-			'id'    => 'wds-shortcuts-toggle',
-			'title' => '<span class="ab-icon dashicons dashicons-visibility" aria-hidden="true"></span><span class="ab-label">' . __( 'Shortcuts', 'wp-dashboard-shortcuts' ) . '</span>',
-			'href'  => '#',
-			'meta'  => [
-				'title' => __( 'Toggle shortcuts bar visibility', 'wp-dashboard-shortcuts' ),
-				'class' => 'wds-admin-bar-toggle',
-			],
-		]);
+		$wp_admin_bar->add_node(
+			[
+				'id'    => 'wds-shortcuts-toggle',
+				'title' => '<span class="ab-icon dashicons dashicons-visibility" aria-hidden="true"></span><span class="ab-label">' . __( 'Shortcuts', 'wp-dashboard-shortcuts' ) . '</span>',
+				'href'  => '#',
+				'meta'  => [
+					'title' => __( 'Toggle shortcuts bar visibility', 'wp-dashboard-shortcuts' ),
+					'class' => 'wds-admin-bar-toggle',
+				],
+			]
+		);
 	}
 }
