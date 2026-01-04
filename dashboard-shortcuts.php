@@ -43,7 +43,7 @@ add_filter( 'plugin_action_links_' . plugin_basename( DASHSH_PLUGIN_FILE ), 'das
  * @return array Modified plugin action links.
  */
 function dashsh_settings_link( $links ) {
-	$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=ds-settings' ) ) . '">' . esc_html__( 'Settings', 'dashboard-shortcuts' ) . '</a>';
+	$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=dashsh-settings' ) ) . '">' . esc_html__( 'Settings', 'dashboard-shortcuts' ) . '</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
 }
