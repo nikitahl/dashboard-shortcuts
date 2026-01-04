@@ -1,29 +1,27 @@
-# Copyright (C) 2025 Nikita Hlopov
-# This file is distributed under the same license as the WP Dashboard Shortcuts plugin.
+# Copyright (C) 2026 Nikita Hlopov
+# This file is distributed under the same license as the Dashboard Shortcuts plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: WP Dashboard Shortcuts 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wp-dashboard-shortcuts\n"
+"Project-Id-Version: Dashboard Shortcuts 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dashboard-shortcuts\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-22T21:34:45+00:00\n"
+"POT-Creation-Date: 2026-01-04T21:26:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
-"X-Domain: wp-dashboard-shortcuts\n"
+"X-Domain: dashboard-shortcuts\n"
 
 #. Plugin Name of the plugin
-msgid "WP Dashboard Shortcuts"
-msgstr ""
-
-#. Plugin URI of the plugin
-msgid "https://github.com/nikitahl/wp-dashboard-shortcuts"
+#: admin/class-dashsh-settings.php:39
+#: admin/class-dashsh-settings.php:40
+msgid "Dashboard Shortcuts"
 msgstr ""
 
 #. Description of the plugin
-msgid "A HUD menu bar under the admin bar that displays custom shortcut links configured in the settings page."
+msgid "Add custom shortcut links to your WordPress admin bar for quick access to frequently used pages and tools."
 msgstr ""
 
 #. Author of the plugin
@@ -34,108 +32,121 @@ msgstr ""
 msgid "https://nikitahl.com"
 msgstr ""
 
-#: admin/class-wds-settings.php:39
-#: admin/class-wds-settings.php:40
-msgid "Dashboard Shortcuts"
+#: admin/class-dashsh-settings.php:142
+msgid "Add custom shortcut links that will appear under the admin bar menu."
 msgstr ""
 
-#: admin/class-wds-settings.php:142
-msgid "Add custom shortcut links that will appear in the admin bar menu."
-msgstr ""
-
-#: admin/class-wds-settings.php:150
+#: admin/class-dashsh-settings.php:150
+#: admin/class-dashsh-settings.php:275
 msgid "Drag to reorder"
 msgstr ""
 
-#: admin/class-wds-settings.php:156
-#: admin/class-wds-settings.php:268
+#: admin/class-dashsh-settings.php:156
+#: admin/class-dashsh-settings.php:268
 msgid "Title"
 msgstr ""
 
-#: admin/class-wds-settings.php:161
-#: admin/class-wds-settings.php:269
+#: admin/class-dashsh-settings.php:161
+#: admin/class-dashsh-settings.php:269
 msgid "e.g., My Site"
 msgstr ""
 
-#: admin/class-wds-settings.php:168
-#: admin/class-wds-settings.php:270
+#: admin/class-dashsh-settings.php:168
+#: admin/class-dashsh-settings.php:270
 msgid "URL"
 msgstr ""
 
-#: admin/class-wds-settings.php:174
-#: admin/class-wds-settings.php:271
+#: admin/class-dashsh-settings.php:174
+#: admin/class-dashsh-settings.php:271
 msgid "https://example.com"
 msgstr ""
 
-#: admin/class-wds-settings.php:180
-#: admin/class-wds-settings.php:181
+#: admin/class-dashsh-settings.php:180
+#: admin/class-dashsh-settings.php:181
+#: admin/class-dashsh-settings.php:274
 msgid "Select from WordPress"
 msgstr ""
 
-#: admin/class-wds-settings.php:195
-#: admin/class-wds-settings.php:272
+#: admin/class-dashsh-settings.php:195
+#: admin/class-dashsh-settings.php:272
 msgid "Open in new tab"
 msgstr ""
 
-#: admin/class-wds-settings.php:202
-#: admin/class-wds-settings.php:203
-#: admin/class-wds-settings.php:273
+#: admin/class-dashsh-settings.php:202
+#: admin/class-dashsh-settings.php:203
+#: admin/class-dashsh-settings.php:273
 msgid "Remove shortcut"
 msgstr ""
 
-#: admin/class-wds-settings.php:216
+#: admin/class-dashsh-settings.php:216
 msgid "Add Shortcut"
 msgstr ""
 
-#: admin/class-wds-settings.php:220
+#: admin/class-dashsh-settings.php:220
 msgid "Save Shortcuts"
 msgstr ""
 
-#: admin/class-wds-settings.php:267
+#: admin/class-dashsh-settings.php:267
 msgid "Are you sure you want to remove this shortcut?"
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:55
+#: admin/class-dashsh-settings.php:276
+msgid "Close"
+msgstr ""
+
+#: dashboard-shortcuts.php:46
+msgid "Settings"
+msgstr ""
+
+#: includes/class-dashsh-shortcuts.php:56
 msgid "Shortcuts:"
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:58
+#: includes/class-dashsh-shortcuts.php:59
 msgid "Add current page to shortcuts"
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:60
+#: includes/class-dashsh-shortcuts.php:61
 msgid "Add Current Page"
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:162
+#: includes/class-dashsh-shortcuts.php:165
 msgid "Add to Shortcuts"
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:163
+#: includes/class-dashsh-shortcuts.php:166
 msgid "Cancel"
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:164
+#: includes/class-dashsh-shortcuts.php:167
 msgid "Shortcut Title:"
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:165
-#: includes/class-wds-shortcuts.php:254
+#: includes/class-dashsh-shortcuts.php:168
+#: includes/class-dashsh-shortcuts.php:257
 msgid "Shortcut added successfully!"
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:166
+#: includes/class-dashsh-shortcuts.php:169
 msgid "Error adding shortcut. Please try again."
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:167
+#: includes/class-dashsh-shortcuts.php:170
 msgid "Please enter a title for the shortcut."
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:230
+#: includes/class-dashsh-shortcuts.php:233
 msgid "Permission denied."
 msgstr ""
 
-#: includes/class-wds-shortcuts.php:237
+#: includes/class-dashsh-shortcuts.php:240
 msgid "Title and URL are required."
+msgstr ""
+
+#: includes/class-dashsh-shortcuts.php:275
+msgid "Shortcuts"
+msgstr ""
+
+#: includes/class-dashsh-shortcuts.php:278
+msgid "Toggle shortcuts bar visibility"
 msgstr ""
