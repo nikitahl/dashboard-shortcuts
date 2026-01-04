@@ -25,6 +25,11 @@ Perfect for developers, site administrators, and content managers who need quick
 * **Add current page**: Quickly add the current admin page as a shortcut with one click
 * **Toggle Visibility**: Enable or disable the shortcuts menu as needed
 
+= Contribute =
+
+This plugin is open-source! You can contribute, report issues, or suggest improvements on GitHub:
+[GitHub Repository](https://github.com/nikitahl/dashboard-shortcuts)
+
 == Installation ==
 
 1. Upload the `wp-dashboard-shortcuts` folder to `/wp-content/plugins/`
