@@ -141,14 +141,14 @@ class DS_Shortcuts {
 
 		wp_enqueue_style(
 			'ds-shortcuts-style',
-			DS_PLUGIN_URL . 'assets/dist/css/shortcuts.min.css',
+			DS_PLUGIN_URL . 'assets/css/shortcuts.min.css',
 			[],
 			DS_VERSION
 		);
 
 		wp_enqueue_script(
 			'ds-shortcuts-script',
-			DS_PLUGIN_URL . 'assets/dist/js/shortcuts.min.js',
+			DS_PLUGIN_URL . 'assets/js/shortcuts.min.js',
 			[ 'jquery' ],
 			DS_VERSION,
 			true

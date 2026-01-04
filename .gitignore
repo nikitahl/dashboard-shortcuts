@@ -3,7 +3,8 @@
 .vscode
 
 node_modules/
-assets/dist/
+assets/js/*.min.js
+assets/css/*.min.css
 
 .env
 .env.local

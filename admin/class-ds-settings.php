@@ -237,14 +237,14 @@ class DS_Settings {
 
 		wp_enqueue_style(
 			'ds-admin-style',
-			DS_PLUGIN_URL . 'assets/dist/css/admin.min.css',
+			DS_PLUGIN_URL . 'assets/css/admin.min.css',
 			[],
 			DS_VERSION
 		);
 
 		wp_enqueue_script(
 			'ds-admin-script',
-			DS_PLUGIN_URL . 'assets/dist/js/admin.min.js',
+			DS_PLUGIN_URL . 'assets/js/admin.min.js',
 			[ 'jquery', 'jquery-ui-sortable' ],
 			DS_VERSION,
 			true

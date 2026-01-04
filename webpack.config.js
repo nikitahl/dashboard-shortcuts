@@ -13,7 +13,7 @@ module.exports = (env, argv) => {
     },
     output: {
       filename: '[name].min.js',
-      path: path.resolve(__dirname, 'assets/dist/js')
+      path: path.resolve(__dirname, 'assets/js')
     },
     module: {
       rules: [
