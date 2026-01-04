@@ -22,17 +22,17 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-define( 'DS_VERSION', '1.0.0' );
-define( 'DS_PLUGIN_FILE', __FILE__ );
-define( 'DS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'DS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'DS_TEXTDOMAIN', 'dashboard-shortcuts' );
+define( 'DASHSH_VERSION', '1.0.0' );
+define( 'DASHSH_PLUGIN_FILE', __FILE__ );
+define( 'DASHSH_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+define( 'DASHSH_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'DASHSH_TEXTDOMAIN', 'dashboard-shortcuts' );
 
-require_once DS_PLUGIN_DIR . 'includes/class-ds-shortcuts.php';
-require_once DS_PLUGIN_DIR . 'admin/class-ds-settings.php';
+require_once DASHSH_PLUGIN_DIR . 'includes/class-dashsh-shortcuts.php';
+require_once DASHSH_PLUGIN_DIR . 'admin/class-dashsh-settings.php';
 
 // Add "Settings" link on the Plugins page.
-add_filter( 'plugin_action_links_' . plugin_basename( DS_PLUGIN_FILE ), 'ds_settings_link' );
+add_filter( 'plugin_action_links_' . plugin_basename( DASHSH_PLUGIN_FILE ), 'dashsh_settings_link' );
 
 /**
  * Add settings link to the Plugins page.
@@ -42,7 +42,7 @@ add_filter( 'plugin_action_links_' . plugin_basename( DS_PLUGIN_FILE ), 'ds_sett
  * @param array $links Existing plugin action links.
  * @return array Modified plugin action links.
  */
-function ds_settings_link( $links ) {
+function dashsh_settings_link( $links ) {
 	$settings_link = '<a href="' . esc_url( admin_url( 'options-general.php?page=ds-settings' ) ) . '">' . esc_html__( 'Settings', 'dashboard-shortcuts' ) . '</a>';
 	array_unshift( $links, $settings_link );
 	return $links;
@@ -51,5 +51,5 @@ function ds_settings_link( $links ) {
 /**
  * Initialize plugin components.
  */
-new DS_Shortcuts();
-new DS_Settings();
+new DASHSH_Shortcuts();
+new DASHSH_Settings();

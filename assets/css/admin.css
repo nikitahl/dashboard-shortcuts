@@ -4,15 +4,15 @@
  * @package Dashboard_Shortcuts
  */
 
-.ds-settings-wrap {
+.dashsh-settings-wrap {
   max-width: 1000px;
 }
 
-.ds-settings-form {
+.dashsh-settings-form {
   margin-top: 20px;
 }
 
-#ds-shortcuts-container {
+#dashsh-shortcuts-container {
   background: #fff;
   border: 1px solid #c3c4c7;
   border-radius: 4px;
@@ -20,7 +20,7 @@
   margin-bottom: 20px;
 }
 
-.ds-shortcut-row {
+.dashsh-shortcut-row {
   background: #f6f7f7;
   border: 1px solid #dcdcde;
   border-radius: 4px;
@@ -32,21 +32,21 @@
   gap: 10px;
 }
 
-.ds-shortcut-row:hover {
+.dashsh-shortcut-row:hover {
   border-color: #8c8f94;
 }
 
-.ds-shortcut-row:last-child {
+.dashsh-shortcut-row:last-child {
   margin-bottom: 0;
 }
 
-.ds-shortcut-row.ds-sorting {
+.dashsh-shortcut-row.dashsh-sorting {
   opacity: 0.7;
   background: #e3e4e6;
   cursor: move;
 }
 
-.ds-drag-handle {
+.dashsh-drag-handle {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -57,17 +57,17 @@
   transition: color 0.2s ease;
 }
 
-.ds-drag-handle:hover {
+.dashsh-drag-handle:hover {
   color: #2271b1;
 }
 
-.ds-drag-handle .dashicons {
+.dashsh-drag-handle .dashicons {
   width: 20px;
   height: 20px;
   font-size: 20px;
 }
 
-.ds-shortcut-placeholder {
+.dashsh-shortcut-placeholder {
   background: #e3e4e6;
   border: 2px dashed #8c8f94;
   border-radius: 4px;
@@ -75,7 +75,7 @@
   visibility: visible !important;
 }
 
-.ds-shortcut-fields {
+.dashsh-shortcut-fields {
   display: grid;
   grid-template-columns: 1fr 1fr auto auto;
   gap: 15px;
@@ -83,28 +83,28 @@
   flex: 1;
 }
 
-.ds-field label {
+.dashsh-field label {
   display: block;
   font-weight: 600;
   margin-bottom: 5px;
 }
 
-.ds-field input[type="text"],
-.ds-field input[type="url"] {
+.dashsh-field input[type="text"],
+.dashsh-field input[type="url"] {
   width: 100%;
 }
 
-.ds-url-input-wrapper {
+.dashsh-url-input-wrapper {
   display: flex;
   gap: 5px;
   align-items: center;
 }
 
-.ds-url-input-wrapper .ds-url-input {
+.dashsh-url-input-wrapper .dashsh-url-input {
   flex: 1;
 }
 
-.ds-url-input-wrapper .ds-select-url {
+.dashsh-url-input-wrapper .dashsh-select-url {
   flex-shrink: 0;
   padding: 3px 8px;
   height: 30px;
@@ -114,35 +114,35 @@
   justify-content: center;
 }
 
-.ds-url-input-wrapper .ds-select-url .dashicons {
+.dashsh-url-input-wrapper .dashsh-select-url .dashicons {
   width: 18px;
   height: 18px;
   font-size: 18px;
 }
 
-.ds-field-checkbox {
+.dashsh-field-checkbox {
   display: flex;
   align-items: center;
   padding-bottom: 5px;
   margin-bottom: 6px;
 }
 
-.ds-field-checkbox label {
+.dashsh-field-checkbox label {
   display: flex;
   align-items: center;
   margin: 0;
   font-weight: normal;
 }
 
-.ds-field-checkbox input[type="checkbox"] {
+.dashsh-field-checkbox input[type="checkbox"] {
   margin: 0 5px 0 0;
 }
 
-.ds-field-actions {
+.dashsh-field-actions {
   padding-bottom: 5px;
 }
 
-.ds-field-actions .ds-remove-shortcut {
+.dashsh-field-actions .dashsh-remove-shortcut {
   background: #dc3232;
   border-color: #ba2525;
   color: #fff;
@@ -155,43 +155,43 @@
   cursor: pointer;
 }
 
-.ds-remove-shortcut:hover,
-.ds-remove-shortcut:focus {
+.dashsh-remove-shortcut:hover,
+.dashsh-remove-shortcut:focus {
   background: #ba2525;
   border-color: #a02222;
   color: #fff;
 }
 
-.ds-remove-shortcut .dashicons {
+.dashsh-remove-shortcut .dashicons {
   width: 18px;
   height: 18px;
   font-size: 18px;
 }
 
-.ds-actions {
+.dashsh-actions {
   margin-bottom: 20px;
 }
 
-#ds-add-shortcut {
+#dashsh-add-shortcut {
   display: inline-flex;
   align-items: center;
   gap: 5px;
 }
 
-#ds-add-shortcut .dashicons {
+#dashsh-add-shortcut .dashicons {
   width: 18px;
   height: 18px;
   font-size: 18px;
 }
 
 /* Empty state */
-.ds-empty-state {
+.dashsh-empty-state {
   text-align: center;
   padding: 40px 20px;
   color: #646970;
 }
 
-.ds-empty-state .dashicons {
+.dashsh-empty-state .dashicons {
   font-size: 48px;
   width: 48px;
   height: 48px;
@@ -201,27 +201,27 @@
 
 /* Responsive */
 @media screen and (max-width: 782px) {
-  .ds-shortcut-row {
+  .dashsh-shortcut-row {
     flex-direction: column;
     gap: 0;
   }
 
-  .ds-drag-handle {
+  .dashsh-drag-handle {
     margin-top: 0;
     margin-bottom: 10px;
     align-self: flex-start;
   }
 
-  .ds-shortcut-fields {
+  .dashsh-shortcut-fields {
     grid-template-columns: 1fr;
     width: 100%;
   }
 
-  .ds-field-actions {
+  .dashsh-field-actions {
     padding-bottom: 0;
   }
 
-  .ds-remove-shortcut {
+  .dashsh-remove-shortcut {
     width: 100%;
   }
 }

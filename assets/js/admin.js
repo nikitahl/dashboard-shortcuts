@@ -7,32 +7,32 @@
 import '../css/admin.css'
 (($) => {
   'use strict'
-  const { dsSettings, wpApiSettings } = window
+  const { dashshSettings, dashshApiSettings } = window
 
   /**
    * Initialize the settings page functionality.
    */
   const init = () => {
-    const $container = $('#ds-shortcuts-container')
-    const $addButton = $('#ds-add-shortcut')
+    const $container = $('#dashsh-shortcuts-container')
+    const $addButton = $('#dashsh-add-shortcut')
 
     initSortable()
     initLinkPicker()
 
     // Add new shortcut row.
     $addButton.on('click', () => {
-      const index = $container.find('.ds-shortcut-row').length
+      const index = $container.find('.dashsh-shortcut-row').length
       const $newRow = createShortcutRow(index)
       $container.append($newRow)
     })
 
     // Remove shortcut row.
-    $container.on('click', '.ds-remove-shortcut', function () {
-      const $row = $(this).closest('.ds-shortcut-row')
-      const $allRows = $container.find('.ds-shortcut-row')
+    $container.on('click', '.dashsh-remove-shortcut', function () {
+      const $row = $(this).closest('.dashsh-shortcut-row')
+      const $allRows = $container.find('.dashsh-shortcut-row')
 
       // Confirm deletion.
-      if (!confirm(dsSettings.confirmDelete || 'Are you sure you want to remove this shortcut?')) {
+      if (!confirm(dashshSettings.confirmDelete || 'Are you sure you want to remove this shortcut?')) {
         return
       }
 
@@ -55,21 +55,21 @@ import '../css/admin.css'
    * Initialize jQuery UI Sortable.
    */
   const initSortable = () => {
-    const $container = $('#ds-shortcuts-container')
+    const $container = $('#dashsh-shortcuts-container')
 
     $container.sortable({
-      handle: '.ds-drag-handle',
-      placeholder: 'ds-shortcut-placeholder',
+      handle: '.dashsh-drag-handle',
+      placeholder: 'dashsh-shortcut-placeholder',
       axis: 'y',
       cursor: 'move',
       opacity: 0.7,
       tolerance: 'pointer',
       start: (event, ui) => {
         ui.placeholder.height(ui.item.height())
-        ui.item.addClass('ds-sorting')
+        ui.item.addClass('dashsh-sorting')
       },
       stop: (event, ui) => {
-        ui.item.removeClass('ds-sorting')
+        ui.item.removeClass('dashsh-sorting')
         reindexRows()
       }
     })
@@ -79,12 +79,12 @@ import '../css/admin.css'
    * Initialize WordPress link picker functionality.
    */
   const initLinkPicker = () => {
-    const $container = $('#ds-shortcuts-container')
+    const $container = $('#dashsh-shortcuts-container')
 
     // Handle click on URL selector button.
-    $container.on('click', '.ds-select-url', function (e) {
+    $container.on('click', '.dashsh-select-url', function (e) {
       e.preventDefault()
-      const $currentInput = $(this).siblings('.ds-url-input')
+      const $currentInput = $(this).siblings('.dashsh-url-input')
 
       // Create and show custom link selector modal
       showLinkSelectorModal($currentInput)
@@ -99,16 +99,16 @@ import '../css/admin.css'
    * @param {jQuery} $input The input field to populate.
    */
   const showLinkSelectorModal = ($input) => {
-    const $modal = $('#ds-link-modal')
+    const $modal = $('#dashsh-link-modal')
 
     // Create modal if it doesn't exist
     if ($modal.length === 0) {
       createLinkModal()
     }
 
-    const $urlInput = $('#ds-modal-url')
-    const $searchInput = $('#ds-modal-search')
-    const $results = $('#ds-modal-results')
+    const $urlInput = $('#dashsh-modal-url')
+    const $searchInput = $('#dashsh-modal-search')
+    const $results = $('#dashsh-modal-results')
 
     // Set current URL
     $urlInput.val($input.val())
@@ -141,7 +141,7 @@ import '../css/admin.css'
     })
 
     // Handle insert button
-    $('#ds-modal-insert').off('click').on('click', () => {
+    $('#dashsh-modal-insert').off('click').on('click', () => {
       const url = $urlInput.val()
       if (url) {
         $input.val(url)
@@ -150,18 +150,18 @@ import '../css/admin.css'
     })
 
     // Handle cancel button
-    $('#ds-modal-cancel').off('click').on('click', () => {
+    $('#dashsh-modal-cancel').off('click').on('click', () => {
       closeLinkModal()
     })
 
     // Handle close button (X icon)
-    $('#ds-modal-close-btn').off('click').on('click', () => {
+    $('#dashsh-modal-close-btn').off('click').on('click', () => {
       closeLinkModal()
     })
 
     // Handle backdrop click
     $modal.off('click').on('click', (e) => {
-      if ($(e.target).hasClass('ds-modal-backdrop')) {
+      if ($(e.target).hasClass('dashsh-modal-backdrop')) {
         closeLinkModal()
       }
     })
@@ -172,28 +172,28 @@ import '../css/admin.css'
    */
   const createLinkModal = () => {
     const modalHtml =
-      '<div id="ds-link-modal" class="ds-modal-backdrop" style="display:none">' +
-      '<div class="ds-modal">' +
-      '<div class="ds-modal-header">' +
+      '<div id="dashsh-link-modal" class="dashsh-modal-backdrop" style="display:none">' +
+      '<div class="dashsh-modal">' +
+      '<div class="dashsh-modal-header">' +
       '<h2>Insert/Edit Link</h2>' +
-      '<button type="button" class="ds-modal-close" id="ds-modal-close-btn" aria-label="' + dsSettings.close +'">' +
+      '<button type="button" class="dashsh-modal-close" id="dashsh-modal-close-btn" aria-label="' + dashshSettings.close +'">' +
       '<span class="dashicons dashicons-no" aria-hidden="true"></span>' +
       '</button>' +
       '</div>' +
-      '<div class="ds-modal-body">' +
-      '<div class="ds-modal-field">' +
-      '<label for="ds-modal-url">URL</label>' +
-      '<input type="text" id="ds-modal-url" class="regular-text" placeholder="https://example.com" />' +
+      '<div class="dashsh-modal-body">' +
+      '<div class="dashsh-modal-field">' +
+      '<label for="dashsh-modal-url">URL</label>' +
+      '<input type="text" id="dashsh-modal-url" class="regular-text" placeholder="https://example.com" />' +
       '</div>' +
-      '<div class="ds-modal-field">' +
-      '<label for="ds-modal-search">Or search for existing content</label>' +
-      '<input type="text" id="ds-modal-search" class="regular-text" placeholder="Search pages, posts..." />' +
+      '<div class="dashsh-modal-field">' +
+      '<label for="dashsh-modal-search">Or search for existing content</label>' +
+      '<input type="text" id="dashsh-modal-search" class="regular-text" placeholder="Search pages, posts..." />' +
       '</div>' +
-      '<div id="ds-modal-results" class="ds-modal-results"></div>' +
+      '<div id="dashsh-modal-results" class="dashsh-modal-results"></div>' +
       '</div>' +
-      '<div class="ds-modal-footer">' +
-      '<button type="button" class="button button-secondary" id="ds-modal-cancel">Cancel</button>' +
-      '<button type="button" class="button button-primary" id="ds-modal-insert">Insert Link</button>' +
+      '<div class="dashsh-modal-footer">' +
+      '<button type="button" class="button button-secondary" id="dashsh-modal-cancel">Cancel</button>' +
+      '<button type="button" class="button button-primary" id="dashsh-modal-insert">Insert Link</button>' +
       '</div>' +
       '</div>' +
       '</div>'
@@ -205,7 +205,7 @@ import '../css/admin.css'
    * Close link selector modal.
    */
   const closeLinkModal = () => {
-    $('#ds-link-modal').hide()
+    $('#dashsh-link-modal').hide()
     $('body').removeClass('modal-open')
   }
 
@@ -217,10 +217,10 @@ import '../css/admin.css'
    * @param {jQuery} $urlInput URL input field.
    */
   const searchContent = (query, $results, $urlInput) => {
-    $results.html('<div class="ds-modal-loading">Searching...</div>')
+    $results.html('<div class="dashsh-modal-loading">Searching...</div>')
 
-    // Use wpApiSettings if available, otherwise construct URL
-    const restUrl = wpApiSettings ? wpApiSettings.root : '/wp-json/'
+    // Use dashshApiSettings if available, otherwise construct URL
+    const restUrl = dashshApiSettings ? dashshApiSettings.root : '/wp-json/'
     const searchUrl = `${restUrl}wp/v2/search`
 
     $.ajax({
@@ -228,19 +228,19 @@ import '../css/admin.css'
       data: {
         search: query,
         per_page: 10,
-        _wpnonce: wpApiSettings ? wpApiSettings.nonce : ''
+        _wpnonce: dashshApiSettings ? dashshApiSettings.nonce : ''
       },
       success: (items) => {
         if (!items || items.length === 0) {
-          $results.html('<div class="ds-modal-no-results">No results found</div>')
+          $results.html('<div class="dashsh-modal-no-results">No results found</div>')
           return
         }
 
-        let html = '<ul class="ds-modal-results-list">'
+        let html = '<ul class="dashsh-modal-results-list">'
         $.each(items, (i, item) => {
-          html += `<li class="ds-modal-result-item" data-url="${item.url}">` +
+          html += `<li class="dashsh-modal-result-item" data-url="${item.url}">` +
             `<strong>${item.title}</strong>` +
-            `<span class="ds-modal-result-type">${item.subtype}</span>` +
+            `<span class="dashsh-modal-result-type">${item.subtype}</span>` +
             '</li>'
         })
         html += '</ul>'
@@ -248,16 +248,16 @@ import '../css/admin.css'
         $results.html(html)
 
         // Handle result click
-        $('.ds-modal-result-item').on('click', function () {
+        $('.dashsh-modal-result-item').on('click', function () {
           const url = $(this).data('url')
           $urlInput.val(url)
-          $('.ds-modal-result-item').removeClass('selected')
+          $('.dashsh-modal-result-item').removeClass('selected')
           $(this).addClass('selected')
         })
       },
       error: (xhr, status, error) => {
         console.error('Search error:', xhr.status, error)
-        $results.html('<div class="ds-modal-error">Error searching content. Please check your WordPress REST API is enabled.</div>')
+        $results.html('<div class="dashsh-modal-error">Error searching content. Please check your WordPress REST API is enabled.</div>')
       }
     })
   }
@@ -270,49 +270,49 @@ import '../css/admin.css'
    */
   const createShortcutRow = (index) => {
     const $row = $('<div>', {
-      class: 'ds-shortcut-row',
+      class: 'dashsh-shortcut-row',
       'data-index': index,
       style: 'display: none'
     })
 
     // Drag handle.
     const $dragHandle = $('<div>', {
-      class: 'ds-drag-handle',
-      title: dsSettings.dragToReoder || 'Drag to reorder',
-      'aria-label': dsSettings.dragToReoder || 'Drag to reorder'
+      class: 'dashsh-drag-handle',
+      title: dashshSettings.dragToReoder || 'Drag to reorder',
+      'aria-label': dashshSettings.dragToReoder || 'Drag to reorder'
     })
     const $dragIcon = $('<span>', { class: 'dashicons dashicons-menu', 'aria-hidden': true })
     $dragHandle.append($dragIcon)
 
-    const $fields = $('<div>', { class: 'ds-shortcut-fields' })
+    const $fields = $('<div>', { class: 'dashsh-shortcut-fields' })
 
     // Title field.
-    const $titleField = $('<div>', { class: 'ds-field' })
-    const $titleLabel = $('<label>').text(dsSettings.titleLabel || 'Title')
+    const $titleField = $('<div>', { class: 'dashsh-field' })
+    const $titleLabel = $('<label>').text(dashshSettings.titleLabel || 'Title')
     const $titleInput = $('<input>', {
       type: 'text',
-      name: `ds_shortcuts[${index}][title]`,
-      placeholder: dsSettings.titlePlaceholder || 'e.g., My Site',
+      name: `dashsh_shortcuts[${index}][title]`,
+      placeholder: dashshSettings.titlePlaceholder || 'e.g., My Site',
       class: 'regular-text'
     })
     $titleLabel.append($titleInput)
     $titleField.append($titleLabel)
 
     // URL field.
-    const $urlField = $('<div>', { class: 'ds-field ds-field-url' })
-    const $urlLabel = $('<label>').text(dsSettings.urlLabel || 'URL')
-    const $urlWrapper = $('<div>', { class: 'ds-url-input-wrapper' })
+    const $urlField = $('<div>', { class: 'dashsh-field dashsh-field-url' })
+    const $urlLabel = $('<label>').text(dashshSettings.urlLabel || 'URL')
+    const $urlWrapper = $('<div>', { class: 'dashsh-url-input-wrapper' })
     const $urlInput = $('<input>', {
       type: 'text',
-      name: `ds_shortcuts[${index}][url]`,
-      placeholder: dsSettings.urlPlaceholder || 'https://example.com',
-      class: 'regular-text ds-url-input'
+      name: `dashsh_shortcuts[${index}][url]`,
+      placeholder: dashshSettings.urlPlaceholder || 'https://example.com',
+      class: 'regular-text dashsh-url-input'
     })
     const $urlButton = $('<button>', {
       type: 'button',
-      class: 'button ds-select-url',
-      title: dsSettings.selectFromWp || 'Select from WordPress',
-      'aria-label': dsSettings.selectFromWp || 'Select from WordPress'
+      class: 'button dashsh-select-url',
+      title: dashshSettings.selectFromWp || 'Select from WordPress',
+      'aria-label': dashshSettings.selectFromWp || 'Select from WordPress'
     }).append($('<span>', { class: 'dashicons dashicons-admin-links', 'aria-hidden': true }))
     $urlWrapper.append($urlInput)
     $urlWrapper.append($urlButton)
@@ -320,23 +320,23 @@ import '../css/admin.css'
     $urlField.append($urlLabel)
 
     // New tab checkbox.
-    const $checkboxField = $('<div>', { class: 'ds-field ds-field-checkbox' })
+    const $checkboxField = $('<div>', { class: 'dashsh-field dashsh-field-checkbox' })
     const $checkboxLabel = $('<label>')
     const $checkbox = $('<input>', {
       type: 'checkbox',
-      name: `ds_shortcuts[${index}][new_tab]`
+      name: `dashsh_shortcuts[${index}][new_tab]`
     })
     $checkboxLabel.append($checkbox)
-    $checkboxLabel.append(dsSettings.newTabLabel || 'Open in new tab')
+    $checkboxLabel.append(dashshSettings.newTabLabel || 'Open in new tab')
     $checkboxField.append($checkboxLabel)
 
     // Remove button.
-    const $actionsField = $('<div>', { class: 'ds-field ds-field-actions' })
+    const $actionsField = $('<div>', { class: 'dashsh-field dashsh-field-actions' })
     const $removeButton = $('<button>', {
       type: 'button',
-      class: 'button ds-remove-shortcut',
-      title: dsSettings.removeLabel || 'Remove shortcut',
-      'aria-label': dsSettings.removeLabel || 'Remove shortcut'
+      class: 'button dashsh-remove-shortcut',
+      title: dashshSettings.removeLabel || 'Remove shortcut',
+      'aria-label': dashshSettings.removeLabel || 'Remove shortcut'
     })
     const $removeIcon = $('<span>', { class: 'dashicons dashicons-trash', 'aria-hidden': true })
     $removeButton.append($removeIcon)
@@ -359,7 +359,7 @@ import '../css/admin.css'
    * Reindex all rows after deletion or sorting.
    */
   const reindexRows = () => {
-    const $rows = $('#ds-shortcuts-container .ds-shortcut-row')
+    const $rows = $('#dashsh-shortcuts-container .dashsh-shortcut-row')
 
     $rows.each(function (index) {
       const $row = $(this)
@@ -370,9 +370,9 @@ import '../css/admin.css'
         const $input = $(this)
         const name = $input.attr('name')
 
-        if (name && name.indexOf('ds_shortcuts[') === 0) {
+        if (name && name.indexOf('dashsh_shortcuts[') === 0) {
           // Replace the index in the name attribute.
-          const newName = name.replace(/ds_shortcuts\[\d+\]/, `ds_shortcuts[${index}]`)
+          const newName = name.replace(/dashsh_shortcuts\[\d+\]/, `dashsh_shortcuts[${index}]`)
           $input.attr('name', newName)
         }
       })

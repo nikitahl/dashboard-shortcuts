@@ -5,7 +5,7 @@
  */
 
 /* Shortcuts Bar */
-.ds-shortcuts-bar {
+.dashsh-shortcuts-bar {
   position: fixed;
   top: 32px;
   left: 0;
@@ -17,15 +17,15 @@
   transition: all 0.3s ease;
 }
 
-.ds-shortcuts-bar-fixed {
+.dashsh-shortcuts-bar-fixed {
   top: 0 !important;
 }
 
-.themes-php .ds-shortcuts-bar {
+.themes-php .dashsh-shortcuts-bar {
   z-index: 10002;
 }
 
-.ds-shortcuts-container {
+.dashsh-shortcuts-container {
   display: flex;
   align-items: center;
   padding: 0 6px;
@@ -35,43 +35,43 @@
 }
 
 /* Admin Bar Toggle Button Styling */
-#wp-admin-bar-ds-shortcuts-toggle .ab-icon:before {
+#wp-admin-bar-dashsh-shortcuts-toggle .ab-icon:before {
   content: '\f177';
   top: 2px;
 }
 
-#wp-admin-bar-ds-shortcuts-toggle .ab-icon.dashicons-hidden:before {
+#wp-admin-bar-dashsh-shortcuts-toggle .ab-icon.dashicons-hidden:before {
   content: '\f530';
 }
 
-#wp-admin-bar-ds-shortcuts-toggle .ab-item {
+#wp-admin-bar-dashsh-shortcuts-toggle .ab-item {
   cursor: pointer;
 }
 
-#wp-admin-bar-ds-shortcuts-toggle .ab-label {
+#wp-admin-bar-dashsh-shortcuts-toggle .ab-label {
   display: inline;
 }
 
 @media screen and (max-width: 782px) {
-  #wp-admin-bar-ds-shortcuts-toggle .ab-label {
+  #wp-admin-bar-dashsh-shortcuts-toggle .ab-label {
     display: none;
   }
 }
 
 /* Collapsed state - show only toggle button */
-.ds-shortcuts-bar-collapsed {
+.dashsh-shortcuts-bar-collapsed {
   background: transparent;
   border-bottom: none;
   box-shadow: none;
 }
 
-.ds-shortcuts-bar-collapsed .ds-shortcuts-bar-toggle {
+.dashsh-shortcuts-bar-collapsed .dashsh-shortcuts-bar-toggle {
   background: #292e31;
   border-radius: 0 0 4px 4px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.ds-shortcuts-label {
+.dashsh-shortcuts-label {
   display: flex;
   align-items: center;
   gap: 5px;
@@ -82,14 +82,14 @@
   white-space: nowrap;
 }
 
-.ds-shortcuts-label .dashicons {
+.dashsh-shortcuts-label .dashicons {
   color: #03a9f4;
   font-size: 16px;
   width: 16px;
   height: 16px;
 }
 
-.ds-shortcuts-list {
+.dashsh-shortcuts-list {
   max-width: 100%;
   overflow: hidden;
   display: flex;
@@ -100,13 +100,13 @@
   flex: 1;
 }
 
-.ds-shortcut-item {
+.dashsh-shortcut-item {
   max-width: 180px;
   margin: 0;
   padding: 0;
 }
 
-.ds-shortcut-item .ds-shortcut-link {
+.dashsh-shortcut-item .dashsh-shortcut-link {
   display: block;
   padding: 8px 12px;
   color: #f0f0f1;
@@ -119,19 +119,19 @@
   text-overflow: ellipsis;
 }
 
-.ds-shortcut-link:hover,
-.ds-shortcut-link:focus {
+.dashsh-shortcut-link:hover,
+.dashsh-shortcut-link:focus {
   background: #3b444a;
   color: #72aee6;
   outline: none;
 }
 
-.ds-shortcut-link:active {
+.dashsh-shortcut-link:active {
   background: #1d2327;
 }
 
 /* Add Current Page Button */
-.ds-add-current-btn {
+.dashsh-add-current-btn {
   display: inline-flex;
   align-items: center;
   gap: 5px;
@@ -147,22 +147,22 @@
   margin-left: auto;
 }
 
-.ds-add-current-btn:hover,
-.ds-add-current-btn:focus {
+.dashsh-add-current-btn:hover,
+.dashsh-add-current-btn:focus {
   background: #135e96;
   border-color: #135e96;
   color: #fff;
   outline: none;
 }
 
-.ds-add-current-btn .dashicons {
+.dashsh-add-current-btn .dashicons {
   width: 16px;
   height: 16px;
   font-size: 16px;
 }
 
 /* More Button and Dropdown */
-.ds-more-button {
+.dashsh-more-button {
   display: none;
   align-items: center;
   justify-content: center;
@@ -176,21 +176,21 @@
   border-radius: 3px;
 }
 
-.ds-more-button:hover,
-.ds-more-button:focus,
-.ds-more-button-active {
+.dashsh-more-button:hover,
+.dashsh-more-button:focus,
+.dashsh-more-button-active {
   background: #3b444a;
   color: #72aee6;
   outline: none;
 }
 
-.ds-more-button .dashicons {
+.dashsh-more-button .dashicons {
   width: 20px;
   height: 20px;
   font-size: 20px;
 }
 
-.ds-more-dropdown {
+.dashsh-more-dropdown {
   position: absolute;
   background: #292e31;
   border: 1px solid #3c434a;
@@ -205,13 +205,13 @@
   padding: 4px 0;
 }
 
-.ds-more-dropdown .ds-shortcut-item {
+.dashsh-more-dropdown .dashsh-shortcut-item {
   max-width: none;
   margin: 0;
   padding: 0;
 }
 
-.ds-more-dropdown .ds-shortcut-link {
+.dashsh-more-dropdown .dashsh-shortcut-link {
   display: block;
   padding: 8px 16px;
   color: #f0f0f1;
@@ -223,38 +223,38 @@
   border-radius: 0;
 }
 
-.ds-more-dropdown .ds-shortcut-link:hover,
-.ds-more-dropdown .ds-shortcut-link:focus {
+.dashsh-more-dropdown .dashsh-shortcut-link:hover,
+.dashsh-more-dropdown .dashsh-shortcut-link:focus {
   background: #3b444a;
   color: #72aee6;
 }
 
 /* Scrollbar for dropdown */
-.ds-more-dropdown::-webkit-scrollbar {
+.dashsh-more-dropdown::-webkit-scrollbar {
   width: 8px;
 }
 
-.ds-more-dropdown::-webkit-scrollbar-track {
+.dashsh-more-dropdown::-webkit-scrollbar-track {
   background: #1d2327;
   border-radius: 4px;
 }
 
-.ds-more-dropdown::-webkit-scrollbar-thumb {
+.dashsh-more-dropdown::-webkit-scrollbar-thumb {
   background: #3c434a;
   border-radius: 4px;
 }
 
-.ds-more-dropdown::-webkit-scrollbar-thumb:hover {
+.dashsh-more-dropdown::-webkit-scrollbar-thumb:hover {
   background: #50575e;
 }
 
 /* Add Page Modal Adjustments */
-.ds-add-page-modal {
+.dashsh-add-page-modal {
   max-width: 500px;
 }
 
 /* Notification Messages */
-.ds-notification {
+.dashsh-notification {
   position: fixed;
   top: 80px;
   right: 20px;
@@ -270,23 +270,23 @@
   max-width: 350px;
 }
 
-.ds-notification.show {
+.dashsh-notification.show {
   opacity: 1;
   transform: translateX(0);
 }
 
-.ds-notification-success {
+.dashsh-notification-success {
   border-left-color: #00a32a;
   color: #00a32a;
 }
 
-.ds-notification-error {
+.dashsh-notification-error {
   border-left-color: #d63638;
   color: #d63638;
 }
 
 /* Link Selector Modal */
-.ds-modal-backdrop {
+.dashsh-modal-backdrop {
   position: fixed;
   top: 0;
   left: 0;
@@ -299,7 +299,7 @@
   justify-content: center;
 }
 
-.ds-modal {
+.dashsh-modal {
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -310,7 +310,7 @@
   flex-direction: column;
 }
 
-.ds-modal-header {
+.dashsh-modal-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -318,12 +318,12 @@
   border-bottom: 1px solid #ddd;
 }
 
-.ds-modal-header h2 {
+.dashsh-modal-header h2 {
   margin: 0;
   font-size: 18px;
 }
 
-.ds-modal-close {
+.dashsh-modal-close {
   background: none;
   border: none;
   padding: 5px;
@@ -334,50 +334,50 @@
   justify-content: center;
 }
 
-.ds-modal-close:hover {
+.dashsh-modal-close:hover {
   color: #000;
 }
 
-.ds-modal-close .dashicons {
+.dashsh-modal-close .dashicons {
   width: 20px;
   height: 20px;
   font-size: 20px;
 }
 
-.ds-modal-body {
+.dashsh-modal-body {
   padding: 20px;
   overflow-y: auto;
   flex: 1;
 }
 
-.ds-modal-field {
+.dashsh-modal-field {
   margin-bottom: 20px;
 }
 
-.ds-modal-field label {
+.dashsh-modal-field label {
   display: block;
   font-weight: 600;
   margin-bottom: 8px;
   color: #1d2327;
 }
 
-.ds-modal-field input {
+.dashsh-modal-field input {
   width: 100%;
 }
 
-.ds-modal-results {
+.dashsh-modal-results {
   margin-top: 10px;
   max-height: 300px;
   overflow-y: auto;
 }
 
-.ds-modal-results-list {
+.dashsh-modal-results-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.ds-modal-result-item {
+.dashsh-modal-result-item {
   padding: 12px;
   border: 1px solid #ddd;
   border-radius: 3px;
@@ -389,21 +389,21 @@
   align-items: center;
 }
 
-.ds-modal-result-item:hover {
+.dashsh-modal-result-item:hover {
   background: #f0f0f1;
   border-color: #2271b1;
 }
 
-.ds-modal-result-item.selected {
+.dashsh-modal-result-item.selected {
   background: #f0f6fc;
   border-color: #2271b1;
 }
 
-.ds-modal-result-item strong {
+.dashsh-modal-result-item strong {
   flex: 1;
 }
 
-.ds-modal-result-type {
+.dashsh-modal-result-type {
   background: #2271b1;
   color: #fff;
   padding: 2px 8px;
@@ -413,19 +413,19 @@
   margin-left: 10px;
 }
 
-.ds-modal-loading,
-.ds-modal-no-results,
-.ds-modal-error {
+.dashsh-modal-loading,
+.dashsh-modal-no-results,
+.dashsh-modal-error {
   padding: 20px;
   text-align: center;
   color: #666;
 }
 
-.ds-modal-error {
+.dashsh-modal-error {
   color: #d63638;
 }
 
-.ds-modal-footer {
+.dashsh-modal-footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -444,7 +444,7 @@ body.admin-bar {
 }
 
 /* Frontend adjustments */
-body:not(.wp-admin) .ds-shortcuts-bar {
+body:not(.wp-admin) .dashsh-shortcuts-bar {
   top: 32px;
 }
 
@@ -457,7 +457,7 @@ body:not(.wp-admin).admin-bar {
   top: 60px;
 }
 
-body.js.is-fullscreen-mode .ds-shortcuts-bar {
+body.js.is-fullscreen-mode .dashsh-shortcuts-bar {
   top: 0;
 }
 
@@ -465,17 +465,17 @@ body.js.is-fullscreen-mode .ds-shortcuts-bar {
   top: 32px;
 }
 
-.ds-shortcuts-bar-closed {
+.dashsh-shortcuts-bar-closed {
   padding-top: 0 !important;
 }
 
 /* Mobile admin bar adjustments */
 @media screen and (max-width: 782px) {
-  body:not(.wp-admin) .ds-shortcuts-bar {
+  body:not(.wp-admin) .dashsh-shortcuts-bar {
     top: 46px;
   }
 
-  .ds-admin-bar-toggle {
+  .dashsh-admin-bar-toggle {
     display: initial !important;
   }
 
@@ -483,43 +483,43 @@ body.js.is-fullscreen-mode .ds-shortcuts-bar {
     top: 70px;
   }
 
-  .ds-shortcuts-bar {
+  .dashsh-shortcuts-bar {
     top: 46px;
   }
 
-  .ds-shortcuts-label {
+  .dashsh-shortcuts-label {
     font-size: 0;
     padding: 6px 8px;
     gap: 0;
   }
 
-  .ds-shortcut-link {
+  .dashsh-shortcut-link {
     padding: 6px 10px;
     font-size: 12px;
   }
 
-  .ds-shortcuts-container {
+  .dashsh-shortcuts-container {
     padding: 0 5px;
     gap: 5px;
   }
 
-  .ds-add-current-btn {
+  .dashsh-add-current-btn {
     padding: 5px 10px;
     font-size: 0;
     gap: 0;
   }
 
-  .ds-add-current-btn span:not(.dashicons) {
+  .dashsh-add-current-btn span:not(.dashicons) {
     display: none;
   }
 
-  .ds-notification {
+  .dashsh-notification {
     right: 10px;
     left: 10px;
     max-width: none;
   }
 
-  .ds-select-url {
+  .dashsh-select-url {
     margin: 0 !important;
   }
 }
@@ -529,7 +529,7 @@ body.js.is-fullscreen-mode .ds-shortcuts-bar {
   #wpcontent {
     padding-top: 30px;
   }
-  .ds-shortcuts-bar {
+  .dashsh-shortcuts-bar {
     z-index: 99999;
   }
   body.admin-bar {
@@ -538,7 +538,7 @@ body.js.is-fullscreen-mode .ds-shortcuts-bar {
   body:not(.wp-admin).admin-bar {
     margin-top: 92px !important;
   }
-  .ds-shortcuts-bar-closed #wpcontent {
+  .dashsh-shortcuts-bar-closed #wpcontent {
     padding-top: 0;
   }
 }

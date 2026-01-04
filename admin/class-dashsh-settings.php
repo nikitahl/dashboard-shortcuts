@@ -1,6 +1,6 @@
 <?php
 /**
- * DS Settings page.
+ * DASHSH Settings page.
  *
  * @package Dashboard_Shortcuts
  */
@@ -10,13 +10,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class DS_Settings
+ * Class DASHSH_Settings
  *
  * Handles the settings page for managing shortcuts.
  *
  * @since 1.0.0
  */
-class DS_Settings {
+class DASHSH_Settings {
 
 	/**
 	 * Constructor.
@@ -39,7 +39,7 @@ class DS_Settings {
 			__( 'Dashboard Shortcuts', 'dashboard-shortcuts' ),
 			__( 'Dashboard Shortcuts', 'dashboard-shortcuts' ),
 			'manage_options',
-			'ds-settings',
+			'dashsh-settings',
 			[ $this, 'render_settings_page' ]
 		);
 	}
@@ -51,8 +51,8 @@ class DS_Settings {
 	 */
 	public function register_settings() {
 		register_setting(
-			'ds_settings_group',
-			'ds_shortcuts',
+			'dashsh_settings_group',
+			'dashsh_shortcuts',
 			[
 				'type'              => 'array',
 				'sanitize_callback' => [ $this, 'sanitize_shortcuts' ],
@@ -124,7 +124,7 @@ class DS_Settings {
 			return;
 		}
 
-		$shortcuts = get_option( 'ds_shortcuts', [] );
+		$shortcuts = get_option( 'dashsh_shortcuts', [] );
 
 		// Ensure we have at least one empty row for new entries.
 		if ( empty( $shortcuts ) ) {
@@ -137,46 +137,46 @@ class DS_Settings {
 			];
 		}
 		?>
-		<div class="wrap ds-settings-wrap">
+		<div class="wrap dashsh-settings-wrap">
 			<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 			<p><?php esc_html_e( 'Add custom shortcut links that will appear under the admin bar menu.', 'dashboard-shortcuts' ); ?></p>
 
-			<form method="post" action="options.php" class="ds-settings-form">
-				<?php settings_fields( 'ds_settings_group' ); ?>
+			<form method="post" action="options.php" class="dashsh-settings-form">
+				<?php settings_fields( 'dashsh_settings_group' ); ?>
 
-				<div id="ds-shortcuts-container">
+				<div id="dashsh-shortcuts-container">
 					<?php foreach ( $shortcuts as $index => $shortcut ) : ?>
-						<div class="ds-shortcut-row" data-index="<?php echo esc_attr( $index ); ?>">
-							<div class="ds-drag-handle" title="<?php esc_attr_e( 'Drag to reorder', 'dashboard-shortcuts' ); ?>">
+						<div class="dashsh-shortcut-row" data-index="<?php echo esc_attr( $index ); ?>">
+							<div class="dashsh-drag-handle" title="<?php esc_attr_e( 'Drag to reorder', 'dashboard-shortcuts' ); ?>">
 								<span class="dashicons dashicons-menu" aria-hidden="true"></span>
 							</div>
-							<div class="ds-shortcut-fields">
-								<div class="ds-field">
+							<div class="dashsh-shortcut-fields">
+								<div class="dashsh-field">
 									<label>
 										<?php esc_html_e( 'Title', 'dashboard-shortcuts' ); ?>
 										<input
 											type="text"
-											name="ds_shortcuts[<?php echo esc_attr( $index ); ?>][title]"
+											name="dashsh_shortcuts[<?php echo esc_attr( $index ); ?>][title]"
 											value="<?php echo esc_attr( $shortcut['title'] ); ?>"
 											placeholder="<?php esc_attr_e( 'e.g., My Site', 'dashboard-shortcuts' ); ?>"
 											class="regular-text"
 										/>
 									</label>
 								</div>
-								<div class="ds-field ds-field-url">
+								<div class="dashsh-field dashsh-field-url">
 									<label>
 										<?php esc_html_e( 'URL', 'dashboard-shortcuts' ); ?>
-										<div class="ds-url-input-wrapper">
+										<div class="dashsh-url-input-wrapper">
 											<input
 												type="text"
-												name="ds_shortcuts[<?php echo esc_attr( $index ); ?>][url]"
+												name="dashsh_shortcuts[<?php echo esc_attr( $index ); ?>][url]"
 												value="<?php echo esc_attr( $shortcut['url'] ); ?>"
 												placeholder="<?php esc_attr_e( 'https://example.com', 'dashboard-shortcuts' ); ?>"
-												class="regular-text ds-url-input"
+												class="regular-text dashsh-url-input"
 											/>
 											<button
 													type="button"
-													class="button ds-select-url"
+													class="button dashsh-select-url"
 													title="<?php esc_attr_e( 'Select from WordPress', 'dashboard-shortcuts' ); ?>"
 													aria-label="<?php esc_attr_e( 'Select from WordPress', 'dashboard-shortcuts' ); ?>"
 											>
@@ -185,20 +185,20 @@ class DS_Settings {
 										</div>
 									</label>
 								</div>
-								<div class="ds-field ds-field-checkbox">
+								<div class="dashsh-field dashsh-field-checkbox">
 									<label>
 										<input
 											type="checkbox"
-											name="ds_shortcuts[<?php echo esc_attr( $index ); ?>][new_tab]"
+											name="dashsh_shortcuts[<?php echo esc_attr( $index ); ?>][new_tab]"
 											<?php checked( ! empty( $shortcut['new_tab'] ), true ); ?>
 										/>
 										<?php esc_html_e( 'Open in new tab', 'dashboard-shortcuts' ); ?>
 									</label>
 								</div>
-								<div class="ds-field ds-field-actions">
+								<div class="dashsh-field dashsh-field-actions">
 									<button
 											type="button"
-											class="button ds-remove-shortcut"
+											class="button dashsh-remove-shortcut"
 											title="<?php esc_attr_e( 'Remove shortcut', 'dashboard-shortcuts' ); ?>"
 											aria-label="<?php esc_attr_e( 'Remove shortcut', 'dashboard-shortcuts' ); ?>"
 									>
@@ -210,8 +210,8 @@ class DS_Settings {
 					<?php endforeach; ?>
 				</div>
 
-				<div class="ds-actions">
-					<button type="button" id="ds-add-shortcut" class="button button-secondary">
+				<div class="dashsh-actions">
+					<button type="button" id="dashsh-add-shortcut" class="button button-secondary">
 						<span class="dashicons dashicons-plus-alt2" aria-hidden="true"></span>
 						<?php esc_html_e( 'Add Shortcut', 'dashboard-shortcuts' ); ?>
 					</button>
@@ -231,29 +231,29 @@ class DS_Settings {
 	 * @param string $hook Current admin page hook.
 	 */
 	public function enqueue_admin_assets( $hook ) {
-		if ( 'settings_page_ds-settings' !== $hook ) {
+		if ( 'settings_page_dashsh-settings' !== $hook ) {
 			return;
 		}
 
 		wp_enqueue_style(
-			'ds-admin-style',
-			DS_PLUGIN_URL . 'assets/css/admin.min.css',
+			'dashsh-admin-style',
+			DASHSH_PLUGIN_URL . 'assets/css/admin.min.css',
 			[],
-			DS_VERSION
+			DASHSH_VERSION
 		);
 
 		wp_enqueue_script(
-			'ds-admin-script',
-			DS_PLUGIN_URL . 'assets/js/admin.min.js',
+			'dashsh-admin-script',
+			DASHSH_PLUGIN_URL . 'assets/js/admin.min.js',
 			[ 'jquery', 'jquery-ui-sortable' ],
-			DS_VERSION,
+			DASHSH_VERSION,
 			true
 		);
 
 		// Add REST API settings for JavaScript.
 		wp_localize_script(
-			'ds-admin-script',
-			'wpApiSettings',
+			'dashsh-admin-script',
+			'dashshApiSettings',
 			[
 				'root'  => esc_url_raw( rest_url() ),
 				'nonce' => wp_create_nonce( 'wp_rest' ),
@@ -261,8 +261,8 @@ class DS_Settings {
 		);
 
 		wp_localize_script(
-			'ds-admin-script',
-			'dsSettings',
+			'dashsh-admin-script',
+			'dashshSettings',
 			[
 				'confirmDelete'    => __( 'Are you sure you want to remove this shortcut?', 'dashboard-shortcuts' ),
 				'titleLabel'       => __( 'Title', 'dashboard-shortcuts' ),

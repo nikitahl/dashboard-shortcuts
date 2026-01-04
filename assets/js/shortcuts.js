@@ -8,10 +8,10 @@ import '../css/shortcuts.css'
 
 (($) => {
   'use strict'
-  const { dsShortcuts } = window
-  const $shortcutsBar = $('#ds-shortcuts-bar')
-  const $list = $shortcutsBar.find('.ds-shortcuts-list')
-  let $modal = $('#ds-add-page-modal')
+  const { dashshShortcuts } = window
+  const $shortcutsBar = $('#dashsh-shortcuts-bar')
+  const $list = $shortcutsBar.find('.dashsh-shortcuts-list')
+  let $modal = $('#dashsh-add-page-modal')
 
   /**
    * Initialize shortcuts bar functionality
@@ -19,7 +19,7 @@ import '../css/shortcuts.css'
    * @since 1.0.0
    */
   const init = () => {
-    $('#ds-add-current-page').on('click', showAddCurrentPageModal)
+    $('#dashsh-add-current-page').on('click', showAddCurrentPageModal)
 
     $(window).on('scroll', handleWindowScroll)
     handleWindowScroll()
@@ -30,7 +30,7 @@ import '../css/shortcuts.css'
 
     // Close dropdown when clicking outside
     $(document).on('click', (e) => {
-      if (!$(e.target).closest('.ds-more-button, .ds-more-dropdown').length) {
+      if (!$(e.target).closest('.dashsh-more-button, .dashsh-more-dropdown').length) {
         closeMoreDropdown()
       }
     })
@@ -43,9 +43,9 @@ import '../css/shortcuts.css'
    */
   const handleWindowScroll = () => {
     if (window.innerWidth < 600 && $(window).scrollTop() > 46) {
-      $shortcutsBar.addClass('ds-shortcuts-bar-fixed')
+      $shortcutsBar.addClass('dashsh-shortcuts-bar-fixed')
     } else {
-      $shortcutsBar.removeClass('ds-shortcuts-bar-fixed')
+      $shortcutsBar.removeClass('dashsh-shortcuts-bar-fixed')
     }
   }
 
@@ -67,8 +67,8 @@ import '../css/shortcuts.css'
    * @since 1.0.0
    */
   const manageItemsVisibility = (availableWidth) => {
-    const $moreButton = $('.ds-more-button')
-    const $dropdown = $('.ds-more-dropdown')
+    const $moreButton = $('.dashsh-more-button')
+    const $dropdown = $('.dashsh-more-dropdown')
     const moreButtonWidth = $moreButton.outerWidth() || 0
 
     // Calculate available width accounting for the more button
@@ -96,7 +96,7 @@ import '../css/shortcuts.css'
 
     // Show/hide more button and populate dropdown
     if (hasOverflow) {
-      $shortcutsBar.addClass('ds-shortcuts-bar-narrow')
+      $shortcutsBar.addClass('dashsh-shortcuts-bar-narrow')
       $moreButton.show()
 
       // Clear and populate dropdown with hidden items
@@ -104,14 +104,14 @@ import '../css/shortcuts.css'
       hiddenItems.forEach($item => {
         // Ensure the cloned item is visible in the dropdown
         $item.css('display', 'block')
-        const $link = $item.find('.ds-shortcut-link')
+        const $link = $item.find('.dashsh-shortcut-link')
         $link.on('click', () => {
           closeMoreDropdown()
         })
         $dropdown.append($item)
       })
     } else {
-      $shortcutsBar.removeClass('ds-shortcuts-bar-narrow')
+      $shortcutsBar.removeClass('dashsh-shortcuts-bar-narrow')
       $moreButton.hide()
       $dropdown.empty()
       closeMoreDropdown()
@@ -126,39 +126,39 @@ import '../css/shortcuts.css'
   const showAddCurrentPageModal = () => {
     if (!$modal.length) {
       createAddPageModal()
-      $modal = $('#ds-add-page-modal')
+      $modal = $('#dashsh-add-page-modal')
     }
 
-    const $titleInput = $('#ds-add-page-title')
+    const $titleInput = $('#dashsh-add-page-title')
 
-    $titleInput.val(dsShortcuts.currentTitle)
+    $titleInput.val(dashshShortcuts.currentTitle)
 
     $modal.show()
     $('body').addClass('modal-open')
 
     $titleInput.focus().select()
 
-    $('#ds-add-page-submit')
+    $('#dashsh-add-page-submit')
       .off('click')
       .on('click', () => {
         const title = $titleInput.val().trim()
 
         if (!title) {
-          alert(dsShortcuts.emptyTitleMsg)
+          alert(dashshShortcuts.emptyTitleMsg)
           return
         }
 
         addCurrentPageShortcut(title)
       })
 
-    $('#ds-add-page-cancel, #ds-add-page-close-btn')
+    $('#dashsh-add-page-cancel, #dashsh-add-page-close-btn')
       .off('click')
       .on('click', closeAddPageModal)
 
     $modal
       .off('click')
       .on('click', (e) => {
-        if ($(e.target).hasClass('ds-modal-backdrop')) {
+        if ($(e.target).hasClass('dashsh-modal-backdrop')) {
           closeAddPageModal()
         }
       })
@@ -168,7 +168,7 @@ import '../css/shortcuts.css'
       .on('keypress', (e) => {
         if (e.which === 13) {
           e.preventDefault()
-          $('#ds-add-page-submit').trigger('click')
+          $('#dashsh-add-page-submit').trigger('click')
         }
       })
 
@@ -188,30 +188,30 @@ import '../css/shortcuts.css'
    */
   const createAddPageModal = () => {
     const modalHtml = `
-      <div id="ds-add-page-modal" class="ds-modal-backdrop" style="display:none;">
-        <div class="ds-modal ds-add-page-modal">
-          <div class="ds-modal-header">
-            <h2>${dsShortcuts.addLabel}</h2>
-            <button type="button" class="ds-modal-close" id="ds-add-page-close-btn" aria-label="${dsShortcuts.close || 'Close'}">
+      <div id="dashsh-add-page-modal" class="dashsh-modal-backdrop" style="display:none;">
+        <div class="dashsh-modal dashsh-add-page-modal">
+          <div class="dashsh-modal-header">
+            <h2>${dashshShortcuts.addLabel}</h2>
+            <button type="button" class="dashsh-modal-close" id="dashsh-add-page-close-btn" aria-label="${dashshShortcuts.close || 'Close'}">
               <span class="dashicons dashicons-no" aria-hidden="true"></span>
             </button>
           </div>
-          <div class="ds-modal-body">
-            <div class="ds-modal-field">
-              <label for="ds-add-page-title">${dsShortcuts.titleLabel}</label>
+          <div class="dashsh-modal-body">
+            <div class="dashsh-modal-field">
+              <label for="dashsh-add-page-title">${dashshShortcuts.titleLabel}</label>
               <input
                 type="text"
-                id="ds-add-page-title"
+                id="dashsh-add-page-title"
                 class="regular-text"
                 placeholder="Enter shortcut title"
               />
             </div>
           </div>
-          <div class="ds-modal-footer">
-            <button type="button" class="button button-secondary" id="ds-add-page-cancel">
-              ${dsShortcuts.cancelLabel}
+          <div class="dashsh-modal-footer">
+            <button type="button" class="button button-secondary" id="dashsh-add-page-cancel">
+              ${dashshShortcuts.cancelLabel}
             </button>
-            <button type="button" class="button button-primary" id="ds-add-page-submit">
+            <button type="button" class="button button-primary" id="dashsh-add-page-submit">
               Add
             </button>
           </div>
@@ -228,7 +228,7 @@ import '../css/shortcuts.css'
    * @since 1.0.0
    */
   const closeAddPageModal = () => {
-    $('#ds-add-page-modal').hide()
+    $('#dashsh-add-page-modal').hide()
     $('body').removeClass('modal-open')
     $(document).off('keyup.dsAddPage')
   }
@@ -240,30 +240,30 @@ import '../css/shortcuts.css'
    * @since 1.0.0
    */
   const addCurrentPageShortcut = async (title) => {
-    const $submitBtn = $('#ds-add-page-submit')
+    const $submitBtn = $('#dashsh-add-page-submit')
     const originalText = $submitBtn.text()
 
     $submitBtn.prop('disabled', true).text('Adding...')
 
     try {
       const response = await $.ajax({
-        url: dsShortcuts.ajaxUrl,
+        url: dashshShortcuts.ajaxUrl,
         type: 'POST',
         data: {
-          action: 'ds_add_current_page',
-          nonce: dsShortcuts.nonce,
+          action: 'dashsh_add_current_page',
+          nonce: dashshShortcuts.nonce,
           title,
-          url: dsShortcuts.currentUrl
+          url: dashshShortcuts.currentUrl
         }
       })
 
       if (response.success) {
-        showNotification(dsShortcuts.successMsg, 'success')
+        showNotification(dashshShortcuts.successMsg, 'success')
         closeAddPageModal()
 
         setTimeout(() => location.reload(), 500)
       } else {
-        console.error(response.data?.message || dsShortcuts.errorMsg)
+        console.error(response.data?.message || dashshShortcuts.errorMsg)
       }
     } catch (error) {
       console.error('Unable to add current page to shortcuts: ', error.message)
@@ -281,7 +281,7 @@ import '../css/shortcuts.css'
    */
   const showNotification = (message, type) => {
     const $notification = $('<div>', {
-      class: `ds-notification ds-notification-${type}`,
+      class: `dashsh-notification dashsh-notification-${type}`,
       text: message
     })
 
@@ -302,7 +302,7 @@ import '../css/shortcuts.css'
    */
   const createMoreButton = () => {
     const $moreButton = $('<button>', {
-      class: 'ds-more-button',
+      class: 'dashsh-more-button',
       type: 'button',
       html: '<span class="dashicons dashicons-arrow-right-alt2" aria-hidden="true"></span>',
       'aria-label': 'More shortcuts',
@@ -311,7 +311,7 @@ import '../css/shortcuts.css'
     })
 
     const $dropdown = $('<ul>', {
-      class: 'ds-more-dropdown',
+      class: 'dashsh-more-dropdown',
       css: { display: 'none' }
     })
 
@@ -330,8 +330,8 @@ import '../css/shortcuts.css'
    * @since 1.0.0
    */
   const toggleMoreDropdown = () => {
-    const $dropdown = $('.ds-more-dropdown')
-    const $moreButton = $('.ds-more-button')
+    const $dropdown = $('.dashsh-more-dropdown')
+    const $moreButton = $('.dashsh-more-button')
 
     if ($dropdown.is(':visible')) {
       closeMoreDropdown()
@@ -341,7 +341,7 @@ import '../css/shortcuts.css'
         right: '10px'
       }).show()
 
-      $moreButton.addClass('ds-more-button-active')
+      $moreButton.addClass('dashsh-more-button-active')
     }
   }
 
@@ -351,8 +351,8 @@ import '../css/shortcuts.css'
    * @since 1.0.0
    */
   const closeMoreDropdown = () => {
-    $('.ds-more-dropdown').hide()
-    $('.ds-more-button').removeClass('ds-more-button-active')
+    $('.dashsh-more-dropdown').hide()
+    $('.dashsh-more-button').removeClass('dashsh-more-button-active')
   }
 
   /**
@@ -362,8 +362,8 @@ import '../css/shortcuts.css'
    * @since 1.0.0
    */
   const initToggleButton = () => {
-    const $toggleBtn = $('#wp-admin-bar-ds-shortcuts-toggle')
-    const $shortcutsBarContent = $('.ds-shortcuts-bar')
+    const $toggleBtn = $('#wp-admin-bar-dashsh-shortcuts-toggle')
+    const $shortcutsBarContent = $('.dashsh-shortcuts-bar')
     const $body = $('body')
 
     if (!$toggleBtn.length) {
@@ -371,10 +371,10 @@ import '../css/shortcuts.css'
     }
 
     // Check saved state from localStorage
-    const isHidden = localStorage.getItem('ds_shortcuts_bar_hidden') === 'true'
+    const isHidden = localStorage.getItem('dashsh_shortcuts_bar_hidden') === 'true'
 
     if (isHidden) {
-      $body.addClass('ds-shortcuts-bar-closed')
+      $body.addClass('dashsh-shortcuts-bar-closed')
       $shortcutsBarContent.slideUp(0)
       $toggleBtn.find('.dashicons').removeClass('dashicons-visibility').addClass('dashicons-hidden')
     }
@@ -386,17 +386,17 @@ import '../css/shortcuts.css'
 
       if ($shortcutsBarContent.is(':visible')) {
         // Hide the bar
-        $body.addClass('ds-shortcuts-bar-closed')
+        $body.addClass('dashsh-shortcuts-bar-closed')
         $shortcutsBarContent.slideUp(300)
         $toggleBtn.find('.dashicons').removeClass('dashicons-visibility').addClass('dashicons-hidden')
-        localStorage.setItem('ds_shortcuts_bar_hidden', 'true')
+        localStorage.setItem('dashsh_shortcuts_bar_hidden', 'true')
         closeMoreDropdown()
       } else {
         // Show the bar
-        $body.removeClass('ds-shortcuts-bar-closed')
+        $body.removeClass('dashsh-shortcuts-bar-closed')
         $shortcutsBarContent.slideDown(300)
         $toggleBtn.find('.dashicons').removeClass('dashicons-hidden').addClass('dashicons-visibility')
-        localStorage.setItem('ds_shortcuts_bar_hidden', 'false')
+        localStorage.setItem('dashsh_shortcuts_bar_hidden', 'false')
       }
     })
   }
