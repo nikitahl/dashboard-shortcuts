@@ -4,7 +4,7 @@ Tags: shortcuts, admin bar, quick access, dashboard, links
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 1.0.0
+Stable tag: 1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -32,7 +32,7 @@ This plugin is open-source! You can contribute, report issues, or suggest improv
 
 == Installation ==
 
-1. Upload the `wp-dashboard-shortcuts` folder to `/wp-content/plugins/`
+1. Upload the `dashboard-shortcuts` folder to `/wp-content/plugins/`
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Navigate to **Settings > Dashboard Shortcuts** to configure your shortcuts
 
