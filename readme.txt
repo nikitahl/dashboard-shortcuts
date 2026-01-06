@@ -8,7 +8,7 @@ Stable tag: 1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Add custom shortcut links to your admin bar for quick access to frequently used pages and tools. Create your own bookmarks and favorites for faster navigation.
+Add custom shortcut links to your admin bar. Create bookmarks and favorites for quick access to frequently used pages and tools.
 
 == Description ==
 
