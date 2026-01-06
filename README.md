@@ -1,20 +1,30 @@
 # Dashboard Shortcuts
 
-Dashboard Shortcuts provides a convenient way to access your frequently used links directly from the WordPress admin bar. Perfect for developers, site administrators, and content managers who need quick access to external tools, documentation, or other websites.
+Add custom shortcut links to your admin bar for quick access to frequently used pages and tools. Create your own bookmarks and favorites for faster navigation.
+
+## Description
+
+Dashboard Shortcuts lets you create a personalized menu of links to any page in your dashboard: including posts, pages, settings, builders, theme dashboards, and more.
+
+You can also add links to external resources, even outside your dashboard.
+
+Use it as your bookmarks or favorites list to quickly access your most-used tools, documentation, or external resources, all from the admin bar.
+
+Perfect for developers, site administrators, and content managers who want faster navigation to their frequently used pages.
 
 ## Features
-
 - **Custom Shortcut Links**: Add unlimited custom links with titles and URLs
-- **Admin Bar Integration**: Shortcuts appear under the WordPress admin bar
+- **Admin Bar Integration**: Your shortcuts appear under the admin bar for instant access
+- **Bookmark Any Page**: Add links to any dashboard page (posts, pages, settings, builders, themes) or any external website
 - **New Tab Option**: Choose whether links open in the same tab or a new tab
-- **Easy Management**: Simple settings interface to add, edit, and remove shortcuts
+- **Easy Management**: Simple settings interface to add, edit, remove and order your shortcuts
 - **Add current page**: Quickly add the current admin page as a shortcut with one click
 - **Toggle Visibility**: Enable or disable the shortcuts menu as needed
 
 ## Installation
 
 1. Download the plugin files
-2. Upload the `wp-dashboard-shortcuts` folder to `/wp-content/plugins/`
+2. Upload the `dashboard-shortcuts` folder to `/wp-content/plugins/`
 3. Activate the plugin through the 'Plugins' menu in WordPress
 4. Navigate to **Settings > Dashboard Shortcuts** to configure your shortcuts
 
@@ -25,4 +35,4 @@ Dashboard Shortcuts provides a convenient way to access your frequently used lin
 
 ## License
 
-This plugin is licensed under the GPLv3 or later.
+This plugin is licensed under the [GPLv3](./LICENSE) or later.
