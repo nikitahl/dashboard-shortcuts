@@ -28,7 +28,8 @@ module.exports = [
         alert: 'readonly',
         confirm: 'readonly',
         $: 'readonly',
-        localStorage: 'readonly'
+        localStorage: 'readonly',
+        getComputedStyle: 'readonly'
       }
     },
     rules: {

@@ -35,7 +35,7 @@ import '../css/shortcuts.css'
       return false
     }
     return true
-  };
+  }
 
   /**
    * Dynamically monitor admin bar visibility and hide shortcuts bar if needed
@@ -57,7 +57,7 @@ import '../css/shortcuts.css'
 
     observer.observe(adminBar, {
       attributes: true,
-      attributeFilter: ['style', 'class']
+      attributeFilter: [ 'style', 'class' ]
     })
 
     // Also check after a short delay in case display:none is applied late
