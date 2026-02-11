@@ -132,6 +132,9 @@ class DASHSH_Shortcuts {
 	/**
 	 * Detect if the current request is for a builder/editor iframe (WPBakery, Elementor, Beaver Builder, etc.)
 	 *
+	 * This function is only used for context checks (not for processing or saving data),
+	 * so nonce verification is not required here. All actual data processing is protected elsewhere.
+	 *
 	 * @return bool
 	 */
 	private function is_builder_iframe_request() {
@@ -152,8 +155,12 @@ class DASHSH_Shortcuts {
 			}
 		}
 		// General iframe param (future-proof).
-		if ( isset( $_GET['iframe'] ) && $_GET['iframe'] ) {
-			return true;
+		if ( isset( $_GET['iframe'] ) ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Context check only, not processing data.
+			$iframe_val = sanitize_text_field( wp_unslash( $_GET['iframe'] ) );
+			if ( $iframe_val ) {
+				return true;
+			}
 		}
 		return false;
 	}
