@@ -6,13 +6,13 @@ Add custom shortcut links to your admin bar for quick access to frequently used 
 
 Dashboard Shortcuts lets you create a personalized menu of links to any page in your dashboard: including posts, pages, settings, builders, theme dashboards, and more.
 
-The plugin is fully compatible with popular page builders (WPBakery, Elementor, Beaver Builder, Oxygen, Brizy, Visual Composer, etc.) and will not render or load the shortcuts bar in builder/editor iframes, preventing conflicts and ensuring a clean editing experience.
-
 You can also add links to external resources, even outside your dashboard.
 
 Use it as your bookmarks or favorites list to quickly access your most-used tools, documentation, or external resources, all from the admin bar.
 
 Perfect for developers, site administrators, and content managers who want faster navigation to their frequently used pages.
+
+The plugin is fully compatible with popular page builders (WPBakery, Elementor, Beaver Builder, Oxygen, Brizy, Visual Composer, etc.) and will not render or load the shortcuts bar in builder/editor iframes, preventing conflicts and ensuring a clean editing experience.
 
 ## Features
 - **Custom Shortcut Links**: Add unlimited custom links with titles and URLs
