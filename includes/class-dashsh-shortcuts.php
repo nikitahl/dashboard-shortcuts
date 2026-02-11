@@ -135,6 +135,8 @@ class DASHSH_Shortcuts {
 	 * This function is only used for context checks (not for processing or saving data),
 	 * so nonce verification is not required here. All actual data processing is protected elsewhere.
 	 *
+	 * @since 1.1.0
+	 *
 	 * @return bool
 	 */
 	private function is_builder_iframe_request() {
