@@ -137,8 +137,10 @@ class DASHSH_Shortcuts {
 	private function is_builder_iframe_request() {
 		// List of builder/editor query parameters.
 		$builder_params = [
-			'vc_inline', 'vc_action', // WPBakery.
-			'elementor', 'elementor_library', // Elementor.
+			'vc_inline', // WPBakery.
+			'vc_action', // WPBakery.
+			'elementor', // Elementor.
+			'elementor_library', // Elementor.
 			'fl_builder', // Beaver Builder.
 			'ct_builder', // Oxygen Builder.
 			'in-front-editor', // Brizy.
