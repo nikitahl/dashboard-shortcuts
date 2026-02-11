@@ -150,13 +150,14 @@ class DASHSH_Shortcuts {
 			'vcv-action', // Visual Composer.
 		];
 		foreach ( $builder_params as $param ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Context check only, not processing data.
 			if ( isset( $_GET[ $param ] ) ) {
 				return true;
 			}
 		}
 		// General iframe param (future-proof).
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Context check only, not processing data.
 		if ( isset( $_GET['iframe'] ) ) {
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Context check only, not processing data.
 			$iframe_val = sanitize_text_field( wp_unslash( $_GET['iframe'] ) );
 			if ( $iframe_val ) {
 				return true;
