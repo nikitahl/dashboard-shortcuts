@@ -135,21 +135,21 @@ class DASHSH_Shortcuts {
 	 * @return bool
 	 */
 	private function is_builder_iframe_request() {
-		// List of builder/editor query parameters
+		// List of builder/editor query parameters.
 		$builder_params = [
-			'vc_inline', 'vc_action', // WPBakery
-			'elementor', 'elementor_library', // Elementor
-			'fl_builder', // Beaver Builder
-			'ct_builder', // Oxygen Builder
-			'in-front-editor', // Brizy
-			'vcv-action', // Visual Composer
+			'vc_inline', 'vc_action', // WPBakery.
+			'elementor', 'elementor_library', // Elementor.
+			'fl_builder', // Beaver Builder.
+			'ct_builder', // Oxygen Builder.
+			'in-front-editor', // Brizy.
+			'vcv-action', // Visual Composer.
 		];
 		foreach ( $builder_params as $param ) {
 			if ( isset( $_GET[ $param ] ) ) {
 				return true;
 			}
 		}
-		// General iframe param (future-proof)
+		// General iframe param (future-proof).
 		if ( isset( $_GET['iframe'] ) && $_GET['iframe'] ) {
 			return true;
 		}
