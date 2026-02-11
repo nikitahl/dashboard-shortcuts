@@ -43,7 +43,6 @@ import '../css/shortcuts.css'
    * @since 1.1.0
    */
   const monitorAdminBarVisibility = () => {
-    console.log('monitorAdminBarVisibility')
     const adminBar = document.getElementById('wpadminbar')
     if (!adminBar) return
 
