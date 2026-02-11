@@ -130,12 +130,52 @@ class DASHSH_Shortcuts {
 	}
 
 	/**
+	 * Detect if the current request is for a builder/editor iframe (WPBakery, Elementor, Beaver Builder, etc.)
+	 *
+	 * @return bool
+	 */
+	private function is_builder_iframe_request() {
+		// WPBakery
+		if ( isset( $_GET['vc_inline'] ) || isset( $_GET['vc_action'] ) ) {
+			return true;
+		}
+		// Elementor
+		if ( isset( $_GET['elementor'] ) || isset( $_GET['elementor_library'] ) ) {
+			return true;
+		}
+		// Beaver Builder
+		if ( isset( $_GET['fl_builder'] ) ) {
+			return true;
+		}
+		// Oxygen Builder
+		if ( isset( $_GET['ct_builder'] ) ) {
+			return true;
+		}
+		// Brizy
+		if ( isset( $_GET['in-front-editor'] ) ) {
+			return true;
+		}
+		// Visual Composer
+		if ( isset( $_GET['vcv-action'] ) ) {
+			return true;
+		}
+		// General iframe param (future-proof)
+		if ( isset( $_GET['iframe'] ) && $_GET['iframe'] ) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Enqueue styles for the shortcuts bar.
 	 *
 	 * @since 1.0.0
 	 */
 	public function enqueue_styles() {
 		if ( ! is_admin_bar_showing() ) {
+			return;
+		}
+		if ( $this->is_builder_iframe_request() ) {
 			return;
 		}
 
