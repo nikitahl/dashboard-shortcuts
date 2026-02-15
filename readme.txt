@@ -67,9 +67,7 @@ There's no hard limit, but we recommend keeping it reasonable (10-15 shortcuts) 
 == Changelog ==
 
 = 1.1 =
-* Improved compatibility with popular page builders (WPBakery, Elementor, Beaver Builder, Oxygen, Brizy, Visual Composer, etc.)
-* Shortcuts bar and assets will not render or load in builder/editor iframes, preventing conflicts
-* Robust admin bar visibility detection for all dashboard scenarios
+* Shortcuts bar and assets will not render or load in builder/editor iframes (WPBakery, Elementor, Beaver Builder, Oxygen, Brizy, Visual Composer, etc.), preventing conflicts and ensuring a clean editing experience
 
 = 1.0.0 =
 * Initial release
