@@ -26,7 +26,6 @@ import '../css/shortcuts.css'
     const style = getComputedStyle(adminBar)
     // Return false if any property indicates hidden
     if (
-      adminBar.offsetParent === null ||
       style.display === 'none' ||
       style.visibility === 'hidden' ||
       adminBar.offsetHeight === 0 ||
