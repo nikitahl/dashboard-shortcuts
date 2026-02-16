@@ -66,7 +66,8 @@ There's no hard limit, but we recommend keeping it reasonable (10-15 shortcuts) 
 
 == Changelog ==
 
-= 1.1 =
+= 1.1.0 =
+* Fixed: Link selector modal now opens on first click for every shortcut row, even for newly added rows
 * Shortcuts bar and assets will not render or load in builder/editor iframes (WPBakery, Elementor, Beaver Builder, Oxygen, Brizy, Visual Composer, etc.), preventing conflicts and ensuring a clean editing experience
 
 = 1.0.0 =
