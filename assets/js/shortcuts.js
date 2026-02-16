@@ -14,11 +14,72 @@ import '../css/shortcuts.css'
   let $modal = $('#dashsh-add-page-modal')
 
   /**
+   * Check if the admin bar is present and visible
+   * Covers display, visibility, height, and width
+   * @returns {boolean}
+   *
+   * @since 1.1.0
+   */
+  const isAdminBarVisible = () => {
+    const adminBar = document.getElementById('wpadminbar')
+    if (!adminBar) return false
+    const style = getComputedStyle(adminBar)
+    // Return false if any property indicates hidden
+    if (
+      style.display === 'none' ||
+      style.visibility === 'hidden' ||
+      adminBar.offsetHeight === 0 ||
+      adminBar.offsetWidth === 0
+    ) {
+      return false
+    }
+    return true
+  }
+
+  /**
+   * Dynamically monitor admin bar visibility and hide shortcuts bar if needed
+   *
+   * @since 1.1.0
+   */
+  const monitorAdminBarVisibility = () => {
+    const adminBar = document.getElementById('wpadminbar')
+    if (!adminBar) return
+
+    const observer = new MutationObserver(() => {
+      if (!isAdminBarVisible()) {
+        $shortcutsBar.hide()
+      } else {
+        $shortcutsBar.show()
+      }
+    })
+
+    observer.observe(adminBar, {
+      attributes: true,
+      attributeFilter: [ 'style', 'class' ]
+    })
+
+    // Also check after a short delay in case display:none is applied late
+    setTimeout(() => {
+      if (!isAdminBarVisible()) {
+        $shortcutsBar.hide()
+      } else {
+        $shortcutsBar.show()
+      }
+    }, 1000)
+  }
+
+  /**
    * Initialize shortcuts bar functionality
    *
    * @since 1.0.0
    */
   const init = () => {
+    // Use the new function for admin bar visibility check
+    if (!isAdminBarVisible()) {
+      // Do not initialize shortcuts bar if admin bar is missing or not visible
+      return
+    }
+
     $('#dashsh-add-current-page').on('click', showAddCurrentPageModal)
 
     $(window).on('scroll', handleWindowScroll)
@@ -34,6 +95,9 @@ import '../css/shortcuts.css'
         closeMoreDropdown()
       }
     })
+
+    // Start monitoring admin bar visibility
+    monitorAdminBarVisibility()
   }
 
   /**

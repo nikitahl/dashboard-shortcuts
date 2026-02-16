@@ -130,12 +130,55 @@ class DASHSH_Shortcuts {
 	}
 
 	/**
+	 * Detect if the current request is for a builder/editor iframe (WPBakery, Elementor, Beaver Builder, etc.)
+	 *
+	 * This function is only used for context checks (not for processing or saving data),
+	 * so nonce verification is not required here. All actual data processing is protected elsewhere.
+	 *
+	 * @since 1.1.0
+	 *
+	 * @return bool
+	 */
+	private function is_builder_iframe_request() {
+		// List of builder/editor query parameters.
+		$builder_params = [
+			'vc_inline', // WPBakery.
+			'vc_action', // WPBakery.
+			'elementor', // Elementor.
+			'elementor_library', // Elementor.
+			'fl_builder', // Beaver Builder.
+			'ct_builder', // Oxygen Builder.
+			'in-front-editor', // Brizy.
+			'vcv-action', // Visual Composer.
+		];
+		foreach ( $builder_params as $param ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Context check only, not processing data.
+			if ( isset( $_GET[ $param ] ) ) {
+				return true;
+			}
+		}
+		// General iframe param (future-proof).
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Context check only, not processing data.
+		if ( isset( $_GET['iframe'] ) ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Context check only, not processing data.
+			$iframe_val = sanitize_text_field( wp_unslash( $_GET['iframe'] ) );
+			if ( $iframe_val ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Enqueue styles for the shortcuts bar.
 	 *
 	 * @since 1.0.0
 	 */
 	public function enqueue_styles() {
 		if ( ! is_admin_bar_showing() ) {
+			return;
+		}
+		if ( $this->is_builder_iframe_request() ) {
 			return;
 		}
 

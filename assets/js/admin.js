@@ -99,11 +99,12 @@ import '../css/admin.css'
    * @param {jQuery} $input The input field to populate.
    */
   const showLinkSelectorModal = ($input) => {
-    const $modal = $('#dashsh-link-modal')
+    let $modal = $('#dashsh-link-modal')
 
     // Create modal if it doesn't exist
     if ($modal.length === 0) {
       createLinkModal()
+      $modal = $('#dashsh-link-modal') // Re-select after creation
     }
 
     const $urlInput = $('#dashsh-modal-url')
