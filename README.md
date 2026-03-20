@@ -36,6 +36,10 @@ The plugin is fully compatible with popular page builders (WPBakery, Elementor, 
 - WordPress 6.4 or higher
 - PHP 7.0 or higher
 
+## Contributing
+
+This project is open for contributions. Read the [contributing guide](./CONTRIBUTING.md) to learn about development process. How to integrate your changes to Dashboard Shortcuts plugin.
+
 ## License
 
 This plugin is licensed under the [GPLv3](./LICENSE) or later.
