@@ -4,7 +4,7 @@ Tags: shortcuts, admin, bookmark, dashboard, favorites
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.0
-Stable tag: 1.1
+Stable tag: 1.1.1
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -65,6 +65,9 @@ There's no hard limit, but we recommend keeping it reasonable (10-15 shortcuts) 
 3. Add new shortcut interface
 
 == Changelog ==
+
+= 1.1.1 =
+* Fix: Optimized CSS, updated styles for 7.0 release
 
 = 1.1.0 =
 * Fixed: Link selector modal now opens on first click for every shortcut row, even for newly added rows
