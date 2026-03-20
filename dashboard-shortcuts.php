@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Dashboard Shortcuts
  * Description:       Add custom shortcut links to your WordPress admin bar for quick access to frequently used pages and tools.
- * Version:           1.1
+ * Version:           1.1.1
  * Author:            Nikita Hlopov
  * Author URI:        https://nikitahl.com
  * Requires PHP:      7.0
@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 1.0.0
  */
-define( 'DASHSH_VERSION', '1.1.0' );
+define( 'DASHSH_VERSION', '1.1.1' );
 define( 'DASHSH_PLUGIN_FILE', __FILE__ );
 define( 'DASHSH_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DASHSH_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
