@@ -6,12 +6,16 @@
 
 /* Shortcuts Bar */
 .dashsh-shortcuts-bar {
+  --bar-background-color: #292e31;
+  --bar-border-color: #3c434a;
+  --bar-link-color: #f0f0f1;
+
   position: fixed;
   top: 32px;
   left: 0;
   right: 0;
-  background: #292e31;
-  border-bottom: 1px solid #3c434a;
+  background: var(--bar-background-color);
+  border-bottom: 1px solid var(--bar-border-color);
   z-index: 9999;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
@@ -66,7 +70,7 @@
 }
 
 .dashsh-shortcuts-bar-collapsed .dashsh-shortcuts-bar-toggle {
-  background: #292e31;
+  background: var(--bar-background-color);
   border-radius: 0 0 4px 4px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
@@ -75,7 +79,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  color: #f0f0f1;
+  color: var(--bar-link-color);
   font-size: 13px;
   font-weight: 600;
   padding: 8px 5px;
@@ -109,7 +113,7 @@
 .dashsh-shortcut-item .dashsh-shortcut-link {
   display: block;
   padding: 8px 12px;
-  color: #f0f0f1;
+  color: var(--bar-link-color);
   text-decoration: none;
   font-size: 13px;
   border-radius: 3px;
@@ -122,7 +126,6 @@
 .dashsh-shortcut-link:hover,
 .dashsh-shortcut-link:focus {
   background: #3b444a;
-  color: #72aee6;
   outline: none;
 }
 
@@ -135,9 +138,9 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  background: #2271b1;
-  border: 1px solid #2271b1;
-  color: #fff;
+  background: var(--wp-components-color-accent,var(--wp-admin-theme-color,#3858e9));
+  border: none;
+  color: var(--wp-components-color-accent-inverted,#fff);
   padding: 6px 12px;
   border-radius: 3px;
   font-size: 13px;
@@ -149,9 +152,9 @@
 
 .dashsh-add-current-btn:hover,
 .dashsh-add-current-btn:focus {
-  background: #135e96;
-  border-color: #135e96;
-  color: #fff;
+  background: var(--wp-components-color-accent-darker-10,var(--wp-admin-theme-color-darker-10,#2145e6));
+  border-color: none;
+  color: var(--wp-components-color-accent-inverted,#fff);
   outline: none;
 }
 
@@ -168,7 +171,7 @@
   justify-content: center;
   background: transparent;
   border: none;
-  color: #f0f0f1;
+  color: var(--bar-link-color);
   padding: 4px 12px;
   margin-right: 5px;
   cursor: pointer;
@@ -180,7 +183,6 @@
 .dashsh-more-button:focus,
 .dashsh-more-button-active {
   background: #3b444a;
-  color: #72aee6;
   outline: none;
 }
 
@@ -192,8 +194,8 @@
 
 .dashsh-more-dropdown {
   position: absolute;
-  background: #292e31;
-  border: 1px solid #3c434a;
+  background: var(--bar-background-color);
+  border: 1px solid var(--bar-border-color);
   border-radius: 4px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   z-index: 10000;
@@ -212,21 +214,7 @@
 }
 
 .dashsh-more-dropdown .dashsh-shortcut-link {
-  display: block;
-  padding: 8px 16px;
-  color: #f0f0f1;
-  text-decoration: none;
-  font-size: 13px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   border-radius: 0;
-}
-
-.dashsh-more-dropdown .dashsh-shortcut-link:hover,
-.dashsh-more-dropdown .dashsh-shortcut-link:focus {
-  background: #3b444a;
-  color: #72aee6;
 }
 
 /* Scrollbar for dropdown */
@@ -240,7 +228,7 @@
 }
 
 .dashsh-more-dropdown::-webkit-scrollbar-thumb {
-  background: #3c434a;
+  background: var(--bar-border-color);
   border-radius: 4px;
 }
 
@@ -259,7 +247,7 @@
   top: 80px;
   right: 20px;
   background: #fff;
-  border-left: 4px solid #2271b1;
+  border-left: 4px solid var(--wp-components-color-accent-darker-10,var(--wp-admin-theme-color-darker-10,#2145e6));
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   padding: 15px 20px;
   border-radius: 4px;
@@ -287,6 +275,8 @@
 
 /* Link Selector Modal */
 .dashsh-modal-backdrop {
+  --bar-modal-border-color: #ddd;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -315,7 +305,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 15px 20px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--bar-modal-border-color);
 }
 
 .dashsh-modal-header h2 {
@@ -379,7 +369,7 @@
 
 .dashsh-modal-result-item {
   padding: 12px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--bar-modal-border-color);
   border-radius: 3px;
   margin-bottom: 8px;
   cursor: pointer;
@@ -390,13 +380,13 @@
 }
 
 .dashsh-modal-result-item:hover {
-  background: #f0f0f1;
-  border-color: #2271b1;
+  background: var(--bar-link-color);
+  border-color: var(--wp-components-color-accent-darker-10,var(--wp-admin-theme-color-darker-10,#2145e6));
 }
 
 .dashsh-modal-result-item.selected {
   background: #f0f6fc;
-  border-color: #2271b1;
+  border-color: var(--wp-components-color-accent-darker-10,var(--wp-admin-theme-color-darker-10,#2145e6));
 }
 
 .dashsh-modal-result-item strong {
@@ -404,7 +394,7 @@
 }
 
 .dashsh-modal-result-type {
-  background: #2271b1;
+  background: var(--wp-components-color-accent-darker-10,var(--wp-admin-theme-color-darker-10,#2145e6));
   color: #fff;
   padding: 2px 8px;
   border-radius: 3px;
@@ -431,7 +421,7 @@
   justify-content: flex-end;
   gap: 10px;
   padding: 15px 20px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--bar-modal-border-color);
 }
 
 body.modal-open {

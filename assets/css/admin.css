@@ -6,6 +6,9 @@
 
 .dashsh-settings-wrap {
   max-width: 1000px;
+
+  --input-min-height: 35px;
+  --input-line-height: 1.5;
 }
 
 .dashsh-settings-form {
@@ -58,7 +61,7 @@
 }
 
 .dashsh-drag-handle:hover {
-  color: #2271b1;
+  color: var(--wp-admin-theme-color-darker-10);
 }
 
 .dashsh-drag-handle .dashicons {
@@ -92,6 +95,9 @@
 .dashsh-field input[type="text"],
 .dashsh-field input[type="url"] {
   width: 100%;
+  height: var(--input-min-height);
+  min-height: var(--input-min-height);
+  line-height: var(--input-line-height);
 }
 
 .dashsh-url-input-wrapper {
@@ -107,24 +113,20 @@
 .dashsh-url-input-wrapper .dashsh-select-url {
   flex-shrink: 0;
   padding: 3px 8px;
-  height: 30px;
+  height: var(--input-min-height);
+  min-height: var(--input-min-height);
   min-width: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.dashsh-url-input-wrapper .dashsh-select-url .dashicons {
-  width: 18px;
-  height: 18px;
-  font-size: 18px;
+  line-height: var(--input-line-height);
 }
 
 .dashsh-field-checkbox {
   display: flex;
   align-items: center;
   padding-bottom: 5px;
-  margin-bottom: 6px;
+  margin-bottom: 9px;
 }
 
 .dashsh-field-checkbox label {
@@ -148,7 +150,7 @@
   color: #fff;
   padding: 5px 10px;
   height: auto;
-  min-height: 30px;
+  min-height: var(--input-min-height);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -162,12 +164,6 @@
   color: #fff;
 }
 
-.dashsh-remove-shortcut .dashicons {
-  width: 18px;
-  height: 18px;
-  font-size: 18px;
-}
-
 .dashsh-actions {
   margin-bottom: 20px;
 }
@@ -178,10 +174,13 @@
   gap: 5px;
 }
 
-#dashsh-add-shortcut .dashicons {
+/* Dashicons overrides */
+#dashsh-add-shortcut .dashicons,
+#dashsh-shortcuts-container .dashicons {
   width: 18px;
   height: 18px;
   font-size: 18px;
+  line-height: 1;
 }
 
 /* Empty state */
