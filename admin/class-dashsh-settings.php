@@ -144,6 +144,14 @@ class DASHSH_Settings {
 			<form method="post" action="options.php" class="dashsh-settings-form">
 				<?php settings_fields( 'dashsh_settings_group' ); ?>
 
+				<div class="dashsh-actions">
+					<button type="button" id="dashsh-add-shortcut" class="button button-secondary">
+						<span class="dashicons dashicons-plus-alt2" aria-hidden="true"></span>
+						<?php esc_html_e( 'Add Shortcut', 'dashboard-shortcuts' ); ?>
+					</button>
+					<?php submit_button( __( 'Save Shortcuts', 'dashboard-shortcuts' ) ); ?>
+				</div>
+
 				<div id="dashsh-shortcuts-container">
 					<?php foreach ( $shortcuts as $index => $shortcut ) : ?>
 						<div class="dashsh-shortcut-row" data-index="<?php echo esc_attr( $index ); ?>">
@@ -209,15 +217,6 @@ class DASHSH_Settings {
 						</div>
 					<?php endforeach; ?>
 				</div>
-
-				<div class="dashsh-actions">
-					<button type="button" id="dashsh-add-shortcut" class="button button-secondary">
-						<span class="dashicons dashicons-plus-alt2" aria-hidden="true"></span>
-						<?php esc_html_e( 'Add Shortcut', 'dashboard-shortcuts' ); ?>
-					</button>
-				</div>
-
-				<?php submit_button( __( 'Save Shortcuts', 'dashboard-shortcuts' ) ); ?>
 			</form>
 		</div>
 		<?php
