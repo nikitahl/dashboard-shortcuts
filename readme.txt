@@ -67,7 +67,10 @@ There's no hard limit, but we recommend keeping it reasonable (10-15 shortcuts) 
 == Changelog ==
 
 = 1.2 =
-* Update: Updated CSS styling for the shortcuts bar and settings page
+* **Update:** Updated CSS styling for shortcuts bar and settings page
+* **Improvement:** Moved shortcut buttons to top with sticky positioning
+* **Improvement:** Added icons for external links in the shortcuts bar
+* **Fix:** Fixed shortcut link attribute output
 
 = 1.1.1 =
 * Fix: Optimized CSS, updated styles for 7.0 release
