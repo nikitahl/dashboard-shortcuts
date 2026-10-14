@@ -134,6 +134,12 @@
   background: #1d2327;
 }
 
+.dashsh-shortcut-link[target="_blank"]::after {
+  position: relative;
+  content: " ↗";
+  font-size: 11px;
+}
+
 /* Add Current Page Button */
 .dashsh-add-current-btn {
   display: inline-flex;

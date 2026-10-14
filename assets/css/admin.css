@@ -166,7 +166,20 @@
 }
 
 .dashsh-actions {
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 65px;
+  background: #f0f0f0;
+  margin-bottom: 5px;
+  padding: 10px 0;
+}
+
+.dashsh-actions .submit {
+  margin: 0;
+  padding: 0;
 }
 
 #dashsh-add-shortcut {
