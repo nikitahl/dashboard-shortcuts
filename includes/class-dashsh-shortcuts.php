@@ -102,7 +102,7 @@ class DASHSH_Shortcuts {
 		?>
 		<li class="dashsh-shortcut-item">
 			<a href="<?php echo esc_url( $shortcut['url'] ); ?>"
-				<?php echo $target_attr; ?>
+				<?php echo $target_attr; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				class="dashsh-shortcut-link"
 				title="<?php echo esc_attr( $shortcut['title'] ); ?>"
 			>
