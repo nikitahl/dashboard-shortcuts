@@ -27,8 +27,8 @@
   background: #f6f7f7;
   border: 1px solid #dcdcde;
   border-radius: 4px;
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -98,6 +98,7 @@
   height: var(--input-min-height);
   min-height: var(--input-min-height);
   line-height: var(--input-line-height);
+  font-weight: 400;
 }
 
 .dashsh-url-input-wrapper {

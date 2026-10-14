@@ -112,7 +112,7 @@
 
 .dashsh-shortcut-item .dashsh-shortcut-link {
   display: block;
-  padding: 8px 12px;
+  padding: 6px 10px;
   color: var(--bar-link-color);
   text-decoration: none;
   font-size: 13px;
@@ -127,6 +127,7 @@
 .dashsh-shortcut-link:focus {
   background: #3b444a;
   outline: none;
+  box-shadow: none;
 }
 
 .dashsh-shortcut-link:active {
@@ -187,9 +188,9 @@
 }
 
 .dashsh-more-button .dashicons {
-  width: 20px;
-  height: 20px;
-  font-size: 20px;
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
 }
 
 .dashsh-more-dropdown {
