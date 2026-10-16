@@ -147,9 +147,9 @@ class DASHSH_Settings {
 				<div class="dashsh-actions">
 					<button type="button" id="dashsh-add-shortcut" class="button button-secondary">
 						<span class="dashicons dashicons-plus-alt2" aria-hidden="true"></span>
-						<?php esc_html_e( 'Add Shortcut', 'dashboard-shortcuts' ); ?>
+						<?php esc_html_e( 'Add shortcut', 'dashboard-shortcuts' ); ?>
 					</button>
-					<?php submit_button( __( 'Save Shortcuts', 'dashboard-shortcuts' ) ); ?>
+					<?php submit_button( __( 'Save shortcuts', 'dashboard-shortcuts' ) ); ?>
 				</div>
 
 				<div id="dashsh-shortcuts-container">

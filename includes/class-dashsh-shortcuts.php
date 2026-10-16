@@ -58,7 +58,7 @@ class DASHSH_Shortcuts {
 				<?php $this->render_shortcuts_list( $shortcuts ); ?>
 				<button type="button" id="dashsh-add-current-page" class="dashsh-add-current-btn" title="<?php esc_attr_e( 'Add current page to shortcuts', 'dashboard-shortcuts' ); ?>">
 					<span class="dashicons dashicons-plus-alt" aria-hidden="true"></span>
-					<?php esc_html_e( 'Add Current Page', 'dashboard-shortcuts' ); ?>
+					<?php esc_html_e( 'Add current page', 'dashboard-shortcuts' ); ?>
 				</button>
 			</div>
 		</div>
