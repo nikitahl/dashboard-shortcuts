@@ -11,10 +11,6 @@
   --input-line-height: 1.5;
 }
 
-.dashsh-settings-form {
-  margin-top: 20px;
-}
-
 #dashsh-shortcuts-container {
   background: #fff;
   border: 1px solid #c3c4c7;
@@ -27,8 +23,8 @@
   background: #f6f7f7;
   border: 1px solid #dcdcde;
   border-radius: 4px;
-  padding: 15px;
-  margin-bottom: 15px;
+  padding: 10px;
+  margin-bottom: 10px;
   transition: all 0.2s ease;
   display: flex;
   align-items: center;
@@ -55,7 +51,7 @@
   justify-content: center;
   cursor: move;
   color: #8c8f94;
-  padding: 5px;
+  padding: 7px 5px;
   margin-top: 12px;
   transition: color 0.2s ease;
 }
@@ -98,6 +94,7 @@
   height: var(--input-min-height);
   min-height: var(--input-min-height);
   line-height: var(--input-line-height);
+  font-weight: 400;
 }
 
 .dashsh-url-input-wrapper {
@@ -165,7 +162,20 @@
 }
 
 .dashsh-actions {
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  position: sticky;
+  top: 65px;
+  background: #f0f0f0;
+  margin-bottom: 5px;
+  padding: 10px 0;
+}
+
+.dashsh-actions .submit {
+  margin: 0;
+  padding: 0;
 }
 
 #dashsh-add-shortcut {

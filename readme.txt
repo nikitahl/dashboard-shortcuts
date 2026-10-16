@@ -2,9 +2,9 @@
 Contributors: nikitahl
 Tags: shortcuts, admin, bookmark, dashboard, favorites
 Requires at least: 6.4
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.0
-Stable tag: 1.1.1
+Stable tag: 1.2
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -62,16 +62,23 @@ There's no hard limit, but we recommend keeping it reasonable (10-15 shortcuts) 
 
 1. Shortcuts menu in the admin bar
 2. Settings page for managing shortcuts
-3. Add new shortcut interface
+3. Add current page as a shortcut interface
+4. Add new shortcut interface
 
 == Changelog ==
 
+= 1.2 =
+* **Update:** Updated CSS styling for shortcuts bar and settings page
+* **Improvement:** Moved shortcut buttons to top with sticky positioning
+* **Improvement:** Added icons for external links in the shortcuts bar
+* **Fix:** Fixed shortcut link attribute output
+
 = 1.1.1 =
-* Fix: Optimized CSS, updated styles for 7.0 release
+* **Fix**: Optimized CSS, updated styles for 7.0 release
 
 = 1.1.0 =
-* Fixed: Link selector modal now opens on first click for every shortcut row, even for newly added rows
-* Shortcuts bar and assets will not render or load in builder/editor iframes (WPBakery, Elementor, Beaver Builder, Oxygen, Brizy, Visual Composer, etc.), preventing conflicts and ensuring a clean editing experience
+* **Fix**: Link selector modal now opens on first click for every shortcut row, even for newly added rows
+* **Update**: Shortcuts bar and assets will not render or load in builder/editor iframes (WPBakery, Elementor, Beaver Builder, Oxygen, Brizy, Visual Composer, etc.), preventing conflicts and ensuring a clean editing experience
 
 = 1.0.0 =
 * Initial release

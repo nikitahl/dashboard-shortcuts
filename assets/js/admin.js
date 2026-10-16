@@ -8,6 +8,7 @@ import '../css/admin.css'
 (($) => {
   'use strict'
   const { dashshSettings, dashshApiSettings } = window
+  const $body = $('body')
 
   /**
    * Initialize the settings page functionality.
@@ -24,6 +25,8 @@ import '../css/admin.css'
       const index = $container.find('.dashsh-shortcut-row').length
       const $newRow = createShortcutRow(index)
       $container.append($newRow)
+      $newRow.find('input[type="text"]').first().focus()
+      $newRow[0].scrollIntoView({ behavior: 'smooth' })
     })
 
     // Remove shortcut row.
@@ -120,7 +123,7 @@ import '../css/admin.css'
 
     // Show modal
     $modal.show()
-    $('body').addClass('modal-open')
+    $body.addClass('modal-open')
 
     // Focus on URL input
     $urlInput.focus()
@@ -199,7 +202,7 @@ import '../css/admin.css'
       '</div>' +
       '</div>'
 
-    $('body').append(modalHtml)
+    $body.append(modalHtml)
   }
 
   /**
@@ -207,7 +210,7 @@ import '../css/admin.css'
    */
   const closeLinkModal = () => {
     $('#dashsh-link-modal').hide()
-    $('body').removeClass('modal-open')
+    $body.removeClass('modal-open')
   }
 
   /**
