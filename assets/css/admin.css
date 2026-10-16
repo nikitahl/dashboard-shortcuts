@@ -11,10 +11,6 @@
   --input-line-height: 1.5;
 }
 
-.dashsh-settings-form {
-  margin-top: 20px;
-}
-
 #dashsh-shortcuts-container {
   background: #fff;
   border: 1px solid #c3c4c7;
@@ -55,7 +51,7 @@
   justify-content: center;
   cursor: move;
   color: #8c8f94;
-  padding: 5px;
+  padding: 7px 5px;
   margin-top: 12px;
   transition: color 0.2s ease;
 }
